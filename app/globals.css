@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root { --paper:#f2efe6; --ink:#11120f; --acid:#d7ff3f; --line:rgba(17,18,15,.26); }
+:root { --paper:#f2efe6; --ink:#11120f; --acid:#d7ff3f; --line:rgba(17,18,15,.26); --font-geist-mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body { margin:0; background:var(--paper); color:var(--ink); font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; }
