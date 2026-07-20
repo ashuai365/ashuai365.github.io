@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NOVA — 独立创意工作室",
-  description: "NOVA 通过策略、设计与创意技术，让大胆的想法变得无法忽视。",
+  title: "MADAO的文稿演示 — 产品经理个人博客",
+  description: "记录产品、业务与 AI 的思考，聚焦大宗交易、供应链金融、产业互联网和产品方法论。",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

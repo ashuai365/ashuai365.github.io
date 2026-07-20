@@ -1,136 +1,142 @@
-"use client";
-
-import { useState } from "react";
-
-const projects = [
+const posts = [
   {
-    id: "01",
-    label: "品牌系统",
-    title: "NEON\nHARVEST",
-    note: "从策略到发布，为新一代食品科技品牌打造有温度的数字身份。",
-    color: "#d7ff3f",
-    ink: "#10110f",
+    date: "2026-07-20",
+    title: "从交互、沉淀到再输出：大宗智能体的产品闭环",
+    category: "AI 产品",
+    tags: ["大宗智能体", "产品规划"],
+    excerpt:
+      "智能体的价值不止于回答问题。真正可持续的产品路径，是把每一次用户交互转化为平台认知，再将沉淀反哺为更精准的服务。",
+    readTime: "6 分钟",
   },
   {
-    id: "02",
-    label: "数字产品",
-    title: "CITY\nAFTER DARK",
-    note: "把城市夜生活变成一个可探索、可收藏的沉浸式界面。",
-    color: "#4f46f6",
-    ink: "#f5f1e8",
+    date: "2026-07-15",
+    title: "企业采购比价，应该如何设计关键决策节点？",
+    category: "产品设计",
+    tags: ["采购", "业务流程"],
+    excerpt:
+      "询价、报价、比价和定标看似是一条线性流程，但真正影响产品体验的，是信息如何被标准化，以及决策依据如何被清晰呈现。",
+    readTime: "8 分钟",
   },
   {
-    id: "03",
-    label: "创意技术",
-    title: "KINETIC\nARCHIVE",
-    note: "一座会呼吸的线上档案馆，让文化内容随每次访问重新编排。",
-    color: "#ff6846",
-    ink: "#151515",
+    date: "2026-07-08",
+    title: "复杂供应链业务，如何转化成一份清晰的需求文档",
+    category: "方法论",
+    tags: ["供应链", "需求分析"],
+    excerpt:
+      "面对交易、物流、金融交织的业务，产品经理需要先建立角色、单据与货权的共同语言，再谈功能和页面。",
+    readTime: "5 分钟",
+  },
+  {
+    date: "2026-07-04",
+    title: "原型不是最终答案，而是团队形成共识的工具",
+    category: "产品思考",
+    tags: ["原型", "协作"],
+    excerpt:
+      "好的原型不追求把所有细节一次做完，它应该让模糊问题变得可见，让业务、产品和研发围绕同一个对象讨论。",
+    readTime: "4 分钟",
   },
 ];
 
+const archives = [
+  ["2026 年 7 月", 4],
+  ["2026 年 6 月", 3],
+  ["2026 年 5 月", 2],
+];
+
 export default function Home() {
-  const [active, setActive] = useState(0);
-  const project = projects[active];
-
   return (
-    <main>
-      <nav className="nav shell" aria-label="主导航">
-        <a className="brand" href="#top" aria-label="NOVA 首页">
-          NO<span>V</span>A<sup>®</sup>
-        </a>
-        <div className="navLinks">
-          <a href="#work">案例</a>
-          <a href="#method">方法</a>
-          <a href="#contact">联系</a>
+    <div className="siteFrame">
+      <header className="siteHeader">
+        <div className="headerInner">
+          <a className="siteBrand" href="#top">
+            <span className="logoMark" aria-hidden="true">M</span>
+            <span className="brandCopy">
+              <strong>MADAO</strong>
+              <small>产品经理的文稿与原型</small>
+            </span>
+          </a>
+          <nav aria-label="博客导航">
+            <a href="#top">首页</a>
+            <a href="#archive">归档</a>
+            <a href="#categories">分类</a>
+            <a href="#tags">标签</a>
+            <a href="#about">关于</a>
+          </nav>
         </div>
-        <a className="navCta" href="#contact">发起项目 <span>↗</span></a>
-      </nav>
+      </header>
 
-      <section className="hero shell" id="top">
-        <div className="eyebrow"><i /> 独立创意工作室 · 上海 / 全球</div>
-        <h1>
-          <span>MAKE IDEAS</span>
-          <span className="outline">IMPOSSIBLE</span>
-          <span>TO IGNORE<i className="spark">✦</i></span>
-        </h1>
-        <div className="heroBottom">
-          <p>我们把大胆的想法变成<br />鲜活、清晰、有影响力的体验。</p>
-          <a className="roundButton" href="#work" aria-label="查看精选案例">↓</a>
-          <div className="heroIndex">( 2026—27 )</div>
-        </div>
-      </section>
+      <main className="page" id="top">
+        <section className="content" aria-label="文章列表">
+          <div className="intro">
+            <span>产品经理个人网站</span>
+            <h1>把复杂的业务，<br />写成清晰的产品。</h1>
+            <p>这里记录一名产品经理对大宗交易、供应链金融、产业互联网与 AI 产品的实践和思考。</p>
+          </div>
 
-      <section className="ticker" aria-label="服务范围">
-        <div>品牌策略 ✦ 视觉系统 ✦ 数字体验 ✦ 创意开发 ✦ 品牌策略 ✦ 视觉系统 ✦ 数字体验 ✦ 创意开发 ✦</div>
-      </section>
-
-      <section className="work shell" id="work">
-        <header className="sectionHead">
-          <p>精选案例</p>
-          <h2>不同，不只是<br />看起来不同。</h2>
-          <span>03 / 12</span>
-        </header>
-
-        <div className="projectGrid">
-          <div className="projectTabs" role="tablist" aria-label="精选项目">
-            {projects.map((item, index) => (
-              <button
-                key={item.id}
-                className={active === index ? "active" : ""}
-                onClick={() => setActive(index)}
-                role="tab"
-                aria-selected={active === index}
-              >
-                <small>{item.id}</small>
-                <span>{item.label}</span>
-                <b>↗</b>
-              </button>
+          <div className="postList">
+            {posts.map((post, index) => (
+              <article className="post" key={post.title}>
+                <header>
+                  <h2><a href={`#post-${index + 1}`}>{post.title}</a></h2>
+                  <div className="postMeta">
+                    <time>{post.date}</time><b>·</b><span>{post.category}</span><b>·</b><span>阅读时长 {post.readTime}</span>
+                  </div>
+                </header>
+                <p>{post.excerpt}</p>
+                <footer>
+                  <div className="tagRow">{post.tags.map((tag) => <span key={tag}># {tag}</span>)}</div>
+                  <a className="readMore" href={`#post-${index + 1}`}>阅读全文 →</a>
+                </footer>
+              </article>
             ))}
           </div>
 
-          <article className="projectCard" style={{ background: project.color, color: project.ink }}>
-            <div className="cardMeta"><span>PROJECT / {project.id}</span><span>© NOVA STUDIO</span></div>
-            <div className="orb orbOne" />
-            <div className="orb orbTwo" />
-            <h3>{project.title.split("\n").map((line) => <span key={line}>{line}</span>)}</h3>
-            <p>{project.note}</p>
-            <div className="cardMark">N°</div>
-          </article>
-        </div>
-      </section>
+          <nav className="pagination" aria-label="分页">
+            <span className="current">1</span><a href="#top">2</a><a href="#top">3</a><a href="#top">下一页 ›</a>
+          </nav>
+        </section>
 
-      <section className="statement" id="method">
-        <div className="shell statementInner">
-          <p className="sideLabel">我们的信念<br />( NO. 01 )</p>
-          <blockquote>
-            平庸的设计<br />让人<span>滑过。</span><br />好的设计<br />让人<span className="highlight">停下。</span>
-          </blockquote>
-          <div className="methodNote">
-            <span>策略 × 设计 × 技术</span>
-            <p>不套模板，不追逐短暂的潮流。我们从问题本身出发，用清晰的逻辑和意想不到的表达，让品牌被真正记住。</p>
-          </div>
-        </div>
-      </section>
+        <aside className="sidebar">
+          <section className="profile" id="about">
+            <div className="profileLogo"><span className="logoMark" aria-hidden="true">M</span></div>
+            <h2>MADAO</h2>
+            <p>高级产品经理</p>
+            <div className="profileStats">
+              <a href="#archive"><strong>23</strong><span>日志</span></a>
+              <a href="#categories"><strong>6</strong><span>分类</span></a>
+              <a href="#tags"><strong>18</strong><span>标签</span></a>
+            </div>
+            <div className="focus">大宗交易 · 供应链金融<br />产业互联网 · AI 产品</div>
+          </section>
 
-      <section className="numbers shell">
-        <div><strong>12</strong><span>年持续创造</span></div>
-        <div><strong>48</strong><span>个国际奖项</span></div>
-        <div><strong>91%</strong><span>客户再次合作</span></div>
-        <div><strong>07</strong><span>城市协作网络</span></div>
-      </section>
+          <section className="sideCard" id="categories">
+            <h3>分类</h3>
+            <ul>
+              <li><a href="#top"><span>AI 产品</span><b>8</b></a></li>
+              <li><a href="#top"><span>产品设计</span><b>6</b></a></li>
+              <li><a href="#top"><span>供应链</span><b>5</b></a></li>
+              <li><a href="#top"><span>方法论</span><b>4</b></a></li>
+            </ul>
+          </section>
 
-      <footer id="contact">
-        <div className="shell footerInner">
-          <p>有一个大胆的想法？</p>
-          <a href="mailto:hello@nova.studio">LET’S MAKE<br />IT REAL <span>↗</span></a>
-          <div className="footerMeta">
-            <span>HELLO@NOVA.STUDIO</span>
-            <span>INSTAGRAM · LINKEDIN · 小红书</span>
-            <span>© 2026 NOVA</span>
-          </div>
-        </div>
+          <section className="sideCard" id="archive">
+            <h3>归档</h3>
+            <ul>{archives.map(([month, count]) => <li key={month}><a href="#top"><span>{month}</span><b>{count}</b></a></li>)}</ul>
+          </section>
+
+          <section className="sideCard" id="tags">
+            <h3>标签云</h3>
+            <div className="tagCloud">
+              <a href="#top">产品规划</a><a href="#top">AI</a><a href="#top">大宗交易</a><a href="#top">供应链</a><a href="#top">原型</a><a href="#top">业务流程</a>
+            </div>
+          </section>
+        </aside>
+      </main>
+
+      <footer className="siteFooter">
+        <p>© 2026 MADAO · 用产品视角理解复杂世界</p>
+        <a href="#top" aria-label="返回顶部">↑</a>
       </footer>
-    </main>
+    </div>
   );
 }
