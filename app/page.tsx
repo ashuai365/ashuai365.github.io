@@ -1,39 +1,30 @@
 const posts = [
   {
+    slug: "commodity-ai-commercial-loop",
     date: "2026-07-20",
-    title: "从交互、沉淀到再输出：大宗智能体的产品闭环",
+    title: "大宗智能体如何从 AI 问答走向商业闭环",
     category: "AI 产品",
     tags: ["大宗智能体", "产品规划"],
-    excerpt:
-      "智能体的价值不止于回答问题。真正可持续的产品路径，是把每一次用户交互转化为平台认知，再将沉淀反哺为更精准的服务。",
+    excerpt: "为什么行业智能体不应止于付费问答，以及如何连接决策、服务与交易价值。",
+    readTime: "7 分钟",
+  },
+  {
+    slug: "paywall-after-value",
+    date: "2026-07-18",
+    title: "先让用户感知价值，再谈付费墙",
+    category: "产品设计",
+    tags: ["付费墙", "会员体系"],
+    excerpt: "行业 AI 产品如何设计免费额度、会员权益和单项付费，而不伤害核心体验。",
     readTime: "6 分钟",
   },
   {
-    date: "2026-07-15",
-    title: "企业采购比价，应该如何设计关键决策节点？",
-    category: "产品设计",
-    tags: ["采购", "业务流程"],
-    excerpt:
-      "询价、报价、比价和定标看似是一条线性流程，但真正影响产品体验的，是信息如何被标准化，以及决策依据如何被清晰呈现。",
-    readTime: "8 分钟",
-  },
-  {
-    date: "2026-07-08",
-    title: "复杂供应链业务，如何转化成一份清晰的需求文档",
+    slug: "90-day-validation-framework",
+    date: "2026-07-16",
+    title: "用 90 天验证一个行业智能体是否成立",
     category: "方法论",
-    tags: ["供应链", "需求分析"],
-    excerpt:
-      "面对交易、物流、金融交织的业务，产品经理需要先建立角色、单据与货权的共同语言，再谈功能和页面。",
-    readTime: "5 分钟",
-  },
-  {
-    date: "2026-07-04",
-    title: "原型不是最终答案，而是团队形成共识的工具",
-    category: "产品思考",
-    tags: ["原型", "协作"],
-    excerpt:
-      "好的原型不追求把所有细节一次做完，它应该让模糊问题变得可见，让业务、产品和研发围绕同一个对象讨论。",
-    readTime: "4 分钟",
+    tags: ["指标体系", "MVP"],
+    excerpt: "从产品价值、商业化、交易转化和 AI 成本四个维度建立验证框架。",
+    readTime: "8 分钟",
   },
 ];
 
@@ -77,7 +68,7 @@ export default function Home() {
             {posts.map((post, index) => (
               <article className="post" key={post.title}>
                 <header>
-                  <h2><a href={`#post-${index + 1}`}>{post.title}</a></h2>
+                  <h2><a href={`/articles/${post.slug}/`}>{post.title}</a></h2>
                   <div className="postMeta">
                     <time>{post.date}</time><b>·</b><span>{post.category}</span><b>·</b><span>阅读时长 {post.readTime}</span>
                   </div>
@@ -85,7 +76,7 @@ export default function Home() {
                 <p>{post.excerpt}</p>
                 <footer>
                   <div className="tagRow">{post.tags.map((tag) => <span key={tag}># {tag}</span>)}</div>
-                  <a className="readMore" href={`#post-${index + 1}`}>阅读全文 →</a>
+                  <a className="readMore" href={`/articles/${post.slug}/`}>阅读全文 →</a>
                 </footer>
               </article>
             ))}
