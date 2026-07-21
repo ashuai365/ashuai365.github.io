@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-type Stage = "welcome" | "login" | "profile" | "app";
+type Stage = "welcome" | "login" | "wechat" | "profile" | "app";
 type Tab = "首页" | "商机" | "行情" | "我的";
 type Chat = "idle" | "market" | "buy";
 
@@ -24,10 +24,12 @@ export default function CommodityAiApp(){
   const [period,setPeriod]=useState("7日");
   const [alertOn,setAlertOn]=useState(true);
   const [saved,setSaved]=useState(false);
+  const [authMethod,setAuthMethod]=useState<"微信"|"手机号"|"本机号码"|null>(null);
   const setMarketView=(_:string)=>setTab("行情");
 
   const startChat=(mode:Chat)=>{setChat(mode);setTab("首页");setStep(mode==="idle"?0:1)};
   const send=()=>{if(!input.trim())return;setChat(input.includes("采购")||input.includes("10吨")?"buy":"market");setStep(1);setInput("")};
+  const finishAuth=(method:"微信"|"手机号"|"本机号码")=>{setAuthMethod(method);setStage("profile")};
 
   return <div className="aiAppDemo">
     <aside className="appGuide">
@@ -38,9 +40,10 @@ export default function CommodityAiApp(){
     <div className="phoneShell">
       <div className="phoneTop"><span>12:00</span><i/><b>▮▮⌁</b></div>
       <div className="phoneScreen">
-        {stage==="welcome"&&<section className="welcomeScreen"><div className="aiGlyph">M<span>AI</span></div><h2>大宗智能体</h2><p>你的行业决策与交易助手</p><div><button onClick={()=>setStage("profile")}>本机号码一键登录</button><button className="ghost" onClick={()=>setStage("login")}>其他手机号登录</button></div><small>注册即登录 · 演示环境无需真实信息</small></section>}
-        {stage==="login"&&<section className="loginScreen"><button className="back" onClick={()=>setStage("welcome")}>‹</button><span>快捷注册 / 登录</span><h2>欢迎使用大宗智能体</h2><p>选择一种方式快捷登录，首次登录将自动注册</p><button className="wechatLogin" disabled={!agreed} onClick={()=>setStage("profile")}><i>微</i> 微信授权登录</button><div className="loginDivider"><span>或使用手机号</span></div><label>手机号<input value={phone} onChange={e=>setPhone(e.target.value.replace(/\D/g,"").slice(0,11))} placeholder="请输入手机号" inputMode="numeric"/></label><label>验证码<div><input placeholder="6 位验证码" inputMode="numeric"/><button>获取验证码</button></div></label><button className="primary" disabled={!agreed} onClick={()=>setStage("profile")}>验证并登录</button><label className="agreement"><input type="checkbox" checked={agreed} onChange={e=>setAgreed(e.target.checked)}/> 已阅读并同意《用户协议》和《隐私政策》</label><small>演示环境无需输入真实信息</small></section>}
-        {stage==="profile"&&<section className="profileScreen"><span>只需一步</span><h2>你关注哪些品类？</h2><p>我们会据此推荐行情、政策和商机</p><div className="chips">{["螺纹钢","热轧卷板","铁矿石","焦煤","焦炭","有色金属"].map((x,i)=><button key={x} className={i<2?"selected":""}>{i<2?"✓ ":""}{x}</button>)}</div><h3>你的主要角色</h3><div className="roleCards"><button className="selected">采购方<small>找货 · 比价 · 控风险</small></button><button>贸易商<small>看行情 · 找商机</small></button></div><button className="primary" onClick={()=>setStage("app")}>开始使用</button></section>}
+        {stage==="welcome"&&<section className="welcomeScreen"><div className="aiGlyph">M<span>AI</span></div><h2>大宗智能体</h2><p>你的行业决策与交易助手</p><div><button className="wechatEntry" onClick={()=>setStage("wechat")}>微信授权登录</button><button onClick={()=>finishAuth("本机号码")}>本机号码一键登录</button><button className="ghost" onClick={()=>setStage("login")}>其他手机号登录</button></div><small>首次登录即完成注册 · 演示环境无需真实信息</small></section>}
+        {stage==="login"&&<section className="loginScreen"><button className="back" onClick={()=>setStage("welcome")}>‹</button><span>手机号注册 / 登录</span><h2>验证手机号</h2><p>未注册手机号验证后将自动创建账号</p><label>手机号<input value={phone} onChange={e=>setPhone(e.target.value.replace(/\D/g,"").slice(0,11))} placeholder="请输入手机号" inputMode="numeric"/></label><label>验证码<div><input placeholder="6 位验证码" inputMode="numeric"/><button>获取验证码</button></div></label><button className="primary" disabled={!agreed} onClick={()=>finishAuth("手机号")}>验证并继续</button><label className="agreement"><input type="checkbox" checked={agreed} onChange={e=>setAgreed(e.target.checked)}/> 已阅读并同意《用户协议》和《隐私政策》</label><small>演示环境无需输入真实信息</small></section>}
+        {stage==="wechat"&&<section className="wechatAuthScreen"><button className="back" onClick={()=>setStage("welcome")}>‹</button><div className="wechatBrand"><i>微</i><span>微信授权</span></div><h2>大宗智能体申请获得</h2><div className="wechatUser"><div>猫</div><span><b>你的微信头像、昵称</b><small>用于创建并识别你的平台账号</small></span><em>✓</em></div><div className="authFlow"><span>微信身份</span><b>→</b><span>创建账号</span><b>→</b><span>完善偏好</span></div><button className="wechatConfirm" disabled={!agreed} onClick={()=>finishAuth("微信")}>允许并继续</button><button className="wechatCancel" onClick={()=>setStage("login")}>改用手机号登录</button><label className="agreement"><input type="checkbox" checked={agreed} onChange={e=>setAgreed(e.target.checked)}/> 同意《用户协议》和《隐私政策》</label><small>此页面为授权流程演示，不会读取真实微信信息</small></section>}
+        {stage==="profile"&&<section className="profileScreen"><span>{authMethod?`${authMethod}登录成功 · 只需一步`:"只需一步"}</span><h2>你关注哪些品类？</h2><p>我们会据此推荐行情、政策和商机</p><div className="chips">{["螺纹钢","热轧卷板","铁矿石","焦煤","焦炭","有色金属"].map((x,i)=><button key={x} className={i<2?"selected":""}>{i<2?"✓ ":""}{x}</button>)}</div><h3>你的主要角色</h3><div className="roleCards"><button className="selected">采购方<small>找货 · 比价 · 控风险</small></button><button>贸易商<small>看行情 · 找商机</small></button></div><button className="primary" onClick={()=>setStage("app")}>开始使用</button></section>}
         {stage==="app"&&<section className="mainScreen">
           <header><button>☰</button><nav>{(["首页","商机","行情","我的"] as Tab[]).map(x=><button key={x} className={tab===x?"active":""} onClick={()=>{setTab(x);if(x!=="首页")setChat("idle")}}>{x}</button>)}</nav><i>●</i></header>
           {tab==="首页"&&<div className="chatScreen">
