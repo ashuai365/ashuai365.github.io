@@ -1229,6 +1229,15 @@
         button,.tb-btn,.hero-slide-cta{transition:transform .18s,box-shadow .18s,background .18s}button:hover,.tb-btn:hover{transform:translateY(-1px)}
         .back-link{cursor:pointer}.back-link:hover{color:#fff;text-decoration:underline}.demo-ribbon{position:fixed;right:12px;bottom:12px;z-index:9999;background:#061f3d;color:#fff;padding:7px 12px;border-radius:6px;font-size:11px;box-shadow:0 5px 18px #001a3340}.demo-ribbon b{color:#6db7ff}
     </style>
+    <style>
+        /* 蓝白灰扁平化重构 */
+        :root{--brand:#0756a8;--brand-dark:#063b78;--brand-light:#edf5ff;--bg:#f5f7fa;--card:#fff;--border:#dfe6ee;--border-light:#edf1f5;--text:#172333;--text-secondary:#526273;--text-muted:#8b98a7;--warning:#0756a8;--warning-light:#edf5ff;--success:#0756a8;--success-light:#edf5ff;--error:#cf2634;--error-light:#fff0f1}
+        body{background:#f5f7fa}.top-bar{background:#fff}.header{background:#0756a8!important;border:0!important}.header-subrow{background:#06498f!important;border-color:rgba(255,255,255,.13)!important}
+        .hero-carousel,.hero-user-panel,.chart-card,.ai-card,.scf-ad,.cluster-card,.biz-card,.biz-ad-card,.research-card,.news-card,.enterprise-card,.side-ad-card{border-radius:3px!important;box-shadow:none!important;border:1px solid #dfe6ee!important}
+        .hero-slide,.scf-ad,.biz-ad-card,.side-ad-card{background-color:#edf5ff!important;background-image:none!important}.hero-slide-tag,.biz-card-badge,.tag,.badge{border-radius:2px!important}
+        .hero-slide-cta,.ai-panel-btn,.cluster-join-btn,.biz-ad-card-btn,.tb-btn{border-radius:3px!important;box-shadow:none!important;background:#0756a8!important}.section-title h2{border-left:0!important;padding-left:0!important}.section-title{border-bottom:2px solid #0756a8!important;padding-bottom:10px!important}
+        .main-grid,.business-grid,.insight-grid{gap:12px!important}.chart-card,.ai-card,.research-card,.news-card,.enterprise-card{padding:18px!important}.demo-ribbon{border-radius:2px!important;background:#063b78!important;box-shadow:none!important}
+    </style>
 </head>
 <body>
     <!-- 全局顶栏 -->
@@ -1250,7 +1259,6 @@
     <!-- Header -->
     <header class="header">
         <div class="header-inner">
-            <div class="back-link" onclick="window.top.location.href='/demos/'">← 返回产品演示</div>
             <div class="logo">
                 <div class="logo-mark">W</div>
                 <div>
