@@ -41,7 +41,6 @@ export default function Home() {
       <main className="page" id="top">
         <section className="content" aria-label="最新内容列表">
           <div className="intro">
-            <span>产品经理个人网站</span>
             <h1>把复杂的业务，<br />写成清晰的产品。</h1>
             <p>这里记录一名产品经理对大宗交易、供应链金融、产业互联网与 AI 产品的实践和思考。</p>
           </div>
