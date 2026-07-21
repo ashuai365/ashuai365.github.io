@@ -30,9 +30,10 @@ const posts = [
 
 import SiteHeader from "./SiteHeader";
 import { demos } from "./demos/demo-data";
+import DemoThumbnail from "./demos/DemoThumbnail";
 
 export default function Home() {
-  const contents=[...posts.map(post=>({...post,type:"文章",href:`/articles/${post.slug}/`})),...demos.map(demo=>({slug:demo.slug,date:demo.updatedAt.slice(0,10),title:demo.title,category:demo.category,tags:["产品演示","交互原型"],excerpt:demo.description,readTime:"可交互",type:"产品演示",href:`/demos/${demo.slug}/`}))].sort((a,b)=>b.date.localeCompare(a.date));
+  const contents=[...posts.map(post=>({...post,type:"文章",href:`/articles/${post.slug}/`,index:""})),...demos.map(demo=>({slug:demo.slug,date:demo.updatedAt.slice(0,10),title:demo.title,category:demo.category,tags:["产品演示","交互原型"],excerpt:demo.description,readTime:"可交互",type:"产品演示",href:`/demos/${demo.slug}/`,index:demo.index}))].sort((a,b)=>b.date.localeCompare(a.date));
   return (
     <div className="siteFrame">
       <SiteHeader active="home" />
@@ -47,7 +48,9 @@ export default function Home() {
 
           <div className="postList">
             {contents.map((post) => (
-              <article className="post" key={post.title}>
+              <article className={post.type==="产品演示"?"post homeDemoPost":"post"} key={post.title}>
+                {post.type==="产品演示"&&<a className="homeDemoVisual" href={post.href} style={{"--demo-accent":demos.find(d=>d.slug===post.slug)?.accent} as React.CSSProperties}><DemoThumbnail index={post.index}/><span>INTERACTIVE DEMO</span></a>}
+                <div className={post.type==="产品演示"?"homeDemoCopy":undefined}>
                 <header>
                   <h2><a href={post.href}>{post.title}</a></h2>
                   <div className="postMeta">
@@ -58,7 +61,7 @@ export default function Home() {
                 <footer>
                   <div className="tagRow">{post.tags.map((tag) => <span key={tag}># {tag}</span>)}</div>
                   <a className="readMore" href={post.href}>{post.type==="产品演示"?"打开演示 →":"阅读全文 →"}</a>
-                </footer>
+                </footer></div>
               </article>
             ))}
           </div>
