@@ -1,0 +1,3 @@
+import type { IndexedContent } from "./content-index-data";
+
+export default function ContentList({items}:{items:IndexedContent[]}){return <section className="indexedContentList" aria-label="内容列表">{items.map(item=><article key={item.href}><div><span className={item.type==="产品演示"?"indexedType demo":"indexedType"}>{item.type}</span><time>{item.date}</time></div><h2><a href={item.href}>{item.title}</a></h2><p>{item.description}</p><footer><span>{item.category}</span><div>{item.tags.map(tag=><i key={tag}># {tag}</i>)}</div><a href={item.href}>{item.type==="文章"?"阅读全文":"打开演示"} →</a></footer></article>)}</section>}
