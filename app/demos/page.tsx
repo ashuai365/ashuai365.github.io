@@ -11,7 +11,7 @@ export default function DemoListPage() {
         <p>一些可以亲手操作的产品片段。每个演示都聚焦一个具体问题，用最小交互验证产品逻辑。</p>
       </header>
       <section className="demoGrid" aria-label="演示列表">
-        {demos.map((demo) => <a className="demoCard" href={`/demos/${demo.slug}/`} key={demo.slug} style={{"--demo-accent":demo.accent} as React.CSSProperties}>
+        {[...demos].sort((a,b)=>b.updatedAt.localeCompare(a.updatedAt)).map((demo) => <a className="demoCard" href={`/demos/${demo.slug}/`} key={demo.slug} style={{"--demo-accent":demo.accent} as React.CSSProperties}>
           <div className="demoCardTop"><span>{demo.index}</span><b>{demo.category}</b></div>
           <div className={`demoThumb demoThumb${demo.index}`} aria-hidden="true">
             {demo.index==="00"&&<div className="thumbPhone"><header><i/><b>首页　商机　行情</b></header><p><span>AI</span> 螺纹钢行情如何？</p><div className="thumbChart"><i/><i/><i/><i/><i/></div></div>}

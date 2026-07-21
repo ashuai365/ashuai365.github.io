@@ -6,6 +6,7 @@ export const demos = [
     category: "完整产品原型",
     description: "从注册、偏好设置到 AI 行情问答与采购需求补全，体验一段完整用户旅程。",
     accent: "#6257c9",
+    updatedAt: "2026-07-21",
   },
   {
     slug: "price-alert",
@@ -14,6 +15,7 @@ export const demos = [
     category: "大宗交易",
     description: "拖动市场价格，观察采购建议、风险等级与预警信息如何实时变化。",
     accent: "#2563eb",
+    updatedAt: "2026-07-18",
   },
   {
     slug: "priority-matrix",
@@ -22,6 +24,7 @@ export const demos = [
     category: "产品规划",
     description: "调整用户价值、业务收益、实施成本，快速得到功能优先级建议。",
     accent: "#7c3aed",
+    updatedAt: "2026-07-17",
   },
   {
     slug: "ai-confidence",
@@ -30,6 +33,7 @@ export const demos = [
     category: "AI 产品",
     description: "逐项开启来源、时效与交叉验证，体验可信度如何被解释和校准。",
     accent: "#059669",
+    updatedAt: "2026-07-16",
   },
   {
     slug: "bulk-trading-platform",
@@ -38,5 +42,6 @@ export const demos = [
     category: "产业交易门户",
     description: "覆盖行情、资讯、研报、采购与供应商机、产业集群及供应链服务的完整平台首页。",
     accent: "#0756a8",
+    updatedAt: "2026-07-21T12:00:00",
   },
 ];

@@ -29,14 +29,16 @@ const posts = [
 ];
 
 import SiteHeader from "./SiteHeader";
+import { demos } from "./demos/demo-data";
 
 export default function Home() {
+  const contents=[...posts.map(post=>({...post,type:"文章",href:`/articles/${post.slug}/`})),...demos.map(demo=>({slug:demo.slug,date:demo.updatedAt.slice(0,10),title:demo.title,category:demo.category,tags:["产品演示","交互原型"],excerpt:demo.description,readTime:"可交互",type:"产品演示",href:`/demos/${demo.slug}/`}))].sort((a,b)=>b.date.localeCompare(a.date));
   return (
     <div className="siteFrame">
       <SiteHeader active="home" />
 
       <main className="page" id="top">
-        <section className="content" aria-label="文章列表">
+        <section className="content" aria-label="最新内容列表">
           <div className="intro">
             <span>产品经理个人网站</span>
             <h1>把复杂的业务，<br />写成清晰的产品。</h1>
@@ -44,18 +46,18 @@ export default function Home() {
           </div>
 
           <div className="postList">
-            {posts.map((post, index) => (
+            {contents.map((post) => (
               <article className="post" key={post.title}>
                 <header>
-                  <h2><a href={`/articles/${post.slug}/`}>{post.title}</a></h2>
+                  <h2><a href={post.href}>{post.title}</a></h2>
                   <div className="postMeta">
-                    <time>{post.date}</time><b>·</b><span>{post.category}</span><b>·</b><span>阅读时长 {post.readTime}</span>
+                    <time>{post.date}</time><b>·</b><span className={post.type==="产品演示"?"contentType demo":"contentType"}>{post.type}</span><b>·</b><span>{post.category}</span><b>·</b><span>{post.type==="产品演示"?"打开体验":`阅读时长 ${post.readTime}`}</span>
                   </div>
                 </header>
                 <p>{post.excerpt}</p>
                 <footer>
                   <div className="tagRow">{post.tags.map((tag) => <span key={tag}># {tag}</span>)}</div>
-                  <a className="readMore" href={`/articles/${post.slug}/`}>阅读全文 →</a>
+                  <a className="readMore" href={post.href}>{post.type==="产品演示"?"打开演示 →":"阅读全文 →"}</a>
                 </footer>
               </article>
             ))}

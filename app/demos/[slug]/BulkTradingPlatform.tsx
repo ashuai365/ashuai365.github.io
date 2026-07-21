@@ -1,0 +1,26 @@
+"use client";
+
+import { useState } from "react";
+
+const productMap:Record<string,string[]>={钢材:["建筑钢材","热轧板卷","冷轧板卷","中厚板","型钢","钢管"],原料:["铁矿石","焦煤","焦炭","废钢","钢坯","铁合金"],有色:["铜","铝","铅","锌","镍","稀土"],能源化工:["原油","天然气","甲醇","塑料","橡胶","化肥"],农产品:["玉米","大豆","豆粕","棕榈油","棉花","白糖"]};
+const quotes:Record<string,string[][]>={钢材:[["螺纹钢","上海","3,289","-18"],["热轧板卷","杭州","3,412","+12"],["中厚板","无锡","3,526","-6"],["冷轧板卷","乐从","4,018","+8"]],原料:[["PB粉","青岛港","781","-6"],["主焦煤","山西","1,452","+15"],["一级冶金焦","唐山","1,680","0"],["废钢","张家港","2,395","-10"]],有色:[["电解铜","上海","78,420","+360"],["A00铝","佛山","20,180","-45"],["锌锭","天津","23,760","+90"],["电解镍","无锡","126,500","-800"]]};
+
+export default function BulkTradingPlatform(){
+  const [category,setCategory]=useState("钢材");
+  const [region,setRegion]=useState("全国");
+  const rows=quotes[category]||quotes.钢材;
+  return <div className="btp">
+    <div className="btpUtility"><span>欢迎来到万贸达大宗商品交易平台</span><nav><button>企业入驻</button><button>客户服务</button><button>登录</button><b>免费注册</b></nav></div>
+    <header className="btpHeader"><a className="btpLogo"><i>W</i><span><b>万贸达</b><small>大宗商品交易服务平台</small></span></a><div className="btpSearch"><select aria-label="搜索类型"><option>现货</option><option>企业</option><option>资讯</option></select><input placeholder="搜索品种、规格、企业或资讯"/><button>搜索</button></div><div className="btpHot"><small>服务热线</small><b>400-888-6688</b></div></header>
+    <nav className="btpMainNav"><button className="active">首页</button><button>行情中心</button><button>资讯快讯</button><button>研究报告</button><button>采购商机</button><button>供应资源</button><button>产业服务</button><button>AI 助手</button></nav>
+    <section className="btpProductNav"><div className="btpProductTitle">全部商品分类</div>{Object.entries(productMap).map(([group,items])=><div className="btpProductRow" key={group}><button className={category===group?"active":""} onClick={()=>setCategory(group)}>{group}</button><p>{items.map(item=><span key={item}>{item}</span>)}</p></div>)}</section>
+    <main className="btpBody">
+      <section className="btpLead"><div className="btpHero"><span>产业数字化交易基础设施</span><h1>让大宗商品交易<br/>更高效、更可信</h1><p>行情数据、供需撮合、仓储物流与供应链金融一站协同</p><div><button>发布采购需求</button><button>发布供应资源</button></div></div><aside className="btpLogin"><h3>企业工作台</h3><p>登录后管理询报价、订单与履约</p><button>企业登录</button><div><span><b>12,680</b><small>认证企业</small></span><span><b>38,426</b><small>今日商机</small></span></div><footer><button>发布需求</button><button>查询物流</button><button>申请融资</button></footer></aside></section>
+      <section className="btpTicker"><b>行情快报</b><div>{[["螺纹钢","3,289","-0.54%"],["铁矿石","781","-0.76%"],["沪铜","78,420","+0.46%"],["焦煤","1,452","+1.04%"]].map(x=><span key={x[0]}><small>{x[0]}</small><strong>{x[1]}</strong><i className={x[2].startsWith("+")?"up":"down"}>{x[2]}</i></span>)}</div><button>查看全部 →</button></section>
+      <section className="btpGrid"><article className="btpPanel btpQuotes"><header><h2>现货行情</h2><div>{["钢材","原料","有色"].map(x=><button className={category===x?"active":""} onClick={()=>setCategory(x)} key={x}>{x}</button>)}</div><select value={region} onChange={e=>setRegion(e.target.value)}><option>全国</option><option>华东</option><option>华北</option><option>华南</option></select></header><div className="btpQuoteHead"><span>品种</span><span>市场</span><span>价格</span><span>涨跌</span></div>{rows.map(x=><div className="btpQuoteRow" key={x[0]}><b>{x[0]}</b><span>{region==="全国"?x[1]:region}</span><strong>{x[2]}</strong><i className={x[3].startsWith("+")?"up":"down"}>{x[3]}</i></div>)}</article><article className="btpPanel btpNews"><header><h2>行业快讯</h2><button>更多 →</button></header>{[["10:36","华东建材成交回暖，市场价格以稳为主"],["10:12","铁矿石港口库存连续第二周下降"],["09:48","多地重点工程三季度采购计划启动"],["09:15","焦煤主力合约早盘涨幅扩大"],["08:42","央行公开市场净投放呵护流动性"]].map((x,i)=><div className={i===0?"hot":""} key={x[0]}><time>{x[0]}</time><p>{x[1]}</p></div>)}</article></section>
+      <section className="btpSection"><header><div><span>OPPORTUNITIES</span><h2>实时供需商机</h2></div><button>进入商机大厅 →</button></header><div className="btpDeals">{[["采购","急采 HRB400E 螺纹钢 500 吨","上海 · 货到付款","今日 16:00 截止"],["供应","日照港 PB 粉现货 2,000 吨","山东 · 港口自提","支持议价"],["采购","电解铜 1# 标准阴极铜 120 吨","江苏 · 月度长协","资质企业优先"],["供应","主焦煤低硫 S0.6 现货 800 吨","山西 · 汽运到厂","今日可发货"]].map(x=><article key={x[1]}><span className={x[0]==="采购"?"buy":"sell"}>{x[0]}</span><h3>{x[1]}</h3><p>{x[2]}</p><footer><small>{x[3]}</small><button>立即洽谈</button></footer></article>)}</div></section>
+      <section className="btpGrid btpBottom"><article className="btpPanel btpReports"><header><h2>研究报告</h2><button>更多 →</button></header><div className="featured"><span>钢材周报</span><h3>淡季库存拐点与下半年需求修复路径</h3><p>从供应、库存、利润与宏观项目资金四个维度研判价格方向。</p></div>{["铁矿石估值与钢厂补库节奏","有色金属月度供需平衡表","煤焦产业链利润传导观察"].map(x=><button key={x}>{x}<span>阅读全文 →</span></button>)}</article><article className="btpPanel btpServices"><header><h2>产业服务</h2></header><div>{[["仓","智慧云仓","全国仓储网络与电子仓单"],["运","物流服务","公铁水多式联运在线询价"],["融","供应链金融","订单、仓单与应收融资"],["验","质量服务","检验检测与质量追溯"]].map(x=><button key={x[1]}><i>{x[0]}</i><span><b>{x[1]}</b><small>{x[2]}</small></span></button>)}</div></article></section>
+      <footer className="btpNote">页面信息结构参考公开行业资讯平台 · 所有行情和商机数据均为产品演示</footer>
+    </main>
+  </div>;
+}
