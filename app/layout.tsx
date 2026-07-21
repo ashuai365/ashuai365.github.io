@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "MADAO的文稿演示 — 产品经理个人博客",
+  title: "一个产品经理的网站 — MADAO",
   description: "记录产品、业务与 AI 的思考，聚焦大宗交易、供应链金融、产业互联网和产品方法论。",
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: "/madao-avatar.png",
+    shortcut: "/madao-avatar.png",
   },
 };
 

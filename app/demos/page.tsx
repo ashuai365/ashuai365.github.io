@@ -1,11 +1,9 @@
 import { demos } from "./demo-data";
+import SiteHeader from "../SiteHeader";
 
 export default function DemoListPage() {
   return <div className="demoChannel">
-    <header className="siteHeader"><div className="headerInner">
-      <a className="siteBrand" href="/"><span className="logoMark">M</span><span className="brandCopy"><strong>MADAO</strong><small>产品经理的文稿与原型</small></span></a>
-      <nav aria-label="频道导航"><a href="/">文章</a><a className="navActive" href="/demos/">产品演示</a><a href="/#about">关于</a></nav>
-    </div></header>
+    <SiteHeader active="demos" />
     <main className="demoListWrap">
       <header className="demoListHero">
         <span>PRODUCT PLAYGROUND / 交互实验室</span>

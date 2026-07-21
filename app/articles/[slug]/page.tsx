@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { articles } from "../article-data";
+import SiteHeader from "../../SiteHeader";
 
 export function generateStaticParams() {
   return articles.map(({ slug }) => ({ slug }));
@@ -12,12 +13,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   return (
     <div className="articlePage">
-      <header className="siteHeader">
-        <div className="headerInner">
-          <a className="siteBrand" href="/"><span className="logoMark">M</span><span className="brandCopy"><strong>MADAO</strong><small>产品经理的文稿与原型</small></span></a>
-          <nav><a href="/">返回首页</a><a href="/demos/">产品演示</a><a href="#article">正文</a></nav>
-        </div>
-      </header>
+      <SiteHeader active="home" />
       <main className="articleWrap" id="article">
         <a className="backLink" href="/">← 返回文章列表</a>
         <header className="articleHero">

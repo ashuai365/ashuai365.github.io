@@ -28,34 +28,12 @@ const posts = [
   },
 ];
 
-const archives = [
-  ["2026 年 7 月", 4],
-  ["2026 年 6 月", 3],
-  ["2026 年 5 月", 2],
-];
+import SiteHeader from "./SiteHeader";
 
 export default function Home() {
   return (
     <div className="siteFrame">
-      <header className="siteHeader">
-        <div className="headerInner">
-          <a className="siteBrand" href="#top">
-            <span className="logoMark" aria-hidden="true">M</span>
-            <span className="brandCopy">
-              <strong>MADAO</strong>
-              <small>产品经理的文稿与原型</small>
-            </span>
-          </a>
-          <nav aria-label="博客导航">
-            <a href="#top">首页</a>
-            <a href="/demos/">产品演示</a>
-            <a href="#archive">归档</a>
-            <a href="#categories">分类</a>
-            <a href="#tags">标签</a>
-            <a href="#about">关于</a>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader active="home" />
 
       <main className="page" id="top">
         <section className="content" aria-label="文章列表">
@@ -90,36 +68,31 @@ export default function Home() {
 
         <aside className="sidebar">
           <section className="profile" id="about">
-            <div className="profileLogo"><span className="logoMark" aria-hidden="true">M</span></div>
+            <div className="profileLogo"><img className="profileAvatar" src="/madao-avatar.png" alt="MADAO" /></div>
             <h2>MADAO</h2>
             <p>高级产品经理</p>
             <div className="profileStats">
-              <a href="#archive"><strong>23</strong><span>日志</span></a>
-              <a href="#categories"><strong>6</strong><span>分类</span></a>
-              <a href="#tags"><strong>18</strong><span>标签</span></a>
+              <a href="/"><strong>23</strong><span>文章</span></a>
+              <a href="/categories/"><strong>6</strong><span>分类</span></a>
+              <a href="/tags/"><strong>18</strong><span>标签</span></a>
             </div>
             <div className="focus">大宗交易 · 供应链金融<br />产业互联网 · AI 产品</div>
           </section>
 
-          <section className="sideCard" id="categories">
+          <section className="sideCard">
             <h3>分类</h3>
             <ul>
-              <li><a href="#top"><span>AI 产品</span><b>8</b></a></li>
-              <li><a href="#top"><span>产品设计</span><b>6</b></a></li>
-              <li><a href="#top"><span>供应链</span><b>5</b></a></li>
-              <li><a href="#top"><span>方法论</span><b>4</b></a></li>
+              <li><a href="/categories/"><span>AI 产品</span><b>8</b></a></li>
+              <li><a href="/categories/"><span>产品设计</span><b>6</b></a></li>
+              <li><a href="/categories/"><span>供应链</span><b>5</b></a></li>
+              <li><a href="/categories/"><span>方法论</span><b>4</b></a></li>
             </ul>
           </section>
 
-          <section className="sideCard" id="archive">
-            <h3>归档</h3>
-            <ul>{archives.map(([month, count]) => <li key={month}><a href="#top"><span>{month}</span><b>{count}</b></a></li>)}</ul>
-          </section>
-
-          <section className="sideCard" id="tags">
+          <section className="sideCard">
             <h3>标签云</h3>
             <div className="tagCloud">
-              <a href="#top">产品规划</a><a href="#top">AI</a><a href="#top">大宗交易</a><a href="#top">供应链</a><a href="#top">原型</a><a href="#top">业务流程</a>
+              <a href="/tags/">产品规划</a><a href="/tags/">AI</a><a href="/tags/">大宗交易</a><a href="/tags/">供应链</a><a href="/tags/">原型</a><a href="/tags/">业务流程</a>
             </div>
           </section>
         </aside>
