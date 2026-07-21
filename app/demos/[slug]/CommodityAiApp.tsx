@@ -6,11 +6,14 @@ type Stage = "welcome" | "login" | "wechat" | "profile" | "app";
 type Tab = "首页" | "商机" | "行情" | "我的";
 type Chat = "idle" | "market" | "buy";
 
-const marketRows = [
-  ["螺纹钢 HRB400E", "3,289", "-18", "上海"],
-  ["热轧卷板 Q235B", "3,412", "+12", "杭州"],
-  ["铁矿石 PB粉", "781", "-6", "青岛"],
-];
+const marketData:Record<string,string[][]> = {
+  "全部":[["螺纹钢","RB2610","3,826","+2.35%","3,810","-16"],["铁矿石","I2609","856.5","+1.87%","845","-11.5"],["原油","SC2609","542.8","-0.42%","538","-4.8"]],
+  "黑色系":[["螺纹钢","RB2610","3,826","+2.35%","3,810","-16"],["铁矿石","I2609","856.5","+1.87%","845","-11.5"],["焦炭","J2609","1,742","+0.68%","1,725","-17"]],
+  "有色":[["沪铜","CU2608","79,420","+0.56%","79,180","-240"],["沪铝","AL2608","20,585","+0.31%","20,510","-75"],["沪镍","NI2608","125,360","-0.22%","124,900","-460"]],
+  "能源":[["原油","SC2609","542.8","-0.42%","538","-4.8"],["燃料油","FU2609","3,128","+0.19%","3,105","-23"],["低硫燃油","LU2609","3,762","+0.44%","3,735","-27"]],
+  "化工":[["PTA","TA2609","5,066","+0.72%","5,035","-31"],["甲醇","MA2609","2,438","-0.16%","2,425","-13"],["聚丙烯","PP2609","7,286","+0.25%","7,260","-26"]],
+  "农产品":[["豆粕","M2609","3,315","+0.91%","3,298","-17"],["玉米","C2609","2,336","-0.13%","2,325","-11"],["棉花","CF2609","14,620","+0.38%","14,560","-60"]]
+};
 
 export default function CommodityAiApp(){
   const [stage,setStage]=useState<Stage>("welcome");
@@ -22,6 +25,10 @@ export default function CommodityAiApp(){
   const [agreed,setAgreed]=useState(true);
   const [commodity,setCommodity]=useState("钢材");
   const [period,setPeriod]=useState("7日");
+  const [marketCategory,setMarketCategory]=useState("全部");
+  const [marketMode,setMarketMode]=useState<"热门品种"|"我的自选">("热门品种");
+  const [marketSearch,setMarketSearch]=useState("");
+  const [marketPulse,setMarketPulse]=useState(0);
   const [alertOn,setAlertOn]=useState(true);
   const [saved,setSaved]=useState(false);
   const [authMethod,setAuthMethod]=useState<"微信"|"手机号"|"本机号码"|null>(null);
@@ -52,7 +59,19 @@ export default function CommodityAiApp(){
             {chat==="buy"&&<><div className="userBubble">我要采购螺纹钢 10 吨</div>{step>0&&<div className="aiAnswer purchase"><p>好的，已记录你的采购需求：</p><table><tbody><tr><th>品类</th><td>螺纹钢</td></tr><tr><th>数量</th><td><strong>10 吨</strong></td></tr></tbody></table><p>为了匹配更合适的卖家报价，还需要补充：</p><ul><li><b>规格 / 材质</b> — 如 HRB400E Φ12mm</li><li><b>交货城市</b> — 货送到哪个地区？</li><li><b>期望交期</b> — 大概什么时候要货？</li><li><b>期望价格</b> — 采购预算是多少？</li></ul><button onClick={()=>setTab("商机")}>继续完善需求 →</button></div>}</>}
             <div className="chatInput"><button>◉</button><input value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>e.key==="Enter"&&send()} placeholder="发消息或按住说话…"/><button onClick={send}>↑</button></div><small className="aiNote">内容由 AI 生成</small>
           </div>}
-          {tab==="行情"&&<div className="marketScreen"><div className="marketTitle"><span>MARKET INTELLIGENCE</span><h2>行情中心</h2><p>按品种查看价格、快讯与研究</p></div><div className="commodityTabs">{["钢材","铁矿石","煤焦","有色","化工"].map(x=><button key={x} className={commodity===x?"active":""} onClick={()=>setCommodity(x)}>{x}</button>)}</div><section className="marketSection"><header><h3>{commodity}价格走势</h3><button onClick={()=>{setTab("首页");setChat("market");setStep(1)}}>AI 分析 ›</button></header><div className="marketList">{marketRows.slice(0,2).map((row,i)=><button key={row[0]} onClick={()=>{setTab("首页");setChat("market");setStep(1)}}><span><b>{commodity}{i===0?"主力":"现货指数"}</b><small>{row[3]} · 元/吨</small></span><strong>{row[1]}</strong><i className={row[2].startsWith("+")?"rise":"fall"}>{row[2]}</i></button>)}</div><div className="trendCard"><header><span>{commodity}综合价格</span><div>{["7日","30日","1年"].map(x=><button key={x} className={period===x?"active":""} onClick={()=>setPeriod(x)}>{x}</button>)}</div></header><div className={`trendLine period${period}`}><i/><i/><i/><i/><i/><i/><i/></div></div></section><section className="marketSection"><header><h3>最新快讯</h3><button>更多 ›</button></header><div className="flashFeed">{[["10:36",`${commodity}市场成交较早盘回暖，主流报价以稳为主。`],["09:52",`${commodity}主力合约窄幅震荡，关注库存去化速度。`]].map((x,i)=><article key={x[0]}><time>{x[0]}</time><div><b>{i===0?"即时":"快讯"}</b><p>{x[1]}</p></div></article>)}</div></section><section className="marketSection"><header><h3>精选研报</h3><button>全部 ›</button></header><div className="reportList"><article><small>{commodity}周报 · 今日</small><h3>{commodity}供需格局与价格展望</h3><p>供需 · 库存 · 成本</p><footer><button onClick={()=>setSaved(true)}>☆ {saved?"已收藏":"收藏"}</button><button onClick={()=>{setTab("首页");setChat("market");setStep(1)}}>AI 解读 →</button></footer></article></div></section><small className="demoDataNote">信息结构参考公开行业资讯平台 · 本页均为虚构演示数据</small></div>}
+          {tab==="行情"&&<div className="marketScreen marketHub">
+            <div className="marketSearch"><span>⌕</span><input value={marketSearch} onChange={e=>setMarketSearch(e.target.value)} placeholder="搜索品种 / 合约 / 资讯"/><button onClick={()=>setMarketCategory(marketSearch.includes("铜")?"有色":marketSearch.includes("油")?"能源":"黑色系")}>搜索</button></div>
+            <button className="aiMarketBrief" onClick={()=>{setTab("首页");setChat("market");setStep(1)}}><span>AI 智能诊大盘<small>今日市场情绪：偏多</small></span><b>›</b><p>黑色系集体走强，螺纹钢主力合约突破关键压力位；能化板块分化，原油承压震荡。</p><i>螺纹钢　+2.35%</i><i>铁矿石　+1.87%</i></button>
+            <div className="marketShortcuts">{[["▤","现货"],["▦","期货"],["▣","日报"]].map(x=><button key={x[1]} onClick={()=>x[1]==="日报"?setCommodity("钢材"):setMarketMode("热门品种")}><i>{x[0]}</i><b>{x[1]}</b></button>)}</div>
+            <button className="marketTicker"><b>播</b><span>【重要】美联储降息预期升温，大宗商品普涨</span><i>›</i></button>
+            <div className="marketModeTabs"><button className={marketMode==="热门品种"?"active":""} onClick={()=>setMarketMode("热门品种")}>热门品种</button><button className={marketMode==="我的自选"?"active":""} onClick={()=>setMarketMode("我的自选")}>我的自选 <em>3</em></button><button aria-label="刷新行情" className={marketPulse%2?"spinning":""} onClick={()=>setMarketPulse(x=>x+1)}>↻</button></div>
+            <div className="marketCategories">{["全部","黑色系","有色","能源","化工","农产品"].map(x=><button key={x} className={marketCategory===x?"active":""} onClick={()=>setMarketCategory(x)}>{x}</button>)}</div>
+            <div className="marketQuoteCards">{marketData[marketCategory].filter((_,i)=>marketMode==="热门品种"||i<3).map((row,i)=><button key={row[0]} onClick={()=>{setCommodity(row[0]);setTab("首页");setChat("market");setStep(1)}}><span className="quoteIcon">{i===0?"⌁":i===1?"◇":"◉"}</span><span><b>{row[0]}</b><small>{row[1]} · 现货 {row[4]}</small></span><strong>{row[2]}<small className={row[3].startsWith("+")?"rise":"fall"}>{row[3]}</small></strong><em>基差 {row[5]}</em></button>)}</div>
+            <section className="marketSection flat"><header><h3>资讯快讯</h3><button>查看全部 ›</button></header><div className="flashFeed"><article><time>14:32</time><div><b>数据</b><p>国内重点城市建材成交回暖，钢材库存延续去化。</p></div></article><article><time>14:28</time><div><b>政策</b><p>多部门推动大宗商品仓储与物流数字化协同。</p></div></article></div></section>
+            <section className="marketSection flat"><header><h3>产业链中心</h3><button>查看全部 ›</button></header><div className="industryLinks">{["螺纹钢产业链","铁矿石产业链","焦炭产业链","不锈钢产业链"].map(x=><button key={x} onClick={()=>setMarketCategory(x.includes("铁")?"黑色系":"全部")}><span>⌬</span>{x}<i>☆</i></button>)}</div></section>
+            <section className="marketSection flat"><header><h3>精选研报</h3><button>全部 ›</button></header><div className="reportList"><article><small>{commodity}周报 · 今日</small><h3>{commodity}供需格局与价格展望</h3><p>供需 · 库存 · 成本</p><footer><button onClick={()=>setSaved(true)}>☆ {saved?"已收藏":"收藏"}</button><button onClick={()=>{setTab("首页");setChat("market");setStep(1)}}>AI 解读 →</button></footer></article></div></section>
+            <small className="demoDataNote">行情与资讯均为虚构演示数据</small>
+          </div>}
           {tab==="商机"&&<div className="opportunityScreen"><span>SMART MATCH</span><h2>为你推荐 3 个商机</h2><p>基于螺纹钢 10 吨采购需求</p>{[["上海浦东","HRB400E Φ12","3,315"],["江苏无锡","HRB400E Φ12","3,298"],["浙江嘉兴","HRB400E Φ14","3,326"]].map((x,i)=><article key={x[0]}><div><small>匹配度 {96-i*4}%</small><h3>{x[0]} · 现货供应</h3><p>{x[1]} · 可当天出库</p></div><strong>¥{x[2]}</strong><button>联系卖家</button></article>)}</div>}
           {tab==="我的"&&<div className="profileHome"><section className="userCard"><div className="avatar">马</div><div><small>已完成快捷登录</small><h2>马到成功</h2><p>采购方 · 关注钢材与原料</p></div><button>编辑</button></section><section className="memberCard"><span>MADAO PRO</span><h3>大宗决策会员</h3><p>AI 行情解读、价格预警与商机推荐</p><button>查看权益 →</button></section><div className="profileStats"><button><b>6</b><span>关注品种</span></button><button><b>{saved?1:0}</b><span>收藏研报</span></button><button><b>3</b><span>采购需求</span></button></div><section className="profileMenu"><button onClick={()=>setTab("行情")}><span>◎</span><b>我的关注</b><i>6 个品种 ›</i></button><button onClick={()=>setAlertOn(!alertOn)}><span>◔</span><b>价格预警</b><i className={alertOn?"switch on":"switch"}/></button><button onClick={()=>setMarketView("研报")}><span>▤</span><b>收藏与研报</b><i>›</i></button><button><span>⚙</span><b>账号与设置</b><i>›</i></button></section><button className="logout" onClick={()=>setStage("welcome")}>退出登录</button></div>}
         </section>}
