@@ -1,7 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import CommodityAiApp from "./CommodityAiApp";
+
+function CommodityAiPasswordGate(){
+  const [unlocked,setUnlocked]=useState(false);
+  const [password,setPassword]=useState("");
+  const [error,setError]=useState("");
+
+  useEffect(()=>{
+    setUnlocked(sessionStorage.getItem("commodity-ai-demo-unlocked")==="1");
+  },[]);
+
+  const submit=(event:FormEvent<HTMLFormElement>)=>{
+    event.preventDefault();
+    if(password==="1011"){
+      sessionStorage.setItem("commodity-ai-demo-unlocked","1");
+      setUnlocked(true);
+      setError("");
+      return;
+    }
+    setError("密码不正确，请重新输入");
+    setPassword("");
+  };
+
+  if(unlocked) return <CommodityAiApp/>;
+  return <section className="demoPasswordGate" aria-labelledby="demo-password-title">
+    <div className="demoLockMark" aria-hidden="true">●</div>
+    <span>PROTECTED DEMO</span>
+    <h2 id="demo-password-title">输入访问密码</h2>
+    <p>大宗智能体 APP 是受保护的产品演示，请输入密码后继续。</p>
+    <form onSubmit={submit}>
+      <label htmlFor="demo-password">访问密码</label>
+      <div><input id="demo-password" type="password" inputMode="numeric" autoComplete="current-password" placeholder="请输入密码" value={password} onChange={event=>{setPassword(event.target.value);setError("");}} autoFocus/><button type="submit" disabled={!password}>进入演示</button></div>
+      {error&&<strong role="alert">{error}</strong>}
+    </form>
+    <small>验证成功后，本次浏览器会话内无需重复输入。</small>
+  </section>;
+}
 
 function BulkTradingDocument() {
   const [height,setHeight]=useState(3200);
@@ -54,7 +90,7 @@ function AiConfidence() {
 }
 
 export default function DemoExperience({slug}:{slug:string}) {
-  if(slug==="commodity-ai-app") return <CommodityAiApp/>;
+  if(slug==="commodity-ai-app") return <CommodityAiPasswordGate/>;
   if(slug==="bulk-trading-platform") return <BulkTradingDocument/>;
   if(slug==="price-alert") return <PriceAlert/>;
   if(slug==="priority-matrix") return <PriorityMatrix/>;
