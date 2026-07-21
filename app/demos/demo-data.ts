@@ -1,5 +1,14 @@
 export const demos = [
   {
+    slug: "opportunity-publishing-workflow",
+    index: "05",
+    title: "商机发布业务流程",
+    category: "业务流程演示",
+    description: "以角色泳道呈现用户发布商机、区域初审、平台复审、公开分发、线索跟进与成交闭环。",
+    accent: "#2563eb",
+    updatedAt: "2026-07-21T16:45:00",
+  },
+  {
     slug: "commodity-ai-app",
     index: "00",
     title: "大宗智能体 APP",

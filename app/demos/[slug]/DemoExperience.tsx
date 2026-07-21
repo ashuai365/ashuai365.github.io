@@ -2,6 +2,7 @@
 
 import { FormEvent, ReactNode, useEffect, useState } from "react";
 import CommodityAiApp from "./CommodityAiApp";
+import OpportunityWorkflow from "./OpportunityWorkflow";
 
 function DemoPasswordGate({children}:{children:ReactNode}){
   const [unlocked,setUnlocked]=useState(false);
@@ -92,6 +93,7 @@ function AiConfidence() {
 export default function DemoExperience({slug}:{slug:string}) {
   let content:ReactNode;
   if(slug==="commodity-ai-app") content=<CommodityAiApp/>;
+  else if(slug==="opportunity-publishing-workflow") content=<OpportunityWorkflow/>;
   else if(slug==="bulk-trading-platform") content=<BulkTradingDocument/>;
   else if(slug==="price-alert") content=<PriceAlert/>;
   else if(slug==="priority-matrix") content=<PriorityMatrix/>;
