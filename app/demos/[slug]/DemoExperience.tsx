@@ -2,7 +2,20 @@
 
 import { useState } from "react";
 import CommodityAiApp from "./CommodityAiApp";
-import BulkTradingPlatform from "./BulkTradingPlatform";
+
+function BulkTradingDocument() {
+  const [height,setHeight]=useState(3200);
+  return <iframe
+    className="btpDocumentFrame"
+    src="/bulk-trading-platform.html"
+    title="大宗商品交易平台完整交互演示"
+    style={{height}}
+    onLoad={event=>{
+      const documentHeight=event.currentTarget.contentDocument?.documentElement.scrollHeight;
+      if(documentHeight) setHeight(documentHeight+8);
+    }}
+  />;
+}
 
 function PriceAlert() {
   const [price,setPrice]=useState(3720);
@@ -42,7 +55,7 @@ function AiConfidence() {
 
 export default function DemoExperience({slug}:{slug:string}) {
   if(slug==="commodity-ai-app") return <CommodityAiApp/>;
-  if(slug==="bulk-trading-platform") return <BulkTradingPlatform/>;
+  if(slug==="bulk-trading-platform") return <BulkTradingDocument/>;
   if(slug==="price-alert") return <PriceAlert/>;
   if(slug==="priority-matrix") return <PriorityMatrix/>;
   return <AiConfidence/>;
