@@ -1,5 +1,13 @@
 export const demos = [
   {
+    slug: "commodity-ai-app",
+    index: "00",
+    title: "大宗智能体 APP",
+    category: "完整产品原型",
+    description: "从注册、偏好设置到 AI 行情问答与采购需求补全，体验一段完整用户旅程。",
+    accent: "#6257c9",
+  },
+  {
     slug: "price-alert",
     index: "01",
     title: "价格预警决策器",

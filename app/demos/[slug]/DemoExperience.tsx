@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import CommodityAiApp from "./CommodityAiApp";
 
 function PriceAlert() {
   const [price,setPrice]=useState(3720);
@@ -39,6 +40,7 @@ function AiConfidence() {
 }
 
 export default function DemoExperience({slug}:{slug:string}) {
+  if(slug==="commodity-ai-app") return <CommodityAiApp/>;
   if(slug==="price-alert") return <PriceAlert/>;
   if(slug==="priority-matrix") return <PriorityMatrix/>;
   return <AiConfidence/>;
