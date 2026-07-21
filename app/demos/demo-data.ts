@@ -31,4 +31,12 @@ export const demos = [
     description: "逐项开启来源、时效与交叉验证，体验可信度如何被解释和校准。",
     accent: "#059669",
   },
+  {
+    slug: "bulk-trading-platform",
+    index: "04",
+    title: "大宗商品交易平台",
+    category: "产业交易门户",
+    description: "覆盖行情、资讯、研报、采购与供应商机、产业集群及供应链服务的完整平台首页。",
+    accent: "#0756a8",
+  },
 ];

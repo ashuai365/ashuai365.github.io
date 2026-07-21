@@ -41,6 +41,7 @@ function AiConfidence() {
 
 export default function DemoExperience({slug}:{slug:string}) {
   if(slug==="commodity-ai-app") return <CommodityAiApp/>;
+  if(slug==="bulk-trading-platform") return <iframe className="tradingPlatformFrame" src="/bulk-trading-platform.html" title="大宗商品交易平台交互演示"/>;
   if(slug==="price-alert") return <PriceAlert/>;
   if(slug==="priority-matrix") return <PriorityMatrix/>;
   return <AiConfidence/>;
