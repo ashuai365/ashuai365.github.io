@@ -1,3 +1,5 @@
+"use client";
+
 const posts = [
   {
     slug: "commodity-ai-commercial-loop",
@@ -31,9 +33,11 @@ const posts = [
 import SiteHeader from "./SiteHeader";
 import { demos } from "./demos/demo-data";
 import DemoThumbnail from "./demos/DemoThumbnail";
+import Pagination, { usePagination } from "./Pagination";
 
 export default function Home() {
   const contents=[...posts.map(post=>({...post,type:"文章",href:`/articles/${post.slug}/`,index:""})),...demos.map(demo=>({slug:demo.slug,date:demo.updatedAt.slice(0,10),title:demo.title,category:demo.category,tags:["产品演示","交互原型"],excerpt:demo.description,readTime:"可交互",type:"产品演示",href:`/demos/${demo.slug}/`,index:demo.index}))].sort((a,b)=>b.date.localeCompare(a.date));
+  const {page,setPage,totalPages,visibleItems}=usePagination(contents,10);
   return (
     <div className="siteFrame">
       <SiteHeader active="home" />
@@ -46,7 +50,7 @@ export default function Home() {
           </div>
 
           <div className="postList">
-            {contents.map((post) => (
+            {visibleItems.map((post) => (
               <article className={post.type==="产品演示"?"post homeDemoPost":"post"} key={post.title}>
                 {post.type==="产品演示"&&<a className="homeDemoVisual" href={post.href} style={{"--demo-accent":demos.find(d=>d.slug===post.slug)?.accent} as React.CSSProperties}><DemoThumbnail index={post.index}/><span>INTERACTIVE DEMO</span></a>}
                 <div className={post.type==="产品演示"?"homeDemoCopy":undefined}>
@@ -65,9 +69,7 @@ export default function Home() {
             ))}
           </div>
 
-          <nav className="pagination" aria-label="分页">
-            <span className="current">1</span><a href="#top">2</a><a href="#top">3</a><a href="#top">下一页 ›</a>
-          </nav>
+          <Pagination page={page} totalPages={totalPages} onChange={setPage}/>
         </section>
 
         <aside className="sidebar">
