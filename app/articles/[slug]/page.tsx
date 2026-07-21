@@ -15,7 +15,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       <header className="siteHeader">
         <div className="headerInner">
           <a className="siteBrand" href="/"><span className="logoMark">M</span><span className="brandCopy"><strong>MADAO</strong><small>产品经理的文稿与原型</small></span></a>
-          <nav><a href="/">返回首页</a><a href="#article">正文</a></nav>
+          <nav><a href="/">返回首页</a><a href="/demos/">产品演示</a><a href="#article">正文</a></nav>
         </div>
       </header>
       <main className="articleWrap" id="article">

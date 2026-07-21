@@ -48,6 +48,7 @@ export default function Home() {
           </a>
           <nav aria-label="博客导航">
             <a href="#top">首页</a>
+            <a href="/demos/">产品演示</a>
             <a href="#archive">归档</a>
             <a href="#categories">分类</a>
             <a href="#tags">标签</a>
