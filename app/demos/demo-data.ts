@@ -6,7 +6,7 @@ export const demos = [
     category: "产品原型",
     description: "按区域、仓型和品类筛选全国云仓，查看仓库能力详情并提交选址意向。",
     accent: "#0d8a58",
-    updatedAt: "2026-07-22T18:30:00",
+    updatedAt: "2026-07-23T12:00:00",
   },
   {
     slug: "opportunity-publishing-workflow",
