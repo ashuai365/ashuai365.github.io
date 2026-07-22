@@ -14,15 +14,17 @@ const warehouseItems:WarehouseItem[]=[
 
 const regions=["全国","华北","华东","华中","华南","西南"];
 
-function InteractiveMapViewport({children,className=""}:{children:React.ReactNode;className?:string}){
+function InteractiveMapViewport({children,className="",focusPoint}:{children:React.ReactNode;className?:string;focusPoint?:{x:number;y:number}}){
   const [view,setView]=useState({scale:1,x:0,y:0});
+  const viewportRef=useRef<HTMLDivElement>(null);
   const dragRef=useRef<{x:number;y:number;originX:number;originY:number}|null>(null);
   const zoom=(nextScale:number,originX?:number,originY?:number)=>setView(current=>{
     const scale=Math.min(3.5,Math.max(1,nextScale));
+    if(focusPoint&&viewportRef.current){const rect=viewportRef.current.getBoundingClientRect();const ox=rect.width*focusPoint.x,oy=rect.height*focusPoint.y;return {scale,x:ox-ox*scale,y:oy-oy*scale}}
     const ox=originX??0,oy=originY??0,ratio=scale/current.scale;
     return {scale,x:ox-(ox-current.x)*ratio,y:oy-(oy-current.y)*ratio};
   });
-  return <div className={`cloudInteractiveMap ${className}`} onWheel={event=>{event.preventDefault();const rect=event.currentTarget.getBoundingClientRect();zoom(view.scale*(event.deltaY<0?1.16:.86),event.clientX-rect.left,event.clientY-rect.top)}} onPointerDown={event=>{if((event.target as HTMLElement).closest("button"))return;event.currentTarget.setPointerCapture(event.pointerId);dragRef.current={x:event.clientX,y:event.clientY,originX:view.x,originY:view.y}}} onPointerMove={event=>{const drag=dragRef.current;if(!drag)return;setView(current=>({...current,x:drag.originX+event.clientX-drag.x,y:drag.originY+event.clientY-drag.y}))}} onPointerUp={()=>{dragRef.current=null}} onPointerCancel={()=>{dragRef.current=null}} onDoubleClick={event=>{const rect=event.currentTarget.getBoundingClientRect();zoom(view.scale*1.45,event.clientX-rect.left,event.clientY-rect.top)}}>
+  return <div ref={viewportRef} className={`cloudInteractiveMap ${className}`} onWheel={event=>{event.preventDefault();const rect=event.currentTarget.getBoundingClientRect();zoom(view.scale*(event.deltaY<0?1.16:.86),event.clientX-rect.left,event.clientY-rect.top)}} onPointerDown={event=>{if((event.target as HTMLElement).closest("button"))return;event.currentTarget.setPointerCapture(event.pointerId);dragRef.current={x:event.clientX,y:event.clientY,originX:view.x,originY:view.y}}} onPointerMove={event=>{const drag=dragRef.current;if(!drag)return;setView(current=>({...current,x:drag.originX+event.clientX-drag.x,y:drag.originY+event.clientY-drag.y}))}} onPointerUp={()=>{dragRef.current=null}} onPointerCancel={()=>{dragRef.current=null}} onDoubleClick={event=>{const rect=event.currentTarget.getBoundingClientRect();zoom(view.scale*1.45,event.clientX-rect.left,event.clientY-rect.top)}}>
     <div className="cloudMapTransform" style={{transform:`translate3d(${view.x}px,${view.y}px,0) scale(${view.scale})`}}>{children}</div>
     <div className="cloudZoomControls"><button onClick={()=>zoom(view.scale*1.25)} aria-label="放大地图">＋</button><button onClick={()=>zoom(view.scale/1.25)} aria-label="缩小地图">−</button></div>
   </div>;
@@ -30,7 +32,7 @@ function InteractiveMapViewport({children,className=""}:{children:React.ReactNod
 
 function WarehouseStreetMap({item,onBack,onDetail}:{item:WarehouseItem;onBack:()=>void;onDetail:(item:WarehouseItem)=>void}){
   return <div className="cloudStreetMap">
-    <InteractiveMapViewport className="cloudStreetViewport"><div className="streetBlocks">{Array.from({length:18},(_,index)=><i key={index}/>)}</div>
+    <InteractiveMapViewport key={item.id} className="cloudStreetViewport" focusPoint={{x:.5,y:.46}}><div className="streetBlocks">{Array.from({length:18},(_,index)=><i key={index}/>)}</div>
       <div className="streetRoad roadMain"><b>{item.roads[0]}</b></div>
       <div className="streetRoad roadSecond"><b>{item.roads[1]}</b></div>
       <div className="streetRoad roadThird"><b>{item.roads[2]}</b></div>
