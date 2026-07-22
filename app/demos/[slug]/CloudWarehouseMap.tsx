@@ -2,17 +2,34 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-type WarehouseItem={id:string;name:string;company:string;region:string;city:string;address:string;area:number;available:number;type:string;goods:string[];tags:string[];height:number;load:number;fire:string;structure:string;ownership:string;digital:boolean;rail:string;expressway:string;color:string;x:number;y:number};
+type WarehouseItem={id:string;name:string;company:string;region:string;city:string;address:string;area:number;available:number;type:string;goods:string[];tags:string[];height:number;load:number;fire:string;structure:string;ownership:string;digital:boolean;rail:string;expressway:string;color:string;x:number;y:number;roads:string[];landmarks:string[]};
 
 const warehouseItems:WarehouseItem[]=[
-  {id:"linyi",name:"临沂中储供应链有限公司库",company:"临沂中储供应链有限公司",region:"华北",city:"临沂",address:"山东临沂市河东区凤仪街700号",area:40000,available:12800,type:"通用 / 常温库",goods:["塑料化工","有色金属","普通标品"],tags:["金融物流","期货交割","铁路专线"],height:4,load:5,fire:"丙二类",structure:"钢混",ownership:"自有",digital:true,rail:"临沂火车东站专用线",expressway:"长深高速 3km",color:"#16a36a",x:73,y:52},
-  {id:"shanghai",name:"上海青浦高标云仓",company:"华东智链仓储有限公司",region:"华东",city:"上海",address:"上海市青浦区华新镇嘉松中路",area:62500,available:8600,type:"高标立体仓",goods:["电子快消","普通标品"],tags:["WMS在线开单","城配一体","原房东"],height:9,load:3,fire:"丙二类",structure:"钢结构",ownership:"租赁",digital:true,rail:"虹桥货运站 18km",expressway:"G15 沈海高速 2.4km",color:"#2076e8",x:79,y:63},
-  {id:"wuhan",name:"武汉东西湖电商云仓",company:"九州云链物流科技",region:"华中",city:"武汉",address:"武汉市东西湖区走马岭街道",area:36000,available:15200,type:"常温仓",goods:["电子快消","纸品类"],tags:["一件代发","自动分拣","租期灵活"],height:8.5,load:4,fire:"丙二类",structure:"钢混",ownership:"自有",digital:true,rail:"吴家山铁路中心站 7km",expressway:"沪蓉高速 4km",color:"#8c5ce6",x:67,y:65},
-  {id:"guangzhou",name:"广州南沙冷链中心",company:"湾区冷链产业服务有限公司",region:"华南",city:"广州",address:"广州市南沙区龙穴街道",area:48800,available:6200,type:"低温冷库",goods:["肉类","水产","果蔬"],tags:["港口仓","全温区","食品资质"],height:10,load:4,fire:"丙二类",structure:"钢结构",ownership:"租赁",digital:false,rail:"南沙港铁路站 5km",expressway:"南沙港快速 3km",color:"#f28a2e",x:65,y:86},
-  {id:"chengdu",name:"成都双流智慧物流园",company:"西部陆港供应链管理",region:"西南",city:"成都",address:"成都市双流区航空港经济开发区",area:52200,available:21400,type:"保税仓",goods:["电子快消","医药冷链"],tags:["保税监管","航空货运","智能门锁"],height:9,load:5,fire:"丙二类",structure:"钢混",ownership:"自有",digital:true,rail:"双流西站 9km",expressway:"机场高速 2km",color:"#dd4e4e",x:50,y:65},
+  {id:"linyi",name:"临沂中储供应链有限公司库",company:"临沂中储供应链有限公司",region:"华北",city:"临沂",address:"山东临沂市河东区凤仪街700号",area:40000,available:12800,type:"通用 / 常温库",goods:["塑料化工","有色金属","普通标品"],tags:["金融物流","期货交割","铁路专线"],height:4,load:5,fire:"丙二类",structure:"钢混",ownership:"自有",digital:true,rail:"临沂火车东站专用线",expressway:"长深高速 3km",color:"#16a36a",x:73,y:52,roads:["凤仪街","东兴路","温泉路","北京东路"],landmarks:["河东区政务中心","临沂东站","凤仪社区"]},
+  {id:"shanghai",name:"上海青浦高标云仓",company:"华东智链仓储有限公司",region:"华东",city:"上海",address:"上海市青浦区华新镇嘉松中路",area:62500,available:8600,type:"高标立体仓",goods:["电子快消","普通标品"],tags:["WMS在线开单","城配一体","原房东"],height:9,load:3,fire:"丙二类",structure:"钢结构",ownership:"租赁",digital:true,rail:"虹桥货运站 18km",expressway:"G15 沈海高速 2.4km",color:"#2076e8",x:79,y:63,roads:["嘉松中路","华志路","华隆路","纪鹤公路"],landmarks:["华新公园","上海虹桥站","华新镇政府"]},
+  {id:"wuhan",name:"武汉东西湖电商云仓",company:"九州云链物流科技",region:"华中",city:"武汉",address:"武汉市东西湖区走马岭街道",area:36000,available:15200,type:"常温仓",goods:["电子快消","纸品类"],tags:["一件代发","自动分拣","租期灵活"],height:8.5,load:4,fire:"丙二类",structure:"钢混",ownership:"自有",digital:true,rail:"吴家山铁路中心站 7km",expressway:"沪蓉高速 4km",color:"#8c5ce6",x:67,y:65,roads:["走新路","革新大道","惠安大道","兴工三路"],landmarks:["走马岭公园","吴家山站","食品工业园"]},
+  {id:"guangzhou",name:"广州南沙冷链中心",company:"湾区冷链产业服务有限公司",region:"华南",city:"广州",address:"广州市南沙区龙穴街道",area:48800,available:6200,type:"低温冷库",goods:["肉类","水产","果蔬"],tags:["港口仓","全温区","食品资质"],height:10,load:4,fire:"丙二类",structure:"钢结构",ownership:"租赁",digital:false,rail:"南沙港铁路站 5km",expressway:"南沙港快速 3km",color:"#f28a2e",x:65,y:86,roads:["龙穴大道","启航路","港荣二街","新港大道"],landmarks:["南沙港区","龙穴岛码头","港务大厦"]},
+  {id:"chengdu",name:"成都双流智慧物流园",company:"西部陆港供应链管理",region:"西南",city:"成都",address:"成都市双流区航空港经济开发区",area:52200,available:21400,type:"保税仓",goods:["电子快消","医药冷链"],tags:["保税监管","航空货运","智能门锁"],height:9,load:5,fire:"丙二类",structure:"钢混",ownership:"自有",digital:true,rail:"双流西站 9km",expressway:"机场高速 2km",color:"#dd4e4e",x:50,y:65,roads:["西航港大道","空港四路","双华路","物流大道"],landmarks:["成都双流机场","西航港产业园","双流西站"]},
 ];
 
 const regions=["全国","华北","华东","华中","华南","西南"];
+
+function WarehouseStreetMap({item,onBack,onDetail}:{item:WarehouseItem;onBack:()=>void;onDetail:(item:WarehouseItem)=>void}){
+  return <div className="cloudStreetMap">
+    <div className="streetBlocks">{Array.from({length:18},(_,index)=><i key={index}/>)}</div>
+    <div className="streetRoad roadMain"><b>{item.roads[0]}</b></div>
+    <div className="streetRoad roadSecond"><b>{item.roads[1]}</b></div>
+    <div className="streetRoad roadThird"><b>{item.roads[2]}</b></div>
+    <div className="streetRoad roadFourth"><b>{item.roads[3]}</b></div>
+    <div className="streetLandmark landmarkOne">● {item.landmarks[0]}</div>
+    <div className="streetLandmark landmarkTwo">● {item.landmarks[1]}</div>
+    <div className="streetLandmark landmarkThree">● {item.landmarks[2]}</div>
+    <button className="cloudMapBack" onClick={onBack} aria-label="返回全国地图">‹</button>
+    <div className="streetScale"><span/>500 米</div>
+    <div className="warehouseMapMarker" style={{"--pin":item.color} as React.CSSProperties}><span><i>仓</i></span><b>{item.name}</b><small>{item.address}</small></div>
+    <div className="cloudFocusCard local"><span style={{background:item.color}}/><div><small>{item.city} · 已定位到仓库入口</small><b>{item.name}</b><p>⌖ {item.address}</p></div><button onClick={()=>onDetail(item)}>查看仓库详情 →</button></div>
+  </div>;
+}
 
 function ChinaAdministrativeMap({selectedId,onSelect,onDetail}:{selectedId:string;onSelect:(id:string)=>void;onDetail:(item:WarehouseItem)=>void}){
   const canvasRef=useRef<HTMLCanvasElement>(null);
@@ -44,9 +61,9 @@ function ChinaAdministrativeMap({selectedId,onSelect,onDetail}:{selectedId:strin
     fetch("/china-provinces.json").then(response=>response.json()).then(data=>{mapData=data;draw()});
     const observer=new ResizeObserver(draw);observer.observe(canvas);
     return()=>{cancelled=true;observer.disconnect()};
-  },[]);
+  },[selectedId]);
 
-  return <div className="cloudMap administrative"><div className={`cloudMapScene ${selectedId?"focused":""}`} style={{transformOrigin:`${selectedItem.x}% ${selectedItem.y}%`}}><canvas ref={canvasRef}/>{warehouseItems.map(item=><button key={item.id} aria-label={`选择${item.name}`} className={`cloudPin ${selectedId===item.id?"active":""}`} onClick={()=>onSelect(item.id)} style={{"--pin":item.color,left:`${item.x}%`,top:`${item.y}%`} as React.CSSProperties}><small>{item.city}</small><b>●</b></button>)}</div>{!ready&&<div className="cloudMapLoading">正在加载中国行政地图…</div>}{selectedId&&<div className="cloudFocusCard"><span style={{background:selectedItem.color}}/><div><small>当前选中 · {selectedItem.city}</small><b>{selectedItem.name}</b><p>{selectedItem.type} · 可租 {selectedItem.available.toLocaleString()}㎡</p></div><button onClick={()=>onDetail(selectedItem)}>查看仓库详情 →</button></div>}<button className="cloudResetMap" onClick={()=>onSelect("")}>全国视图</button><div className="cloudLegend">● 常温/高标仓　<span>●</span> 冷链仓　<i>●</i> 保税/专项仓　<em>行政区数据：DataV</em></div></div>;
+  return <div className="cloudMap administrative">{selectedId?<WarehouseStreetMap item={selectedItem} onBack={()=>onSelect("")} onDetail={onDetail}/>:<><div className="cloudMapScene"><canvas ref={canvasRef}/>{warehouseItems.map(item=><button key={item.id} aria-label={`选择${item.name}`} className="cloudPin" onClick={()=>onSelect(item.id)} style={{"--pin":item.color,left:`${item.x}%`,top:`${item.y}%`} as React.CSSProperties}><small>{item.city}</small><b>●</b></button>)}</div>{!ready&&<div className="cloudMapLoading">正在加载中国行政地图…</div>}<div className="cloudLegend">● 常温/高标仓　<span>●</span> 冷链仓　<i>●</i> 保税/专项仓</div></>}</div>;
 }
 
 export default function CloudWarehouseMap(){
