@@ -4,21 +4,21 @@ import { FormEvent, ReactNode, useEffect, useState } from "react";
 import CommodityAiApp from "./CommodityAiApp";
 import OpportunityWorkflow from "./OpportunityWorkflow";
 import CloudWarehouseMap from "./CloudWarehouseMap";
-import { DEMO_ACCESS_PASSWORD, DEMO_ACCESS_SESSION_KEY } from "../access-config";
+import { getDemoAccessPassword, getDemoAccessSessionKey } from "../access-config";
 
-function DemoPasswordGate({children}:{children:ReactNode}){
+function DemoPasswordGate({children,slug}:{children:ReactNode;slug:string}){
   const [unlocked,setUnlocked]=useState(false);
   const [password,setPassword]=useState("");
   const [error,setError]=useState("");
 
   useEffect(()=>{
-    setUnlocked(sessionStorage.getItem(DEMO_ACCESS_SESSION_KEY)==="1");
-  },[]);
+    setUnlocked(sessionStorage.getItem(getDemoAccessSessionKey(slug))==="1");
+  },[slug]);
 
   const submit=(event:FormEvent<HTMLFormElement>)=>{
     event.preventDefault();
-    if(password===DEMO_ACCESS_PASSWORD){
-      sessionStorage.setItem(DEMO_ACCESS_SESSION_KEY,"1");
+    if(password===getDemoAccessPassword(slug)){
+      sessionStorage.setItem(getDemoAccessSessionKey(slug),"1");
       setUnlocked(true);
       setError("");
       return;
@@ -101,5 +101,5 @@ export default function DemoExperience({slug}:{slug:string}) {
   else if(slug==="price-alert") content=<PriceAlert/>;
   else if(slug==="priority-matrix") content=<PriorityMatrix/>;
   else content=<AiConfidence/>;
-  return <DemoPasswordGate>{content}</DemoPasswordGate>;
+  return <DemoPasswordGate slug={slug}>{content}</DemoPasswordGate>;
 }
