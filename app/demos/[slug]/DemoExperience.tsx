@@ -4,6 +4,7 @@ import { FormEvent, ReactNode, useEffect, useState } from "react";
 import CommodityAiApp from "./CommodityAiApp";
 import OpportunityWorkflow from "./OpportunityWorkflow";
 import CloudWarehouseMap from "./CloudWarehouseMap";
+import { DEMO_ACCESS_PASSWORD, DEMO_ACCESS_SESSION_KEY } from "../access-config";
 
 function DemoPasswordGate({children}:{children:ReactNode}){
   const [unlocked,setUnlocked]=useState(false);
@@ -11,13 +12,13 @@ function DemoPasswordGate({children}:{children:ReactNode}){
   const [error,setError]=useState("");
 
   useEffect(()=>{
-    setUnlocked(sessionStorage.getItem("product-demos-unlocked")==="1");
+    setUnlocked(sessionStorage.getItem(DEMO_ACCESS_SESSION_KEY)==="1");
   },[]);
 
   const submit=(event:FormEvent<HTMLFormElement>)=>{
     event.preventDefault();
-    if(password==="1011"){
-      sessionStorage.setItem("product-demos-unlocked","1");
+    if(password===DEMO_ACCESS_PASSWORD){
+      sessionStorage.setItem(DEMO_ACCESS_SESSION_KEY,"1");
       setUnlocked(true);
       setError("");
       return;
