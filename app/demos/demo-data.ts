@@ -1,5 +1,14 @@
 export const demos = [
   {
+    slug: "cloud-warehouse-map",
+    index: "06",
+    title: "全国云仓地图",
+    category: "产品原型",
+    description: "按区域、仓型和品类筛选全国云仓，查看仓库能力详情并提交选址意向。",
+    accent: "#0d8a58",
+    updatedAt: "2026-07-22T18:30:00",
+  },
+  {
     slug: "opportunity-publishing-workflow",
     index: "05",
     title: "商机发布业务流程",
