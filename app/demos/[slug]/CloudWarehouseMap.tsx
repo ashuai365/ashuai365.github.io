@@ -14,19 +14,34 @@ const warehouseItems:WarehouseItem[]=[
 
 const regions=["全国","华北","华东","华中","华南","西南"];
 
+function InteractiveMapViewport({children,className=""}:{children:React.ReactNode;className?:string}){
+  const [view,setView]=useState({scale:1,x:0,y:0});
+  const dragRef=useRef<{x:number;y:number;originX:number;originY:number}|null>(null);
+  const zoom=(nextScale:number,originX?:number,originY?:number)=>setView(current=>{
+    const scale=Math.min(3.5,Math.max(1,nextScale));
+    const ox=originX??0,oy=originY??0,ratio=scale/current.scale;
+    return {scale,x:ox-(ox-current.x)*ratio,y:oy-(oy-current.y)*ratio};
+  });
+  return <div className={`cloudInteractiveMap ${className}`} onWheel={event=>{event.preventDefault();const rect=event.currentTarget.getBoundingClientRect();zoom(view.scale*(event.deltaY<0?1.16:.86),event.clientX-rect.left,event.clientY-rect.top)}} onPointerDown={event=>{if((event.target as HTMLElement).closest("button"))return;event.currentTarget.setPointerCapture(event.pointerId);dragRef.current={x:event.clientX,y:event.clientY,originX:view.x,originY:view.y}}} onPointerMove={event=>{const drag=dragRef.current;if(!drag)return;setView(current=>({...current,x:drag.originX+event.clientX-drag.x,y:drag.originY+event.clientY-drag.y}))}} onPointerUp={()=>{dragRef.current=null}} onPointerCancel={()=>{dragRef.current=null}} onDoubleClick={event=>{const rect=event.currentTarget.getBoundingClientRect();zoom(view.scale*1.45,event.clientX-rect.left,event.clientY-rect.top)}}>
+    <div className="cloudMapTransform" style={{transform:`translate3d(${view.x}px,${view.y}px,0) scale(${view.scale})`}}>{children}</div>
+    <div className="cloudZoomControls"><button onClick={()=>zoom(view.scale*1.25)} aria-label="放大地图">＋</button><button onClick={()=>zoom(view.scale/1.25)} aria-label="缩小地图">−</button></div>
+  </div>;
+}
+
 function WarehouseStreetMap({item,onBack,onDetail}:{item:WarehouseItem;onBack:()=>void;onDetail:(item:WarehouseItem)=>void}){
   return <div className="cloudStreetMap">
-    <div className="streetBlocks">{Array.from({length:18},(_,index)=><i key={index}/>)}</div>
-    <div className="streetRoad roadMain"><b>{item.roads[0]}</b></div>
-    <div className="streetRoad roadSecond"><b>{item.roads[1]}</b></div>
-    <div className="streetRoad roadThird"><b>{item.roads[2]}</b></div>
-    <div className="streetRoad roadFourth"><b>{item.roads[3]}</b></div>
-    <div className="streetLandmark landmarkOne">● {item.landmarks[0]}</div>
-    <div className="streetLandmark landmarkTwo">● {item.landmarks[1]}</div>
-    <div className="streetLandmark landmarkThree">● {item.landmarks[2]}</div>
+    <InteractiveMapViewport className="cloudStreetViewport"><div className="streetBlocks">{Array.from({length:18},(_,index)=><i key={index}/>)}</div>
+      <div className="streetRoad roadMain"><b>{item.roads[0]}</b></div>
+      <div className="streetRoad roadSecond"><b>{item.roads[1]}</b></div>
+      <div className="streetRoad roadThird"><b>{item.roads[2]}</b></div>
+      <div className="streetRoad roadFourth"><b>{item.roads[3]}</b></div>
+      <div className="streetLandmark landmarkOne">● {item.landmarks[0]}</div>
+      <div className="streetLandmark landmarkTwo">● {item.landmarks[1]}</div>
+      <div className="streetLandmark landmarkThree">● {item.landmarks[2]}</div>
+      <div className="warehouseMapMarker" style={{"--pin":item.color} as React.CSSProperties}><span><i>仓</i></span><b>{item.name}</b><small>{item.address}</small></div>
+    </InteractiveMapViewport>
     <button className="cloudMapBack" onClick={onBack} aria-label="返回全国地图">‹</button>
     <div className="streetScale"><span/>500 米</div>
-    <div className="warehouseMapMarker" style={{"--pin":item.color} as React.CSSProperties}><span><i>仓</i></span><b>{item.name}</b><small>{item.address}</small></div>
     <div className="cloudFocusCard local"><span style={{background:item.color}}/><div><small>{item.city} · 已定位到仓库入口</small><b>{item.name}</b><p>⌖ {item.address}</p></div><button onClick={()=>onDetail(item)}>查看仓库详情 →</button></div>
   </div>;
 }
@@ -63,7 +78,7 @@ function ChinaAdministrativeMap({selectedId,onSelect,onDetail}:{selectedId:strin
     return()=>{cancelled=true;observer.disconnect()};
   },[selectedId]);
 
-  return <div className="cloudMap administrative">{selectedId?<WarehouseStreetMap item={selectedItem} onBack={()=>onSelect("")} onDetail={onDetail}/>:<><div className="cloudMapScene"><canvas ref={canvasRef}/>{warehouseItems.map(item=><button key={item.id} aria-label={`选择${item.name}`} className="cloudPin" onClick={()=>onSelect(item.id)} style={{"--pin":item.color,left:`${item.x}%`,top:`${item.y}%`} as React.CSSProperties}><small>{item.city}</small><b>●</b></button>)}</div>{!ready&&<div className="cloudMapLoading">正在加载中国行政地图…</div>}<div className="cloudLegend">● 常温/高标仓　<span>●</span> 冷链仓　<i>●</i> 保税/专项仓</div></>}</div>;
+  return <div className="cloudMap administrative">{selectedId?<WarehouseStreetMap item={selectedItem} onBack={()=>onSelect("")} onDetail={onDetail}/>:<><InteractiveMapViewport><div className="cloudMapScene"><canvas ref={canvasRef}/>{warehouseItems.map(item=><button key={item.id} aria-label={`选择${item.name}`} className="cloudPin" onClick={()=>onSelect(item.id)} style={{"--pin":item.color,left:`${item.x}%`,top:`${item.y}%`} as React.CSSProperties}><small>{item.city}</small><b>●</b></button>)}</div></InteractiveMapViewport>{!ready&&<div className="cloudMapLoading">正在加载中国行政地图…</div>}<div className="cloudLegend">● 常温/高标仓　<span>●</span> 冷链仓　<i>●</i> 保税/专项仓</div></>}</div>;
 }
 
 export default function CloudWarehouseMap(){
