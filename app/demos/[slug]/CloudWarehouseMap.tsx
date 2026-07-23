@@ -13,6 +13,7 @@ const warehouseItems:WarehouseItem[]=[
 ];
 
 const warehouseImages:Record<string,string>={linyi:"/warehouse-linyi.jpg",shanghai:"/warehouse-shanghai.jpg",wuhan:"/warehouse-wuhan.jpg",guangzhou:"/warehouse-guangzhou.jpg",chengdu:"/warehouse-chengdu.jpg"};
+const warehousePhotoLabels:Record<string,string>={linyi:"园区全景",shanghai:"高标库房",wuhan:"作业区域",guangzhou:"冷链设施",chengdu:"仓内通道"};
 
 const regions=["全国","华北","华东","华中","华南","西南"];
 
@@ -99,10 +100,25 @@ function WmdPublicHeader(){
   </header>;
 }
 
+function WarehouseGallery({item}:{item:WarehouseItem}){
+  const [active,setActive]=useState(0);
+  const photos=[item.id,...warehouseItems.map(warehouse=>warehouse.id).filter(id=>id!==item.id)].slice(0,5);
+  const move=(offset:number)=>setActive(current=>(current+offset+photos.length)%photos.length);
+  return <div className="cloudProductGallery">
+    <div className="cloudGalleryMain">
+      <img src={warehouseImages[photos[active]]} alt={`${item.name}实景图 ${active+1}`}/>
+      <span>实景拍摄 · {active+1}/{photos.length}</span>
+      <button className="previous" onClick={()=>move(-1)} aria-label="上一张实景图">‹</button>
+      <button className="next" onClick={()=>move(1)} aria-label="下一张实景图">›</button>
+    </div>
+    <div className="cloudGalleryThumbs">{photos.map((photo,index)=><button className={active===index?"active":""} onClick={()=>setActive(index)} key={photo} aria-label={`查看${warehousePhotoLabels[photo]}`}><img src={warehouseImages[photo]} alt=""/><small>{index===0?"本仓实景":warehousePhotoLabels[photo]}</small></button>)}</div>
+  </div>;
+}
+
 function CloudWarehouseMapContent(){
   const [region,setRegion]=useState("全国"),[keyword,setKeyword]=useState(""),[selected,setSelected]=useState(""),[detail,setDetail]=useState<WarehouseItem|null>(null),[leadOpen,setLeadOpen]=useState(false),[sent,setSent]=useState(false);
   const filtered=useMemo(()=>warehouseItems.filter(item=>(region==="全国"||item.region===region)&&`${item.name}${item.city}${item.type}${item.goods.join("")}`.includes(keyword)),[region,keyword]);
-  if(detail)return <div className="cloudPrototype"><div className="cloudAppBar"><button onClick={()=>setDetail(null)}>← 返回云仓地图</button><b>仓枢 · 云仓资源原型</b><span>DEMO 06</span></div><div className="cloudDetailHero"><div><small>已认证云仓 · 信息更新于 3 天前</small><h2>{detail.name}</h2><p>⌖ {detail.address}</p><section>{detail.tags.map(tag=><i key={tag}>{tag}</i>)}</section></div><div className="cloudDetailMap"><span>CHINA / {detail.city}</span><b>⌖</b></div></div><div className="cloudDetailBody"><article><div className="cloudMetrics"><span><small>库房面积</small><b>{detail.area.toLocaleString()}㎡</b></span><span><small>可租面积</small><b>{detail.available.toLocaleString()}㎡</b></span><span><small>仓库类型</small><b>{detail.type}</b></span><span><small>场地权属</small><b>{detail.ownership}</b></span></div><h3>仓库概览</h3><p>面向大宗商品、零售及供应链客户提供仓储保管、装卸、运输与数字化管理服务。园区具备全天候运营与安全监管能力。</p><div className="cloudFacilities"><span>库房顶高<b>{detail.height} 米</b></span><span>地面承重<b>{detail.load} 吨/㎡</b></span><span>建筑结构<b>{detail.structure}</b></span><span>防火等级<b>{detail.fire}</b></span><span>仓库系统<b>{detail.digital?"WMS / ERP":"标准管理"}</b></span><span>适存品类<b>{detail.goods.join("、")}</b></span></div><h3>区位交通</h3><div className="cloudTransport"><span>铁路节点<b>{detail.rail}</b></span><span>高速节点<b>{detail.expressway}</b></span></div></article><aside><small>云仓顾问</small><h3>获取该仓完整资料</h3><p>包含可租库区、报价、平面图及现场视频</p>{sent?<div className="cloudSuccess">✓ 需求已提交<br/><small>顾问将在 1 个工作日内联系</small></div>:<><input placeholder="您的称呼"/><input placeholder="联系电话"/><button onClick={()=>setSent(true)}>提交看仓意向 →</button></>}</aside></div></div>;
+  if(detail)return <div className="cloudPrototype"><div className="cloudAppBar"><button onClick={()=>setDetail(null)}>← 返回云仓地图</button><b>仓枢 · 云仓资源原型</b><span>DEMO 06</span></div><div className="cloudDetailProduct"><WarehouseGallery key={detail.id} item={detail}/><div className="cloudDetailSummary"><small>● 已认证云仓 · 信息更新于 3 天前</small><h2>{detail.name}</h2><p>⌖ {detail.address}</p><section>{detail.tags.map(tag=><i key={tag}>{tag}</i>)}</section><div className="cloudDetailQuick"><span><small>可租面积</small><b>{detail.available.toLocaleString()}㎡</b></span><span><small>仓库类型</small><b>{detail.type}</b></span></div><button onClick={()=>setLeadOpen(true)}>获取报价与完整资料 →</button></div></div><div className="cloudDetailBody"><article><div className="cloudMetrics"><span><small>库房面积</small><b>{detail.area.toLocaleString()}㎡</b></span><span><small>可租面积</small><b>{detail.available.toLocaleString()}㎡</b></span><span><small>仓库类型</small><b>{detail.type}</b></span><span><small>场地权属</small><b>{detail.ownership}</b></span></div><h3>仓库概览</h3><p>面向大宗商品、零售及供应链客户提供仓储保管、装卸、运输与数字化管理服务。园区具备全天候运营与安全监管能力。</p><div className="cloudFacilities"><span>库房顶高<b>{detail.height} 米</b></span><span>地面承重<b>{detail.load} 吨/㎡</b></span><span>建筑结构<b>{detail.structure}</b></span><span>防火等级<b>{detail.fire}</b></span><span>仓库系统<b>{detail.digital?"WMS / ERP":"标准管理"}</b></span><span>适存品类<b>{detail.goods.join("、")}</b></span></div><h3>区位交通</h3><div className="cloudTransport"><span>铁路节点<b>{detail.rail}</b></span><span>高速节点<b>{detail.expressway}</b></span></div></article><aside><small>云仓顾问</small><h3>获取该仓完整资料</h3><p>包含可租库区、报价、平面图及现场视频</p>{sent?<div className="cloudSuccess">✓ 需求已提交<br/><small>顾问将在 1 个工作日内联系</small></div>:<><input placeholder="您的称呼"/><input placeholder="联系电话"/><button onClick={()=>setSent(true)}>提交看仓意向 →</button></>}</aside></div>{leadOpen&&<div className="cloudModal" onClick={()=>setLeadOpen(false)}><section onClick={event=>event.stopPropagation()}><button onClick={()=>setLeadOpen(false)}>×</button><small>获取仓库资料</small><h3>{detail.name}</h3><p>留下联系方式，获取报价、平面图与现场视频。</p><label>您的称呼<input placeholder="请输入称呼"/></label><label>联系电话<input placeholder="请输入手机号"/></label><button className="submit" onClick={()=>{setLeadOpen(false);setSent(true)}}>提交需求 →</button></section></div>}</div>;
   return <div className="cloudPrototype">
     <div className="cloudAppBar"><b>云仓资源</b><nav><span className="active">全国找仓</span><span>仓储服务</span><span>需求大厅</span><span>我的关注</span></nav><button onClick={()=>setLeadOpen(true)}>发布选址需求 →</button></div>
     <div className="cloudIntro"><div><small>全国仓储资源数据服务</small><h2>全国云仓资源地图</h2><p>聚合真实仓源、可租面积与运营能力，按区域快速定位适配仓库。</p><div className="cloudTrust"><span>● 平台认证仓源</span><span>✓ 仓库信息已核验</span><span>↻ 数据持续更新</span></div></div><section><span><b>7,350</b>认证云仓</span><span><b>285</b>覆盖城市</span><span><b>15,577万㎡</b>可租面积</span></section></div>
