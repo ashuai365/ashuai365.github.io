@@ -1,14 +1,5 @@
 export const demos = [
   {
-    slug: "commodity-ai-ops",
-    index: "07",
-    title: "大宗智能体平台运营端",
-    category: "运营后台原型",
-    description: "承接大宗智能体 APP 前台业务，演示用户、AI、行情、内容与商机的一体化运营工作台。",
-    accent: "#4f46e5",
-    updatedAt: "2026-07-23T18:00:00",
-  },
-  {
     slug: "cloud-warehouse-map",
     index: "06",
     title: "全国云仓地图",
@@ -31,9 +22,9 @@ export const demos = [
     index: "00",
     title: "大宗智能体 APP",
     category: "完整产品原型",
-    description: "从注册、偏好设置到 AI 行情问答与采购需求补全，体验一段完整用户旅程。",
+    description: "一个入口切换移动用户端与 PC 平台运营端，体验从 AI 决策、行情与交易到用户、内容和商机运营的完整闭环。",
     accent: "#6257c9",
-    updatedAt: "2026-07-21",
+    updatedAt: "2026-07-23T19:00:00",
   },
   {
     slug: "price-alert",

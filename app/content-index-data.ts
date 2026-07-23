@@ -1,8 +1,7 @@
 export type IndexedContent={title:string;description:string;date:string;type:"文章"|"产品演示";href:string;category:string;tags:string[]};
 
 export const indexedContents=([
-  {title:"大宗智能体平台运营端",description:"承接大宗智能体 APP 前台业务，覆盖用户、AI、行情、内容与商机的一体化运营。",date:"2026-07-23",type:"产品演示",href:"/demos/commodity-ai-ops/",category:"AI 产品",tags:["行业智能体","大宗交易","原型设计"]},
-  {title:"大宗智能体 APP",description:"从快捷登录、偏好设置到 AI 行情问答与采购需求补全的完整用户旅程。",date:"2026-07-21",type:"产品演示",href:"/demos/commodity-ai-app/",category:"AI 产品",tags:["行业智能体","大宗交易","原型设计"]},
+  {title:"大宗智能体 APP",description:"一个入口切换移动用户端与 PC 平台运营端，体验 AI 决策、行情、交易和平台运营完整闭环。",date:"2026-07-23",type:"产品演示",href:"/demos/commodity-ai-app/",category:"AI 产品",tags:["行业智能体","大宗交易","原型设计"]},
   {title:"大宗商品交易平台",description:"覆盖行情、资讯、研报、商机、产业集群与供应链服务的产业交易门户。",date:"2026-07-21",type:"产品演示",href:"/demos/bulk-trading-platform/",category:"产业与供应链",tags:["大宗交易","供应链","产业互联网","原型设计"]},
   {title:"大宗智能体如何从 AI 问答走向商业闭环",description:"为什么行业智能体不应止于付费问答，以及如何连接决策、服务与交易价值。",date:"2026-07-20",type:"文章",href:"/articles/commodity-ai-commercial-loop/",category:"AI 产品",tags:["AI 产品","行业智能体","商业化","产品规划"]},
   {title:"先让用户感知价值，再谈付费墙",description:"行业 AI 产品如何设计免费额度、会员权益和单项付费，而不伤害核心体验。",date:"2026-07-18",type:"文章",href:"/articles/paywall-after-value/",category:"产品设计",tags:["用户体验","会员体系","商业化"]},
