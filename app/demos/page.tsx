@@ -26,6 +26,6 @@ export default function DemoListPage() {
       </section>
       <Pagination page={page} totalPages={totalPages} onChange={setPage}/>
     </main>
-    <footer className="siteFooter"><p>© 2026 MADAO · 产品演示频道</p><a href="#top">↑</a></footer>
+    <footer className="siteFooter"><p>© 2026 MADAO · 产品经理club</p><a href="#top">↑</a></footer>
   </div>;
 }

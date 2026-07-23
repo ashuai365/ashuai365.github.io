@@ -105,7 +105,7 @@ export default function Home() {
       </main>
 
       <footer className="siteFooter">
-        <p>© 2026 MADAO · 用产品视角理解复杂世界</p>
+        <p>© 2026 MADAO · 产品经理club</p>
         <a href="#top" aria-label="返回顶部">↑</a>
       </footer>
     </div>
