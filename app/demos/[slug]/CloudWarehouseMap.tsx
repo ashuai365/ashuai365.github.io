@@ -69,9 +69,9 @@ function ChinaAdministrativeMap({selectedId,onSelect,onDetail}:{selectedId:strin
       for(const feature of mapData.features){
         ctx.beginPath();
         for(const polygon of polygons(feature.geometry) as number[][][][]){for(const ring of polygon){ring.forEach((point,index)=>{const [x,y]=project(point);index?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.closePath()}}
-        ctx.fillStyle="#e8f1ec";ctx.fill();ctx.strokeStyle="#9db6a7";ctx.lineWidth=.8;ctx.stroke();
+        ctx.fillStyle="#e8f3ff";ctx.fill();ctx.strokeStyle="#9bb8ee";ctx.lineWidth=.8;ctx.stroke();
         const center=feature.properties.centroid||feature.properties.center;
-        if(center&&feature.properties.name){const [x,y]=project(center);ctx.fillStyle="#64766c";ctx.font="10px Arial, sans-serif";ctx.textAlign="center";ctx.fillText(feature.properties.name.replace(/省|市|自治区|壮族|回族|维吾尔/g,""),x,y)}
+        if(center&&feature.properties.name){const [x,y]=project(center);ctx.fillStyle="#5f7194";ctx.font="10px Arial, sans-serif";ctx.textAlign="center";ctx.fillText(feature.properties.name.replace(/省|市|自治区|壮族|回族|维吾尔/g,""),x,y)}
       }
       setReady(true);
     };
