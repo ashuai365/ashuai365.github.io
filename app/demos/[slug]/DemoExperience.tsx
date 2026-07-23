@@ -4,6 +4,7 @@ import { FormEvent, ReactNode, useEffect, useState } from "react";
 import CommodityAiApp from "./CommodityAiApp";
 import OpportunityWorkflow from "./OpportunityWorkflow";
 import CloudWarehouseMap from "./CloudWarehouseMap";
+import CommodityAiOps from "./CommodityAiOps";
 import { getDemoAccessPassword, getDemoAccessSessionKey } from "../access-config";
 
 function DemoPasswordGate({children,slug}:{children:ReactNode;slug:string}){
@@ -95,6 +96,7 @@ function AiConfidence() {
 export default function DemoExperience({slug}:{slug:string}) {
   let content:ReactNode;
   if(slug==="commodity-ai-app") content=<CommodityAiApp/>;
+  else if(slug==="commodity-ai-ops") content=<CommodityAiOps/>;
   else if(slug==="opportunity-publishing-workflow") content=<OpportunityWorkflow/>;
   else if(slug==="cloud-warehouse-map") content=<CloudWarehouseMap/>;
   else if(slug==="bulk-trading-platform") content=<BulkTradingDocument/>;
