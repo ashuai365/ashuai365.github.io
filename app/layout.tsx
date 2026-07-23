@@ -5,8 +5,8 @@ export const metadata: Metadata = {
   title: "产品经理club — MADAO",
   description: "记录产品、业务与 AI 的思考，聚焦大宗交易、供应链金融、产业互联网和产品方法论。",
   icons: {
-    icon: "/madao-avatar.png",
-    shortcut: "/madao-avatar.png",
+    icon: "/product-manager-club-logo.png",
+    shortcut: "/product-manager-club-logo.png",
   },
 };
 

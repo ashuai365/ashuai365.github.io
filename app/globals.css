@@ -9,7 +9,7 @@ a { color:inherit; text-decoration:none; }
 .siteHeader { background:rgba(255,255,255,.96); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); }
 .headerInner { width:min(1080px,calc(100% - 40px)); margin:auto; min-height:76px; display:flex; align-items:center; justify-content:space-between; gap:40px; }
 .siteBrand { display:flex; align-items:center; gap:12px; }
-.brandAvatar { width:42px; height:42px; object-fit:cover; border-radius:50%; border:1px solid #d7dbe2; }
+.brandAvatar { width:42px; height:42px; object-fit:contain; border-radius:8px; border:0; }
 .logoMark { width:36px; height:36px; flex:none; display:grid; place-items:center; background:#111827; color:#fff; border-radius:5px; font:800 22px/1 Arial,sans-serif; letter-spacing:-.08em; position:relative; }
 .logoMark:after { content:""; position:absolute; width:8px; height:8px; right:-3px; bottom:-3px; background:var(--accent); border:2px solid #fff; }
 .brandCopy { display:flex; flex-direction:column; }
