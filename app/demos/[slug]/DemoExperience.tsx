@@ -39,6 +39,10 @@ function DemoPasswordGate({children,slug}:{children:ReactNode;slug:string}){
       {error&&<strong role="alert">{error}</strong>}
     </form>
     <small>验证成功后，本次浏览器会话内无需重复输入。</small>
+    <aside className="demoWechatPrompt">
+      <img src="/madao-wechat-qr.jpg" alt="MADAO 的微信二维码"/>
+      <div><span>还没有访问密码？</span><h3>扫码添加我的微信</h3><p>请备注“产品演示 + 你的称呼”，我会发送访问密码。也欢迎交流大宗交易、产业互联网与 AI 产品。</p></div>
+    </aside>
   </section>;
 }
 
