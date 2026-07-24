@@ -1,6 +1,5 @@
 export const DEMO_ACCESS_PASSWORDS:Record<string,string> = {
   "cloud-warehouse-map":"5432",
-  "opportunity-publishing-workflow":"1964",
   "commodity-ai-app":"6579",
   "price-alert":"2846",
   "priority-matrix":"7318",

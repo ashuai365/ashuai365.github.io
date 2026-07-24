@@ -5,6 +5,7 @@ import { useState } from "react";
 type Stage = "welcome" | "login" | "wechat" | "profile" | "app";
 type Tab = "首页" | "商机" | "行情" | "我的";
 type Chat = "idle" | "market" | "buy";
+type QuoteStatus = "browse" | "checkout" | "result";
 
 const marketData:Record<string,string[][]> = {
   "全部":[["螺纹钢","RB2610","3,826","+2.35%","3,810","-16"],["铁矿石","I2609","856.5","+1.87%","845","-11.5"],["原油","SC2609","542.8","-0.42%","538","-4.8"]],
@@ -24,15 +25,17 @@ export default function CommodityAiApp(){
   const [input,setInput]=useState("");
   const [agreed,setAgreed]=useState(true);
   const [commodity,setCommodity]=useState("钢材");
-  const [period,setPeriod]=useState("7日");
   const [marketCategory,setMarketCategory]=useState("全部");
   const [marketMode,setMarketMode]=useState<"热门品种"|"我的自选">("热门品种");
   const [marketSearch,setMarketSearch]=useState("");
   const [marketPulse,setMarketPulse]=useState(0);
   const [alertOn,setAlertOn]=useState(true);
   const [saved,setSaved]=useState(false);
+  const [isMember,setIsMember]=useState(false);
+  const [membershipOpen,setMembershipOpen]=useState(false);
+  const [quoteStatus,setQuoteStatus]=useState<QuoteStatus>("browse");
+  const [quoteCity,setQuoteCity]=useState("上海浦东");
   const [authMethod,setAuthMethod]=useState<"微信"|"手机号"|"本机号码"|null>(null);
-  const setMarketView=(_:string)=>setTab("行情");
 
   const startChat=(mode:Chat)=>{setChat(mode);setTab("首页");setStep(mode==="idle"?0:1)};
   const send=()=>{if(!input.trim())return;setChat(input.includes("采购")||input.includes("10吨")?"buy":"market");setStep(1);setInput("")};
@@ -41,7 +44,7 @@ export default function CommodityAiApp(){
   return <div className="aiAppDemo">
     <aside className="appGuide">
       <span>INTERACTIVE PROTOTYPE</span><h2>体验路径</h2>
-      {["注册登录","完善偏好","AI 行情问答","采购需求补全","查看行情"].map((item,index)=><button key={item} className={(stage==="welcome"&&index===0)||(stage==="login"&&index===0)||(stage==="profile"&&index===1)||(stage==="app"&&((tab==="行情"&&index===4)||(tab!=="行情"&&index>=2&&index<4)))?"active":""} onClick={()=>{if(index===0)setStage("login");else if(index===1)setStage("profile");else{setStage("app");index===4?setTab("行情"):startChat(index===3?"buy":"market")}}}><i>{index+1}</i>{item}</button>)}
+      {["注册登录","完善偏好","AI 行情问答","开通会员","获取具体报价"].map((item,index)=><button key={item} className={(stage==="welcome"&&index===0)||(stage==="login"&&index===0)||(stage==="profile"&&index===1)||(stage==="app"&&((tab==="我的"&&index===3)||(tab==="商机"&&index===4)||(tab==="首页"&&index===2)))?"active":""} onClick={()=>{if(index===0)setStage("login");else if(index===1)setStage("profile");else{setStage("app");if(index===2)startChat("market");if(index===3){setTab("我的");setMembershipOpen(true)}if(index===4){setTab("商机");setQuoteStatus("browse")}}}}><i>{index+1}</i>{item}</button>)}
       <p>点击左侧步骤或直接操作手机界面。所有数据均为产品演示。</p>
     </aside>
     <div className="phoneShell">
@@ -55,7 +58,7 @@ export default function CommodityAiApp(){
           <header><button>☰</button><nav>{(["首页","商机","行情","我的"] as Tab[]).map(x=><button key={x} className={tab===x?"active":""} onClick={()=>{setTab(x);if(x!=="首页")setChat("idle")}}>{x}</button>)}</nav><i>●</i></header>
           {tab==="首页"&&<div className="chatScreen">
             {chat==="idle"&&<><div className="assistantHello"><div className="avatar">AI</div><div><h3><span>✦</span> Hi，我是你的大宗采销 AI 助手</h3><p>产业问数、行情分析、采销撮合、企业洞察</p></div></div><div className="quickPrompts"><button onClick={()=>startChat("buy")}>我想采购 10 吨螺纹钢。</button><button onClick={()=>startChat("market")}>螺纹钢目前的行情如何？</button><button onClick={()=>startChat("market")}>钢铁行业现状及发展趋势如何？</button><button onClick={()=>{setTab("商机");setChat("idle")}}>帮我寻找螺纹钢采购商</button></div></>}
-            {chat==="market"&&<><div className="userBubble">螺纹钢目前的行情如何？</div>{step>0&&<div className="aiAnswer"><small>已完成思考</small><h2>螺纹钢行情：淡季累库压制价格，短期维持低位震荡</h2><div className="insight"><b>核心洞察</b><p>当前市场处于“弱现实”主导的淡季累库阶段，供需双弱叠加库存累积导致价格承压运行。短期交易温度不高，需求改善仍需观察。</p></div><p>现货均价约为 <strong>3,289 元/吨</strong>，较上周回落 0.8%。建议关注库存拐点与基建项目资金到位节奏。</p><div className="miniQuote"><span>上海螺纹钢</span><b>3,289</b><small>元/吨 · -18</small></div></div>}</>}
+            {chat==="market"&&<><div className="userBubble">螺纹钢目前的行情如何？</div>{step>0&&<div className="aiAnswer"><small>已完成思考 · 内容由 AI 自动生成</small><h2>螺纹钢行情：淡季累库压制价格，短期维持低位震荡</h2><div className="insight"><b>核心洞察</b><p>当前市场处于“弱现实”主导的淡季累库阶段，供需双弱叠加库存累积导致价格承压运行。短期交易温度不高，需求改善仍需观察。</p></div><p>现货均价约为 <strong>3,289 元/吨</strong>，较上周回落 0.8%。建议关注库存拐点与基建项目资金到位节奏。</p><div className="miniQuote"><span>上海螺纹钢</span><b>3,289</b><small>元/吨 · -18</small></div>{!isMember&&<button className="memberUpsell" onClick={()=>{setTab("我的");setMembershipOpen(true)}}><span><b>解锁持续深度解读</b><small>PRO 会员不限次 AI 分析与 20 个价格预警</small></span><strong>¥99/月 ›</strong></button>}</div>}</>}
             {chat==="buy"&&<><div className="userBubble">我要采购螺纹钢 10 吨</div>{step>0&&<div className="aiAnswer purchase"><p>好的，已记录你的采购需求：</p><table><tbody><tr><th>品类</th><td>螺纹钢</td></tr><tr><th>数量</th><td><strong>10 吨</strong></td></tr></tbody></table><p>为了匹配更合适的卖家报价，还需要补充：</p><ul><li><b>规格 / 材质</b> — 如 HRB400E Φ12mm</li><li><b>交货城市</b> — 货送到哪个地区？</li><li><b>期望交期</b> — 大概什么时候要货？</li><li><b>期望价格</b> — 采购预算是多少？</li></ul><button onClick={()=>setTab("商机")}>继续完善需求 →</button></div>}</>}
             <div className="chatInput"><button>◉</button><input value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>e.key==="Enter"&&send()} placeholder="发消息或按住说话…"/><button onClick={send}>↑</button></div><small className="aiNote">内容由 AI 生成</small>
           </div>}
@@ -72,8 +75,12 @@ export default function CommodityAiApp(){
             <section className="marketSection flat"><header><h3>精选研报</h3><button>全部 ›</button></header><div className="reportList"><article><small>{commodity}周报 · 今日</small><h3>{commodity}供需格局与价格展望</h3><p>供需 · 库存 · 成本</p><footer><button onClick={()=>setSaved(true)}>☆ {saved?"已收藏":"收藏"}</button><button onClick={()=>{setTab("首页");setChat("market");setStep(1)}}>AI 解读 →</button></footer></article></div></section>
             <small className="demoDataNote">行情与资讯均为虚构演示数据</small>
           </div>}
-          {tab==="商机"&&<div className="opportunityScreen"><span>SMART MATCH</span><h2>为你推荐 3 个商机</h2><p>基于螺纹钢 10 吨采购需求</p>{[["上海浦东","HRB400E Φ12","3,315"],["江苏无锡","HRB400E Φ12","3,298"],["浙江嘉兴","HRB400E Φ14","3,326"]].map((x,i)=><article key={x[0]}><div><small>匹配度 {96-i*4}%</small><h3>{x[0]} · 现货供应</h3><p>{x[1]} · 可当天出库</p></div><strong>¥{x[2]}</strong><button>联系卖家</button></article>)}</div>}
-          {tab==="我的"&&<div className="profileHome"><section className="userCard"><div className="avatar">马</div><div><small>已完成快捷登录</small><h2>马到成功</h2><p>采购方 · 关注钢材与原料</p></div><button>编辑</button></section><section className="memberCard"><span>MADAO PRO</span><h3>大宗决策会员</h3><p>AI 行情解读、价格预警与商机推荐</p><button>查看权益 →</button></section><div className="profileStats"><button><b>6</b><span>关注品种</span></button><button><b>{saved?1:0}</b><span>收藏研报</span></button><button><b>3</b><span>采购需求</span></button></div><section className="profileMenu"><button onClick={()=>setTab("行情")}><span>◎</span><b>我的关注</b><i>6 个品种 ›</i></button><button onClick={()=>setAlertOn(!alertOn)}><span>◔</span><b>价格预警</b><i className={alertOn?"switch on":"switch"}/></button><button onClick={()=>setMarketView("研报")}><span>▤</span><b>收藏与研报</b><i>›</i></button><button><span>⚙</span><b>账号与设置</b><i>›</i></button></section><button className="logout" onClick={()=>setStage("welcome")}>退出登录</button></div>}
+          {tab==="商机"&&<div className="opportunityScreen commercialOpportunity"><span>SMART QUOTE</span><h2>{quoteStatus==="result"?"已获得 3 家具体报价":quoteStatus==="checkout"?"确认报价服务":"把商机变成可比较的报价"}</h2><p>{quoteStatus==="result"?"价格含税，报价 2 小时内有效":quoteStatus==="checkout"?"服务费只针对本次具体询价，不包含货款":"AI 先免费匹配，选定后按次获取供应商具体报价"}</p>
+            {quoteStatus==="browse"&&<><section className="pricingBridge"><b>双收费模式</b><span>会员订阅解锁日常 AI 决策</span><i>+</i><span>具体报价按次付费</span><em>{isMember?"PRO 本次 ¥19":"非会员 ¥39 / 次"}</em></section>{[["上海浦东","HRB400E Φ12","当天出库"],["江苏无锡","HRB400E Φ12","次日送达"],["浙江嘉兴","HRB400E Φ14","支持切割"]].map((x,i)=><article key={x[0]}><div><small>预匹配 {96-i*4}% · 已验证供应商</small><h3>{x[0]} · 现货供应</h3><p>{x[1]} · {x[2]}</p></div><strong>待实时报价</strong><button onClick={()=>{setQuoteCity(x[0]);setQuoteStatus("checkout")}}>获取具体报价</button></article>)}</>}
+            {quoteStatus==="checkout"&&<section className="quoteCheckout"><button className="quoteBack" onClick={()=>setQuoteStatus("browse")}>← 返回匹配结果</button><div className="quoteDemand"><span>本次需求</span><h3>HRB400E Φ12 螺纹钢 · 10 吨</h3><p>交付地：{quoteCity}　·　期望 48 小时内到货</p></div><div className="quotePriceRow"><span><b>具体报价服务</b><small>匹配、询价、比价与报价有效性核验</small></span><strong>¥{isMember?"19":"39"}</strong></div>{!isMember&&<button className="quoteMemberOffer" onClick={()=>{setTab("我的");setMembershipOpen(true)}}><span><b>开通 PRO 后本次立减 ¥20</b><small>并解锁不限次 AI 深度行情解读</small></span><em>去开通 ›</em></button>}<ul><li>至少返回 2 家供应商含税具体报价</li><li>超时未获得有效报价，服务费原路退回</li><li>货款在线下或后续交易环节另行结算</li></ul><button className="quotePay" onClick={()=>setQuoteStatus("result")}>支付 ¥{isMember?"19":"39"} 并发起询价</button></section>}
+            {quoteStatus==="result"&&<><section className="quoteSuccess"><i>✓</i><span><b>本次报价服务已完成</b><small>已核验库存、含税价与交付时效</small></span></section>{[["江苏无锡 · 苏南钢贸","3,298","含税自提 · 当日锁货","推荐"],["上海浦东 · 华东现货","3,315","含税配送 · 18:00 前到","最快"],["浙江嘉兴 · 嘉兴金属","3,326","含税自提 · 支持切割","备选"]].map(x=><article className="realQuote" key={x[0]}><div><small>{x[3]} · 报价有效 2 小时</small><h3>{x[0]}</h3><p>{x[2]}</p></div><strong>¥{x[1]}<small>/吨</small></strong><button>选择此报价</button></article>)}<button className="quoteAgain" onClick={()=>setQuoteStatus("browse")}>发起新的具体询价</button></>}
+          </div>}
+          {tab==="我的"&&<div className="profileHome">{membershipOpen?<section className="membershipCenter"><button className="membershipBack" onClick={()=>setMembershipOpen(false)}>← 返回我的</button><span>MADAO MEMBERSHIP</span><h2>订阅决策能力，按需购买报价</h2><p>会员解决高频 AI 决策需求；商机仍按次付费，确保每次都对应真实、可核验的具体报价。</p><div className="membershipPlans"><article><small>基础版</small><h3>免费</h3><ul><li>每日 3 次 AI 问答</li><li>3 个价格预警</li><li>具体报价 ¥39 / 次</li></ul></article><article className="featured"><small>推荐 · PRO</small><h3>¥99<em>/月</em></h3><ul><li>不限次 AI 深度解读</li><li>20 个价格预警</li><li>具体报价 ¥19 / 次</li></ul></article></div><button className="joinMember" onClick={()=>setIsMember(true)}>{isMember?"PRO 会员已生效 ✓":"开通 PRO 会员"}</button><small className="annualOffer">年付 ¥899 · 每月前 3 次具体报价免服务费</small></section>:<><section className="userCard"><div className="avatar">马</div><div><small>已完成快捷登录</small><h2>马到成功</h2><p>采购方 · 关注钢材与原料</p></div><button>编辑</button></section><section className={`memberCard ${isMember?"active":""}`}><span>{isMember?"MADAO PRO · 已生效":"MADAO PRO"}</span><h3>{isMember?"大宗决策会员":"订阅高频决策能力"}</h3><p>{isMember?"不限次 AI 解读 · 具体报价 ¥19/次":"¥99/月 · 报价服务费会员价 5 折"}</p><button onClick={()=>setMembershipOpen(true)}>{isMember?"管理会员 →":"查看方案 →"}</button></section><div className="profileStats"><button><b>6</b><span>关注品种</span></button><button><b>{saved?1:0}</b><span>收藏研报</span></button><button><b>{quoteStatus==="result"?1:0}</b><span>具体报价</span></button></div><section className="profileMenu"><button onClick={()=>setTab("行情")}><span>◎</span><b>我的关注</b><i>6 个品种 ›</i></button><button onClick={()=>setAlertOn(!alertOn)}><span>◔</span><b>价格预警</b><i className={alertOn?"switch on":"switch"}/></button><button onClick={()=>setTab("商机")}><span>◇</span><b>报价订单</b><i>{quoteStatus==="result"?"1 个已完成":"暂无"} ›</i></button><button><span>⚙</span><b>账号与设置</b><i>›</i></button></section><button className="logout" onClick={()=>setStage("welcome")}>退出登录</button></>}</div>}
         </section>}
       </div>
       <div className="homeBar"/>

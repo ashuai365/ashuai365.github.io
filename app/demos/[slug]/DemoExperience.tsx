@@ -2,7 +2,6 @@
 
 import { FormEvent, ReactNode, useEffect, useState } from "react";
 import CommodityAiApp from "./CommodityAiApp";
-import OpportunityWorkflow from "./OpportunityWorkflow";
 import CloudWarehouseMap from "./CloudWarehouseMap";
 import CommodityAiOps from "./CommodityAiOps";
 import { getDemoAccessPassword, getDemoAccessSessionKey } from "../access-config";
@@ -99,12 +98,12 @@ function CommodityAiSuite(){
     <div className="aiSuiteSwitcher">
       <div><span>大宗智能体 APP</span><b>选择体验视角</b><small>一个产品，两端协同</small></div>
       <nav aria-label="切换演示端">
-        <button className={view==="app"?"active":""} onClick={()=>setView("app")}><i>▯</i><span><b>用户端 APP</b><small>移动端 · AI 决策与交易</small></span></button>
-        <button className={view==="ops"?"active":""} onClick={()=>setView("ops")}><i>▰</i><span><b>平台运营端</b><small>PC 端 · 运营与配置</small></span></button>
+        <button className={view==="app"?"active":""} onClick={()=>setView("app")}><i>▯</i><span><b>用户端 APP</b><small>移动端 · 会员与具体报价</small></span></button>
+        <button className={view==="ops"?"active":""} onClick={()=>setView("ops")}><i>▰</i><span><b>平台运营端</b><small>PC 端 · 商业化与撮合</small></span></button>
       </nav>
     </div>
     <div className={`aiSuiteViewport ${view==="app"?"mobile":"desktop"}`}>
-      <div className="aiSuiteContext"><span>{view==="app"?"MOBILE EXPERIENCE":"DESKTOP EXPERIENCE"}</span><b>{view==="app"?"面向采购、贸易与产业用户":"面向平台运营、内容与业务团队"}</b><button onClick={()=>setView(view==="app"?"ops":"app")}>切换到{view==="app"?"平台运营端":"用户端 APP"} →</button></div>
+      <div className="aiSuiteContext"><span>{view==="app"?"MOBILE EXPERIENCE":"DESKTOP EXPERIENCE"}</span><b>{view==="app"?"会员订阅日常决策 · 商机按次获取具体报价":"统一管理会员收入、报价订单与撮合履约"}</b><button onClick={()=>setView(view==="app"?"ops":"app")}>切换到{view==="app"?"平台运营端":"用户端 APP"} →</button></div>
       {view==="app"?<CommodityAiApp/>:<CommodityAiOps/>}
     </div>
   </div>;
@@ -113,7 +112,6 @@ function CommodityAiSuite(){
 export default function DemoExperience({slug}:{slug:string}) {
   let content:ReactNode;
   if(slug==="commodity-ai-app") content=<CommodityAiSuite/>;
-  else if(slug==="opportunity-publishing-workflow") content=<OpportunityWorkflow/>;
   else if(slug==="cloud-warehouse-map") content=<CloudWarehouseMap/>;
   else if(slug==="bulk-trading-platform") content=<BulkTradingDocument/>;
   else if(slug==="price-alert") content=<PriceAlert/>;
