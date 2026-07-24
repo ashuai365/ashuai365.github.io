@@ -48,9 +48,9 @@ function DemoPasswordGate({children,slug}:{children:ReactNode;slug:string}){
         aria-controls="demo-wechat-qr"
         onClick={()=>setShowWechatQr(value=>!value)}
       >
-        <span>还没有访问密码？</span>
-        <strong>{showWechatQr?"收起微信二维码":"点击这里，查看微信二维码"}</strong>
-        <i aria-hidden="true">{showWechatQr?"−":"+"}</i>
+        <span>{showWechatQr?"秘密通道已出现":"还差一枚通行章？"}</span>
+        <strong>{showWechatQr?"先把它藏回去":"轻点这里，找我拿一枚"}</strong>
+        <i aria-hidden="true">{showWechatQr?"↑":"↗"}</i>
       </button>
       {showWechatQr&&<div id="demo-wechat-qr" className="demoWechatReveal">
         <img src="/madao-wechat-qr.jpg" alt="MADAO 的微信二维码"/>
