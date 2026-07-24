@@ -370,3 +370,271 @@ body{font-size:16px;line-height:1.8;letter-spacing:.005em}.headerInner{width:min
 /* 个人用户为账户主体，企业仅作为任职背景 */
 .opsPage:has(.opsTable) .opsTitle{position:relative;padding-bottom:38px}.opsPage:has(.opsTable) .opsTitle:after{content:"账户主体：个人用户　｜　所属企业为可选任职资料，可由用户提交并完成任职认证";position:absolute;left:0;right:0;bottom:0;padding:8px 11px;border-left:3px solid #5b56d6;background:#f0efff;color:#514cae;font-size:8px;font-weight:600}.opsTable>div>span:nth-child(4),.opsTable>div>span:nth-child(5){display:grid;gap:3px}.opsTable>div>span:nth-child(4) em{justify-self:start;background:#fff5e7;color:#a36a11}.opsTable>div>span:nth-child(4) em.verified{background:#eaf7f0;color:#188158}.opsTable>div>span:nth-child(4) small,.opsTable>div>span:nth-child(5) small{color:#9299a7;font-size:7px}.opsTable>div>span:nth-child(5) b{font-size:8px}
 @media(max-width:600px){.opsPage:has(.opsTable) .opsTitle{padding-bottom:52px}.opsPage:has(.opsTable) .opsTitle:after{line-height:1.6}}
+
+/* 全站视觉节奏精修：统一个人站频道的字号、边距与信息密度 */
+.siteFrame {
+  --text-secondary:#596474;
+  --text-tertiary:#7b8491;
+}
+
+.siteFrame .sidebar {
+  top:106px;
+  gap:38px;
+  padding-left:36px;
+}
+
+.siteFrame .profileLogo {
+  margin-bottom:16px;
+}
+
+.siteFrame .profile h2 {
+  line-height:1.35;
+}
+
+.siteFrame .profile>p {
+  margin:3px 0 22px;
+  color:var(--text-secondary);
+  line-height:1.6;
+}
+
+.siteFrame .profileStats {
+  min-height:88px;
+  padding:17px 0;
+}
+
+.siteFrame .profileStats a {
+  min-width:0;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:1px 8px;
+  text-align:center;
+}
+
+.siteFrame .profileStats strong {
+  font-size:19px;
+  line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+
+.siteFrame .profileStats span {
+  margin-top:0;
+  color:var(--text-tertiary);
+  font-size:12px;
+  line-height:1.4;
+}
+
+.siteFrame .focus {
+  margin-top:20px;
+  color:var(--text-secondary);
+  font-size:13px;
+  line-height:1.9;
+}
+
+.siteFrame .sideCard h3 {
+  margin-bottom:18px;
+  padding-bottom:12px;
+  line-height:1.4;
+  font-weight:650;
+}
+
+.siteFrame .sideCard h3:after {
+  transform:translateY(14px);
+}
+
+.siteFrame .sideCard li a {
+  min-height:40px;
+  align-items:center;
+  padding:7px 0;
+  color:var(--text-secondary);
+  font-size:14px;
+  line-height:1.5;
+}
+
+.siteFrame .sideCard li b {
+  min-width:25px;
+  padding:3px 7px;
+  font-size:11px;
+  line-height:1.5;
+}
+
+.siteFrame .tagCloud {
+  align-items:center;
+  gap:8px;
+}
+
+.siteFrame .tagCloud a {
+  padding:5px 9px;
+  color:var(--text-secondary);
+  font-size:13px;
+  line-height:1.45;
+}
+
+.siteFrame .intro {
+  padding:24px 0 44px;
+}
+
+.siteFrame .intro h1 {
+  margin:10px 0 18px;
+  line-height:1.28;
+}
+
+.siteFrame .intro p {
+  color:var(--text-secondary);
+}
+
+.siteFrame .postMeta {
+  color:var(--text-tertiary);
+  line-height:1.55;
+}
+
+.siteFrame .postMeta b {
+  color:#c6cbd2;
+}
+
+.siteFrame .tagRow {
+  color:var(--text-tertiary);
+  line-height:1.6;
+}
+
+.siteFrame .post h2,
+.demoCard h2,
+.categoryTile h2,
+.tagIndex h2,
+.indexedContentList h2 {
+  text-wrap:balance;
+}
+
+.demoListHero p,
+.hubHero p,
+.contentIndexHero p,
+.demoCard>p,
+.categoryTile p,
+.indexedContentList>article>p {
+  color:#596474;
+}
+
+.demoCard {
+  padding:26px;
+}
+
+.demoCardTop {
+  font-size:12px;
+  line-height:1.5;
+}
+
+.demoCard h2 {
+  margin-bottom:12px;
+  line-height:1.42;
+}
+
+.demoCard>p {
+  min-height:92px;
+  font-size:15px;
+  line-height:1.85;
+}
+
+.demoCard footer {
+  margin-top:22px;
+  padding-top:18px;
+  font-size:13px;
+}
+
+.categoryTile {
+  padding:40px;
+}
+
+.categoryTile h2 {
+  margin:30px 0 12px;
+  line-height:1.35;
+}
+
+.tagIndex a {
+  min-height:154px;
+  padding:28px;
+}
+
+.tagIndex h2 {
+  margin:20px 0 4px;
+  line-height:1.4;
+}
+
+.indexedContentList article {
+  padding:40px 0;
+}
+
+.indexedContentList h2 {
+  margin:14px 0 10px;
+  line-height:1.42;
+}
+
+.indexedContentList footer {
+  color:#7b8491;
+}
+
+.pagination {
+  padding:34px 0;
+}
+
+.pagination a,
+.pagination span,
+.pagination button {
+  min-width:38px;
+  height:38px;
+  font-size:13px;
+}
+
+.siteFooter {
+  margin-top:64px;
+}
+
+@media(max-width:900px) {
+  .siteFrame .sidebar {
+    top:auto;
+    gap:32px 40px;
+    padding:36px 0 0;
+  }
+
+  .siteFrame .profileStats {
+    max-width:360px;
+  }
+}
+
+@media(max-width:640px) {
+  .siteFrame .sidebar {
+    gap:34px;
+    padding-top:32px;
+  }
+
+  .siteFrame .profileStats {
+    max-width:none;
+    min-height:84px;
+  }
+
+  .siteFrame .intro {
+    padding:18px 0 36px;
+  }
+
+  .siteFrame .post {
+    padding:34px 0;
+  }
+
+  .demoListHero,
+  .hubHero {
+    padding:20px 0 48px;
+  }
+
+  .demoCard,
+  .categoryTile,
+  .tagIndex a {
+    padding:24px;
+  }
+
+  .demoCard>p {
+    min-height:0;
+  }
+
+  .indexedContentList article {
+    padding:32px 0;
+  }
+}
