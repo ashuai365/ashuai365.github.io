@@ -6,27 +6,24 @@ import CloudWarehouseMap from "./CloudWarehouseMap";
 import CommodityAiOps from "./CommodityAiOps";
 import { getDemoAccessPassword, getDemoAccessSessionKey } from "../access-config";
 
-const WECHAT_PROMPTS=[
-  {quote:"山重水复疑无路",hint:"轻点一下，也许别有洞天"},
-  {quote:"有朋自远方来",hint:"轻点这里，递上一张名片"},
-  {quote:"海内存知己",hint:"若有缘，不妨在此相识"},
-  {quote:"欲穷千里目",hint:"再近一步，看看藏着什么"},
-  {quote:"众里寻他千百度",hint:"答案也许就在灯火阑珊处"},
-] as const;
-
 function DemoPasswordGate({children,slug}:{children:ReactNode;slug:string}){
   const [unlocked,setUnlocked]=useState(false);
   const [password,setPassword]=useState("");
   const [error,setError]=useState("");
   const [showWechatQr,setShowWechatQr]=useState(false);
-  const [promptIndex,setPromptIndex]=useState(0);
 
   useEffect(()=>{
     setUnlocked(sessionStorage.getItem(getDemoAccessSessionKey(slug))==="1");
-    setPromptIndex(Math.floor(Math.random()*WECHAT_PROMPTS.length));
   },[slug]);
 
-  const wechatPrompt=WECHAT_PROMPTS[promptIndex];
+  useEffect(()=>{
+    if(!showWechatQr) return;
+    const closeOnEscape=(event:KeyboardEvent)=>{
+      if(event.key==="Escape") setShowWechatQr(false);
+    };
+    document.addEventListener("keydown",closeOnEscape);
+    return ()=>document.removeEventListener("keydown",closeOnEscape);
+  },[showWechatQr]);
 
   const submit=(event:FormEvent<HTMLFormElement>)=>{
     event.preventDefault();
@@ -52,23 +49,31 @@ function DemoPasswordGate({children,slug}:{children:ReactNode;slug:string}){
       {error&&<strong role="alert">{error}</strong>}
     </form>
     <small>验证成功后，本次浏览器会话内无需重复输入。</small>
-    <aside className={`demoWechatPrompt${showWechatQr?" isOpen":""}`}>
+    <aside className="demoWechatPrompt">
       <button
         type="button"
-        className="demoWechatTrigger"
+        className="demoWechatTextLink"
         aria-expanded={showWechatQr}
         aria-controls="demo-wechat-qr"
-        onClick={()=>setShowWechatQr(value=>!value)}
+        onClick={()=>setShowWechatQr(true)}
       >
-        <span>{showWechatQr?"有朋自远方来":wechatPrompt.quote}</span>
-        <strong>{showWechatQr?"见过便好，轻点收起":wechatPrompt.hint}</strong>
-        <i aria-hidden="true">{showWechatQr?"↑":"↗"}</i>
+        还没有访问密码？扫码联系我获取
       </button>
-      {showWechatQr&&<div id="demo-wechat-qr" className="demoWechatReveal">
-        <img src="/madao-wechat-qr.jpg" alt="MADAO 的微信二维码"/>
-        <div><h3>扫码添加我的微信</h3><p>请备注“产品演示 + 你的称呼”，我会发送访问密码。也欢迎交流大宗交易、产业互联网与 AI 产品。</p></div>
-      </div>}
     </aside>
+    {showWechatQr&&<div className="demoWechatModal" onMouseDown={()=>setShowWechatQr(false)}>
+      <section
+        id="demo-wechat-qr"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="demo-wechat-title"
+        onMouseDown={event=>event.stopPropagation()}
+      >
+        <button type="button" className="demoWechatClose" aria-label="关闭二维码" onClick={()=>setShowWechatQr(false)}>×</button>
+        <img src="/madao-wechat-qr.jpg" alt="MADAO 的微信二维码"/>
+        <h3 id="demo-wechat-title">扫码添加我的微信</h3>
+        <p>请备注“产品演示 + 你的称呼”，我会发送访问密码。</p>
+      </section>
+    </div>}
   </section>;
 }
 
