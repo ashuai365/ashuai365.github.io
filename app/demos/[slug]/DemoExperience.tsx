@@ -6,15 +6,27 @@ import CloudWarehouseMap from "./CloudWarehouseMap";
 import CommodityAiOps from "./CommodityAiOps";
 import { getDemoAccessPassword, getDemoAccessSessionKey } from "../access-config";
 
+const WECHAT_PROMPTS=[
+  {quote:"山重水复疑无路",hint:"轻点一下，也许别有洞天"},
+  {quote:"有朋自远方来",hint:"轻点这里，递上一张名片"},
+  {quote:"海内存知己",hint:"若有缘，不妨在此相识"},
+  {quote:"欲穷千里目",hint:"再近一步，看看藏着什么"},
+  {quote:"众里寻他千百度",hint:"答案也许就在灯火阑珊处"},
+] as const;
+
 function DemoPasswordGate({children,slug}:{children:ReactNode;slug:string}){
   const [unlocked,setUnlocked]=useState(false);
   const [password,setPassword]=useState("");
   const [error,setError]=useState("");
   const [showWechatQr,setShowWechatQr]=useState(false);
+  const [promptIndex,setPromptIndex]=useState(0);
 
   useEffect(()=>{
     setUnlocked(sessionStorage.getItem(getDemoAccessSessionKey(slug))==="1");
+    setPromptIndex(Math.floor(Math.random()*WECHAT_PROMPTS.length));
   },[slug]);
+
+  const wechatPrompt=WECHAT_PROMPTS[promptIndex];
 
   const submit=(event:FormEvent<HTMLFormElement>)=>{
     event.preventDefault();
@@ -48,8 +60,8 @@ function DemoPasswordGate({children,slug}:{children:ReactNode;slug:string}){
         aria-controls="demo-wechat-qr"
         onClick={()=>setShowWechatQr(value=>!value)}
       >
-        <span>{showWechatQr?"秘密通道已出现":"还差一枚通行章？"}</span>
-        <strong>{showWechatQr?"先把它藏回去":"轻点这里，找我拿一枚"}</strong>
+        <span>{showWechatQr?"有朋自远方来":wechatPrompt.quote}</span>
+        <strong>{showWechatQr?"见过便好，轻点收起":wechatPrompt.hint}</strong>
         <i aria-hidden="true">{showWechatQr?"↑":"↗"}</i>
       </button>
       {showWechatQr&&<div id="demo-wechat-qr" className="demoWechatReveal">
