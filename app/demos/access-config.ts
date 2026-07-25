@@ -9,3 +9,4 @@ export const DEMO_ACCESS_PASSWORDS:Record<string,string> = {
 
 export const getDemoAccessPassword=(slug:string)=>DEMO_ACCESS_PASSWORDS[slug]??"6579";
 export const getDemoAccessSessionKey=(slug:string)=>`product-demo-unlocked-${slug}-${getDemoAccessPassword(slug)}`;
+export const getDemoAccessHref=(slug:string)=>`/demos/${slug}/#password=${encodeURIComponent(getDemoAccessPassword(slug))}`;

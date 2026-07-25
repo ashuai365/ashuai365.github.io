@@ -3,7 +3,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import SiteHeader from "../SiteHeader";
 import { demos } from "../demos/demo-data";
-import { getDemoAccessPassword } from "../demos/access-config";
+import { getDemoAccessHref, getDemoAccessPassword } from "../demos/access-config";
 
 const ADMIN_SESSION_KEY="demo-password-admin-authenticated";
 
@@ -44,7 +44,7 @@ export default function DemoAdminPage(){
           <div className="demoAdminProduct"><i style={{background:demo.accent}}>{demo.index}</i><span><b>{demo.title}</b><small>/demos/{demo.slug}/</small></span></div>
           <div className="demoAdminMeta"><b>{demo.category}</b><time>{demo.updatedAt.slice(0,10)}</time></div>
           <strong>{getDemoAccessPassword(demo.slug)}</strong>
-          <div className="demoAdminActions"><button onClick={()=>copy(demo.slug)}>{copiedSlug===demo.slug?"已复制 ✓":"复制"}</button><a href={`/demos/${demo.slug}/`} target="_blank" rel="noreferrer">打开 ↗</a></div>
+          <div className="demoAdminActions"><button onClick={()=>copy(demo.slug)}>{copiedSlug===demo.slug?"已复制 ✓":"复制"}</button><a href={getDemoAccessHref(demo.slug)} target="_blank" rel="noreferrer">打开 ↗</a></div>
         </article>)}
       </section>
       <aside><b>使用说明</b><ol><li>每个产品演示拥有独立密码，请将对应密码发送给访问人员。</li><li>访客输入密码后，仅解锁当前演示，本次浏览器会话内有效。</li><li>此后台为原型站轻量管理入口，请勿用于存放敏感信息。</li></ol><a href="/demos/">前往产品演示频道 →</a></aside>

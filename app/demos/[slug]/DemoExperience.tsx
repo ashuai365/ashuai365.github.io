@@ -13,7 +13,15 @@ function DemoPasswordGate({children,slug}:{children:ReactNode;slug:string}){
   const [showWechatQr,setShowWechatQr]=useState(false);
 
   useEffect(()=>{
-    setUnlocked(sessionStorage.getItem(getDemoAccessSessionKey(slug))==="1");
+    if(sessionStorage.getItem(getDemoAccessSessionKey(slug))==="1"){
+      setUnlocked(true);
+      return;
+    }
+    const passwordFromLink=new URLSearchParams(window.location.hash.slice(1)).get("password");
+    if(passwordFromLink){
+      setPassword(passwordFromLink);
+      window.history.replaceState(null,"",`${window.location.pathname}${window.location.search}`);
+    }
   },[slug]);
 
   useEffect(()=>{
