@@ -331,7 +331,12 @@ body{font-size:16px;line-height:1.8;letter-spacing:.005em}.headerInner{width:min
 .cloudChannelHeroCopy p{max-width:560px;color:#edf5ff;font-size:13px;line-height:1.8}
 .cloudChannelHero .cloudTrust{gap:8px;margin-top:18px}
 .cloudChannelHero .cloudTrust span{padding:6px 11px;border:1px solid #ffffff42;background:#ffffff14;color:#fff;font-size:10px;letter-spacing:.04em;backdrop-filter:blur(5px)}
-@media(max-width:700px){.cloudChannelHero{height:245px}.cloudChannelHeroShade{background:linear-gradient(90deg,#071c3be8,#0b2f5c9c)}.cloudChannelHeroCopy{width:100%;padding:26px 18px}.cloudChannelHeroCopy h2{font-size:25px}.cloudChannelHeroCopy p{font-size:11px}.cloudChannelHero .cloudTrust{overflow:visible}.cloudChannelHero .cloudTrust span{font-size:9px}}
+.cloudChannelHero>.cloudChannelStats{position:absolute;right:30px;bottom:28px;z-index:2;display:grid;grid-template-columns:repeat(3,minmax(104px,1fr));padding:14px 8px;background:#071d3bc9;border:1px solid #ffffff2e;backdrop-filter:blur(10px)}
+.cloudChannelHero>.cloudChannelStats span{display:grid;min-width:104px;padding:0 15px;color:#dbeaff;font-size:9px;border-left:1px solid #ffffff2b}
+.cloudChannelHero>.cloudChannelStats span:first-child{border-left:0}
+.cloudChannelHero>.cloudChannelStats b{color:#fff;font-size:19px;line-height:1.35}
+@media(max-width:900px){.cloudChannelHero>.cloudChannelStats{right:18px;bottom:18px}.cloudChannelHero>.cloudChannelStats span{min-width:90px;padding:0 10px}.cloudChannelHero>.cloudChannelStats b{font-size:16px}}
+@media(max-width:700px){.cloudChannelHero{height:310px}.cloudChannelHeroShade{background:linear-gradient(90deg,#071c3be8,#0b2f5c9c)}.cloudChannelHeroCopy{width:100%;height:230px;padding:24px 18px}.cloudChannelHeroCopy h2{font-size:25px}.cloudChannelHeroCopy p{font-size:11px}.cloudChannelHero .cloudTrust{overflow:visible}.cloudChannelHero .cloudTrust span{font-size:9px}.cloudChannelHero>.cloudChannelStats{left:12px;right:12px;bottom:12px}.cloudChannelHero>.cloudChannelStats span{min-width:0;padding:0 8px}.cloudChannelHero>.cloudChannelStats b{font-size:14px}}
 
 /* 仓库详情电商式实景图库 */
 .cloudDetailProduct{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(340px,.65fr);gap:30px;padding:28px;background:#fff;border-bottom:1px solid #e1e6ed}
