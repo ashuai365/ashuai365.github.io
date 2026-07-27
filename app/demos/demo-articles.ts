@@ -4,11 +4,13 @@ export type DemoArticleContent = {
   audience: string;
   readTime: string;
   visual: {
+    variant: "warehouse" | "flywheel" | "alert" | "matrix" | "confidence" | "ecosystem";
     title: string;
     caption: string;
     steps: Array<{ label: string; note: string }>;
   };
   toolkit: {
+    variant: "fieldCards" | "metrics" | "ruleBands" | "rubric" | "weights" | "blueprint";
     eyebrow: string;
     title: string;
     intro: string;
@@ -33,6 +35,7 @@ export const demoArticles: Record<string, DemoArticleContent> = {
     audience: "供应链平台、仓储招商与产业互联网产品团队",
     readTime: "约 6 分钟",
     visual: {
+      variant: "warehouse",
       title: "从模糊需求到有效仓源的转化路径",
       caption: "配图 01 · 地图不是终点，关键是每一步都减少一次人工确认。",
       steps: [
@@ -44,6 +47,7 @@ export const demoArticles: Record<string, DemoArticleContent> = {
       ],
     },
     toolkit: {
+      variant: "fieldCards",
       eyebrow: "可直接复用 · 仓源字段表",
       title: "先把这 5 组字段做完整，再考虑地图效果",
       intro: "字段是否可比较，决定了平台能否从“资源展示”进入“选址服务”。",
@@ -104,6 +108,7 @@ export const demoArticles: Record<string, DemoArticleContent> = {
     audience: "AI 产品、产业互联网与商业化负责人",
     readTime: "约 8 分钟",
     visual: {
+      variant: "flywheel",
       title: "双收费模式不是并列功能，而是一条价值阶梯",
       caption: "配图 01 · 高频决策培养使用习惯，低频服务兑现交易结果。",
       steps: [
@@ -115,6 +120,7 @@ export const demoArticles: Record<string, DemoArticleContent> = {
       ],
     },
     toolkit: {
+      variant: "metrics",
       eyebrow: "可直接复用 · 商业化测算表",
       title: "用一组保守假设验证双收费是否成立",
       intro: "先算单用户经济模型，不要一开始就讨论复杂套餐。",
@@ -176,6 +182,7 @@ export const demoArticles: Record<string, DemoArticleContent> = {
     audience: "大宗交易、采购管理与行情工具产品团队",
     readTime: "约 5 分钟",
     visual: {
+      variant: "alert",
       title: "一条预警如何变成可执行的采购建议",
       caption: "配图 01 · 同一个价格，在不同库存和波动环境下应得到不同结论。",
       steps: [
@@ -187,6 +194,7 @@ export const demoArticles: Record<string, DemoArticleContent> = {
       ],
     },
     toolkit: {
+      variant: "ruleBands",
       eyebrow: "可直接复用 · 预警规则矩阵",
       title: "不要只设置一个价格阈值",
       intro: "最小可用规则至少同时考虑价格、库存覆盖和数据时效。",
@@ -247,6 +255,7 @@ export const demoArticles: Record<string, DemoArticleContent> = {
     audience: "产品经理、项目负责人和跨职能决策团队",
     readTime: "约 5 分钟",
     visual: {
+      variant: "matrix",
       title: "一次 30 分钟优先级评审的标准流程",
       caption: "配图 01 · 先独立打分，再讨论差异，避免被第一个发言者锚定。",
       steps: [
@@ -258,6 +267,7 @@ export const demoArticles: Record<string, DemoArticleContent> = {
       ],
     },
     toolkit: {
+      variant: "rubric",
       eyebrow: "可直接复用 · 评分锚点",
       title: "没有评分锚点，1—10 分只是情绪数字",
       intro: "本演示采用：综合分 = 用户价值 × 45% + 业务收益 × 40% +（11 − 实施成本）× 15%。",
@@ -316,6 +326,7 @@ export const demoArticles: Record<string, DemoArticleContent> = {
     audience: "AI 应用、知识服务和决策支持产品团队",
     readTime: "约 6 分钟",
     visual: {
+      variant: "confidence",
       title: "可信度不是一个分数，而是一条证据链",
       caption: "配图 01 · 先检查硬性风险，再计算可加权的证据质量。",
       steps: [
@@ -327,6 +338,7 @@ export const demoArticles: Record<string, DemoArticleContent> = {
       ],
     },
     toolkit: {
+      variant: "weights",
       eyebrow: "可直接复用 · 可信度评分规则",
       title: "先设硬门槛，再做加权评分",
       intro: "以下规则适合行情与产业知识问答的首版，不适用于医疗、法律等高风险决策。",
@@ -387,6 +399,7 @@ export const demoArticles: Record<string, DemoArticleContent> = {
     audience: "大宗电商、产业互联网和 B 端平台产品团队",
     readTime: "约 7 分钟",
     visual: {
+      variant: "ecosystem",
       title: "产业门户首页的信息到交易路径",
       caption: "配图 01 · 每一个信息模块都要有清晰的下一步，而不是停在阅读量。",
       steps: [
@@ -398,6 +411,7 @@ export const demoArticles: Record<string, DemoArticleContent> = {
       ],
     },
     toolkit: {
+      variant: "blueprint",
       eyebrow: "可直接复用 · 首页模块验收表",
       title: "每个模块必须回答“给谁看、解决什么、下一步是什么”",
       intro: "首页一期建议控制在 6 个核心模块以内，剩余业务进入二级导航。",
