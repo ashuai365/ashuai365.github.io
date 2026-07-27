@@ -18,13 +18,6 @@ const warehousePhotoLabels:Record<string,string>={linyi:"园区全景",shanghai:
 const regions=["全国","华北","华东","华中","华南","西南"];
 const warehouseTypes=["全部仓型","通用 / 常温库","高标立体仓","常温仓","低温冷库","保税仓"];
 const goodsTypes=["全部品类","塑料化工","有色金属","电子快消","纸品类","肉类","水产","果蔬","医药冷链"];
-const warehouseCategories=[
-  {title:"大宗原料仓",items:"黑色金属 · 有色金属 · 塑料化工",goods:"有色金属"},
-  {title:"通用标准仓",items:"普通标品 · 纸品 · 建材",goods:"纸品类"},
-  {title:"冷链温控仓",items:"肉类 · 水产 · 果蔬 · 医药",goods:"肉类"},
-  {title:"高标智慧仓",items:"电子快消 · 自动分拣 · 城配",goods:"电子快消"},
-  {title:"保税专项仓",items:"保税监管 · 航空货运 · 专项品类",goods:"医药冷链"},
-];
 
 function InteractiveMapViewport({children,className="",focusPoint}:{children:React.ReactNode;className?:string;focusPoint?:{x:number;y:number}}){
   const [view,setView]=useState({scale:1,x:0,y:0});
@@ -132,7 +125,6 @@ function CloudWarehouseMapContent(){
   if(detail)return <div className="cloudPrototype"><div className="cloudAppBar"><button onClick={()=>setDetail(null)}>← 返回云仓地图</button><b>万联云仓</b><span>仓库详情</span></div><div className="cloudDetailProduct"><WarehouseGallery key={detail.id} item={detail}/><div className="cloudDetailSummary"><small>● 已认证云仓 · 信息更新于 3 天前</small><h2>{detail.name}</h2><p>⌖ {detail.address}</p><section>{detail.tags.map(tag=><i key={tag}>{tag}</i>)}</section><div className="cloudDetailQuick"><span><small>可租面积</small><b>{detail.available.toLocaleString()}㎡</b></span><span><small>仓库类型</small><b>{detail.type}</b></span></div><button onClick={()=>setLeadOpen(true)}>获取报价与完整资料 →</button></div></div><div className="cloudDetailBody"><article><div className="cloudMetrics"><span><small>库房面积</small><b>{detail.area.toLocaleString()}㎡</b></span><span><small>可租面积</small><b>{detail.available.toLocaleString()}㎡</b></span><span><small>仓库类型</small><b>{detail.type}</b></span><span><small>场地权属</small><b>{detail.ownership}</b></span></div><h3>仓库概览</h3><p>面向大宗商品、零售及供应链客户提供仓储保管、装卸、运输与数字化管理服务。园区具备全天候运营与安全监管能力。</p><div className="cloudFacilities"><span>库房顶高<b>{detail.height} 米</b></span><span>地面承重<b>{detail.load} 吨/㎡</b></span><span>建筑结构<b>{detail.structure}</b></span><span>防火等级<b>{detail.fire}</b></span><span>仓库系统<b>{detail.digital?"仓储与企业管理系统":"标准管理"}</b></span><span>适存品类<b>{detail.goods.join("、")}</b></span></div><h3>区位交通</h3><div className="cloudTransport"><span>铁路节点<b>{detail.rail}</b></span><span>高速节点<b>{detail.expressway}</b></span></div></article><aside><small>云仓顾问</small><h3>获取该仓完整资料</h3><p>包含可租库区、报价、平面图及现场视频</p>{sent?<div className="cloudSuccess">✓ 需求已提交<br/><small>顾问将在 1 个工作日内联系</small></div>:<><input placeholder="您的称呼"/><input placeholder="联系电话"/><button onClick={()=>setSent(true)}>提交看仓意向 →</button></>}</aside></div>{leadOpen&&<div className="cloudModal" onClick={()=>setLeadOpen(false)}><section onClick={event=>event.stopPropagation()}><button onClick={()=>setLeadOpen(false)}>×</button><small>获取仓库资料</small><h3>{detail.name}</h3><p>留下联系方式，获取报价、平面图与现场视频。</p><label>您的称呼<input placeholder="请输入称呼"/></label><label>联系电话<input placeholder="请输入手机号"/></label><button className="submit" onClick={()=>{setLeadOpen(false);setSent(true)}}>提交需求 →</button></section></div>}</div>;
   return <div className="cloudPrototype" id="wanlian-cloud-home">
     <section className="cloudMarketplaceHero">
-      <aside className="cloudCategoryMenu"><h3>全部云仓分类</h3>{warehouseCategories.map((category,index)=><button key={category.title} onClick={()=>setGoodsType(category.goods)}><i>{["◇","▦","❄","◎","▣"][index]}</i><span><b>{category.title}</b><small>{category.items}</small></span><em>›</em></button>)}</aside>
       <div className="cloudMarketplaceVisual">
         <img src="/warehouse-linyi.jpg" alt="万联云仓园区主视觉"/>
         <div className="cloudMarketplaceShade"/>
