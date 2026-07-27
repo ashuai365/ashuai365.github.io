@@ -321,6 +321,18 @@ body{font-size:16px;line-height:1.8;letter-spacing:.005em}.headerInner{width:min
 @media(max-width:900px){.cloudIntro{padding:22px}.cloudIntro section{display:none}.cloudMapShell{height:auto}.cloudMap{height:420px}}
 @media(max-width:600px){.wmdDemoShell>.cloudPrototype{margin-top:8px;border-left:0;border-right:0}.cloudIntro{padding:18px 14px}.cloudIntro h2{font-size:23px}.cloudTrust{gap:9px;overflow-x:auto}.cloudTrust span{font-size:8px}.cloudFilters{padding:10px}.cloudMapShell>aside{padding:10px}.cloudMap{height:350px}}
 
+/* 万联云仓频道主视觉 */
+.cloudChannelHero{position:relative;display:block;height:300px;padding:0!important;overflow:hidden!important;border-bottom:0;background:#0d2d52}
+.cloudChannelHero>img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center 55%}
+.cloudChannelHeroShade{position:absolute;inset:0;background:linear-gradient(90deg,#071c3be8 0%,#0b2f5cba 42%,#103c6840 72%,transparent 100%)}
+.cloudChannelHeroCopy{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;width:min(610px,70%);height:100%;padding:34px 44px;color:#fff}
+.cloudChannelHeroCopy small{color:#b8d5ff;font-size:10px;letter-spacing:.18em}
+.cloudChannelHeroCopy h2{margin:8px 0 10px;color:#fff;font-size:34px;line-height:1.25;text-shadow:0 2px 16px #071d3b66}
+.cloudChannelHeroCopy p{max-width:560px;color:#edf5ff;font-size:13px;line-height:1.8}
+.cloudChannelHero .cloudTrust{gap:8px;margin-top:18px}
+.cloudChannelHero .cloudTrust span{padding:6px 11px;border:1px solid #ffffff42;background:#ffffff14;color:#fff;font-size:10px;letter-spacing:.04em;backdrop-filter:blur(5px)}
+@media(max-width:700px){.cloudChannelHero{height:245px}.cloudChannelHeroShade{background:linear-gradient(90deg,#071c3be8,#0b2f5c9c)}.cloudChannelHeroCopy{width:100%;padding:26px 18px}.cloudChannelHeroCopy h2{font-size:25px}.cloudChannelHeroCopy p{font-size:11px}.cloudChannelHero .cloudTrust{overflow:visible}.cloudChannelHero .cloudTrust span{font-size:9px}}
+
 /* 仓库详情电商式实景图库 */
 .cloudDetailProduct{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(340px,.65fr);gap:30px;padding:28px;background:#fff;border-bottom:1px solid #e1e6ed}
 .cloudProductGallery{min-width:0}

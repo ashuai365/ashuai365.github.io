@@ -87,16 +87,18 @@ function ChinaAdministrativeMap({selectedId,onSelect,onDetail}:{selectedId:strin
 }
 
 const wmdNav=[
-  ["⌂","首页","/home"],["▣","商品大厅","/search"],["◆","商机寻源","/purchase-hall"],["▰","招采专场","/tender"],["▤","资讯中心","/information"],["✣","AI智能助手","/ai-assistant"],["◉","数智金融","/digital-finance"],["▰","物流服务","/findLogistics"],["✧","产业集群","/industry-cluster"],
+  ["⌂","首页","/home"],["▣","商品大厅","/search"],["◆","商机寻源","/purchase-hall"],["▰","万联云仓","#wanlian-cloud-home"],["▤","资讯中心","/information"],["✣","AI智能助手","/ai-assistant"],["◉","数智金融","/digital-finance"],["▰","物流服务","/findLogistics"],["✧","产业集群","/industry-cluster"],
 ];
 
-function WmdPublicHeader(){
+function WmdPublicHeader({onCloudHome}:{onCloudHome:()=>void}){
   const base="https://www.10000mao.com";
   return <header className="wmdPublicHeader">
     <div className="wmdTop"><span>您好，欢迎来到万贸达　⌖ 朝阳区</span><nav><span>站内信(99+)</span><span>会话消息(0)</span><span>购物车</span><span>买家中心⌄</span><span>卖家中心⌄</span><span>生态服务⌄</span><span>移动端</span><span>平台规则</span><span>客户服务⌄</span></nav></div>
     <div className="wmdSearch"><a href={base} target="_blank" rel="noreferrer" aria-label="访问万贸达官网"><img src="/wmd-logo.svg" alt="万贸达"/></a><div className="wmdSearchBox"><span>商品⌄</span><input aria-label="万贸达商品搜索" placeholder="商家/商品名称/品类/品牌/规格"/><button>搜索</button></div><a className="wmdQuick" href={`${base}/purchase-hall`} target="_blank" rel="noreferrer">▣ 快速求购</a></div>
     <div className="wmdNotice">◁　<b>平台公告：</b> 关于修订用户服务及隐私政策、商家服务、新增订单评价规则的公告</div>
-    <nav className="wmdNav" aria-label="万贸达公共导航">{wmdNav.map(([icon,label,path],index)=><a className={index===7?"active":""} key={label} href={`${base}${path}`} target="_blank" rel="noreferrer"><i>{icon}</i>{label}</a>)}</nav>
+    <nav className="wmdNav" aria-label="万贸达公共导航">{wmdNav.map(([icon,label,path])=>label==="万联云仓"
+      ?<a className="active" key={label} href={path} onClick={event=>{event.preventDefault();onCloudHome()}}><i>{icon}</i>{label}</a>
+      :<a key={label} href={`${base}${path}`} target="_blank" rel="noreferrer"><i>{icon}</i>{label}</a>)}</nav>
   </header>;
 }
 
@@ -119,13 +121,21 @@ function CloudWarehouseMapContent(){
   const [region,setRegion]=useState("全国"),[keyword,setKeyword]=useState(""),[selected,setSelected]=useState(""),[detail,setDetail]=useState<WarehouseItem|null>(null),[leadOpen,setLeadOpen]=useState(false),[sent,setSent]=useState(false);
   const filtered=useMemo(()=>warehouseItems.filter(item=>(region==="全国"||item.region===region)&&`${item.name}${item.city}${item.type}${item.goods.join("")}`.includes(keyword)),[region,keyword]);
   if(detail)return <div className="cloudPrototype"><div className="cloudAppBar"><button onClick={()=>setDetail(null)}>← 返回云仓地图</button><b>仓枢 · 云仓资源原型</b><span>DEMO 06</span></div><div className="cloudDetailProduct"><WarehouseGallery key={detail.id} item={detail}/><div className="cloudDetailSummary"><small>● 已认证云仓 · 信息更新于 3 天前</small><h2>{detail.name}</h2><p>⌖ {detail.address}</p><section>{detail.tags.map(tag=><i key={tag}>{tag}</i>)}</section><div className="cloudDetailQuick"><span><small>可租面积</small><b>{detail.available.toLocaleString()}㎡</b></span><span><small>仓库类型</small><b>{detail.type}</b></span></div><button onClick={()=>setLeadOpen(true)}>获取报价与完整资料 →</button></div></div><div className="cloudDetailBody"><article><div className="cloudMetrics"><span><small>库房面积</small><b>{detail.area.toLocaleString()}㎡</b></span><span><small>可租面积</small><b>{detail.available.toLocaleString()}㎡</b></span><span><small>仓库类型</small><b>{detail.type}</b></span><span><small>场地权属</small><b>{detail.ownership}</b></span></div><h3>仓库概览</h3><p>面向大宗商品、零售及供应链客户提供仓储保管、装卸、运输与数字化管理服务。园区具备全天候运营与安全监管能力。</p><div className="cloudFacilities"><span>库房顶高<b>{detail.height} 米</b></span><span>地面承重<b>{detail.load} 吨/㎡</b></span><span>建筑结构<b>{detail.structure}</b></span><span>防火等级<b>{detail.fire}</b></span><span>仓库系统<b>{detail.digital?"WMS / ERP":"标准管理"}</b></span><span>适存品类<b>{detail.goods.join("、")}</b></span></div><h3>区位交通</h3><div className="cloudTransport"><span>铁路节点<b>{detail.rail}</b></span><span>高速节点<b>{detail.expressway}</b></span></div></article><aside><small>云仓顾问</small><h3>获取该仓完整资料</h3><p>包含可租库区、报价、平面图及现场视频</p>{sent?<div className="cloudSuccess">✓ 需求已提交<br/><small>顾问将在 1 个工作日内联系</small></div>:<><input placeholder="您的称呼"/><input placeholder="联系电话"/><button onClick={()=>setSent(true)}>提交看仓意向 →</button></>}</aside></div>{leadOpen&&<div className="cloudModal" onClick={()=>setLeadOpen(false)}><section onClick={event=>event.stopPropagation()}><button onClick={()=>setLeadOpen(false)}>×</button><small>获取仓库资料</small><h3>{detail.name}</h3><p>留下联系方式，获取报价、平面图与现场视频。</p><label>您的称呼<input placeholder="请输入称呼"/></label><label>联系电话<input placeholder="请输入手机号"/></label><button className="submit" onClick={()=>{setLeadOpen(false);setSent(true)}}>提交需求 →</button></section></div>}</div>;
-  return <div className="cloudPrototype">
-    <div className="cloudAppBar"><b>云仓资源</b><nav><span className="active">全国找仓</span><span>仓储服务</span><span>需求大厅</span><span>我的关注</span></nav><button onClick={()=>setLeadOpen(true)}>发布选址需求 →</button></div>
-    <div className="cloudIntro"><div><small>全国仓储资源数据服务</small><h2>全国云仓资源地图</h2><p>聚合真实仓源、可租面积与运营能力，按区域快速定位适配仓库。</p><div className="cloudTrust"><span>● 平台认证仓源</span><span>✓ 仓库信息已核验</span><span>↻ 数据持续更新</span></div></div><section><span><b>7,350</b>认证云仓</span><span><b>285</b>覆盖城市</span><span><b>15,577万㎡</b>可租面积</span></section></div>
+  return <div className="cloudPrototype" id="wanlian-cloud-home">
+    <div className="cloudAppBar"><b>万联云仓</b><nav><span className="active">全国找仓</span><span>仓储服务</span><span>需求大厅</span><span>我的关注</span></nav><button onClick={()=>setLeadOpen(true)}>发布选址需求 →</button></div>
+    <div className="cloudIntro cloudChannelHero">
+      <img src="/warehouse-linyi.jpg" alt="万联云仓园区与仓储设施"/>
+      <div className="cloudChannelHeroShade"/>
+      <div className="cloudChannelHeroCopy"><small>WANLIAN CLOUD WAREHOUSE</small><h2>万联云仓，全国仓储资源一张图</h2><p>按区域、仓型与适存品类快速找仓，查看实景与区位信息，在线提交选址需求。</p><div className="cloudTrust"><span>地图找仓</span><span>实景看仓</span><span>在线询价</span></div></div>
+    </div>
     <div className="cloudFilters"><div>{regions.map(item=><button className={region===item?"active":""} onClick={()=>setRegion(item)} key={item}>{item}</button>)}</div><input value={keyword} onChange={event=>setKeyword(event.target.value)} placeholder="⌕ 搜索城市、仓库或品类"/></div>
     <div className="cloudMapShell"><aside><header><b>{filtered.length}</b> 个匹配仓库 <small>· 点击仓库定位地图</small></header>{filtered.map(item=><button key={item.id} onClick={()=>setSelected(item.id)} className={selected===item.id?"active":""}><div className="cloudWarehouseHead"><img src={warehouseImages[item.id]} alt={`${item.name}实景`}/><span><b>{item.name}</b><small>⌖ {item.city} · {item.address.replace(/^.*?市/,"")}</small><em>{item.type}</em></span></div><section><span><b>{(item.area/10000).toFixed(1)}</b>万㎡<small>库房面积</small></span><span><b>{(item.available/10000).toFixed(2)}</b>万㎡<small>可租面积</small></span><span><b>{item.height}</b>m<small>库房顶高</small></span></section><footer>{item.tags.slice(0,3).map(tag=><i key={tag}>{tag}</i>)}</footer></button>)}</aside><ChinaAdministrativeMap selectedId={selected} onSelect={setSelected} onDetail={setDetail}/></div>
     {leadOpen&&<div className="cloudModal" onClick={()=>setLeadOpen(false)}><section onClick={event=>event.stopPropagation()}><button onClick={()=>setLeadOpen(false)}>×</button><small>智能选址需求</small><h3>告诉我们，你需要什么仓？</h3><p>填写基础信息，系统将匹配区域内合适仓源。</p><label>目标城市<input placeholder="例如：上海、临沂"/></label><label>所需面积<input placeholder="例如：10,000㎡"/></label><label>联系电话<input placeholder="请输入手机号"/></label><button className="submit" onClick={()=>{setLeadOpen(false);setSent(true)}}>提交需求 →</button></section></div>}
   </div>;
 }
 
-export default function CloudWarehouseMap(){return <div className="wmdDemoShell"><WmdPublicHeader/><CloudWarehouseMapContent/></div>}
+export default function CloudWarehouseMap(){
+  const [homeKey,setHomeKey]=useState(0);
+  const openCloudHome=()=>{setHomeKey(current=>current+1);window.setTimeout(()=>document.getElementById("wanlian-cloud-home")?.scrollIntoView({behavior:"smooth",block:"start"}),0)};
+  return <div className="wmdDemoShell"><WmdPublicHeader onCloudHome={openCloudHome}/><CloudWarehouseMapContent key={homeKey}/></div>;
+}
