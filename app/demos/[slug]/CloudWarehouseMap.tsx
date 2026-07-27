@@ -129,17 +129,17 @@ function CloudWarehouseMapContent(){
         <img src="/warehouse-linyi.jpg" alt="万联云仓园区主视觉"/>
         <div className="cloudMarketplaceShade"/>
         <div className="cloudMarketplaceCopy"><small>万联云仓</small><h2>全国仓储资源，一站式快速匹配</h2><p>从区域、仓型到适存品类，快速筛选适合的仓储资源。</p></div>
-        <div className="cloudMarketplaceFilters">
-          <label><span>目标区域</span><select value={region} onChange={event=>setRegion(event.target.value)}>{regions.map(item=><option key={item}>{item}</option>)}</select></label>
-          <label><span>仓库类型</span><select value={warehouseType} onChange={event=>setWarehouseType(event.target.value)}>{warehouseTypes.map(item=><option key={item}>{item}</option>)}</select></label>
-          <label><span>适存品类</span><select value={goodsType} onChange={event=>setGoodsType(event.target.value)}>{goodsTypes.map(item=><option key={item}>{item}</option>)}</select></label>
-          <button onClick={()=>{setMapOpen(true);setSelected("")}}>⌖ 地图找仓</button>
-        </div>
+        <section className="cloudMarketplaceStats" aria-label="万联云仓业务数据"><span><i>◉</i><b>15,577万㎡</b><small>在线仓房总面积</small></span><span><i>✓</i><b>7,350</b><small>认证云仓数量</small></span><span><i>⌖</i><b>285</b><small>覆盖城市</small></span></section>
       </div>
     </section>
-    <section className="cloudMarketplaceStats" aria-label="万联云仓业务数据"><span><i>◉</i><b>15,577万㎡</b><small>在线仓房总面积</small></span><span><i>✓</i><b>7,350</b><small>认证云仓数量</small></span><span><i>⌖</i><b>285</b><small>覆盖城市</small></span></section>
-    {mapOpen&&<section className="cloudMarketplaceMap"><header><div><small>按位置查找</small><h3>地图找仓</h3></div><button onClick={()=>setMapOpen(false)}>关闭地图 ×</button></header><div><ChinaAdministrativeMap selectedId={selected} onSelect={setSelected} onDetail={setDetail}/></div></section>}
     <section className="cloudWarehouseMarket"><header><div><small>云仓资源</small><h2>精选云仓资源</h2><p>共找到 {filtered.length} 个匹配仓库，点击卡片查看实景与完整资料。</p></div><button onClick={()=>setLeadOpen(true)}>发布选址需求 →</button></header>
+      <div className="cloudMarketplaceFilters">
+        <label><span>目标区域</span><select value={region} onChange={event=>setRegion(event.target.value)}>{regions.map(item=><option key={item}>{item}</option>)}</select></label>
+        <label><span>仓库类型</span><select value={warehouseType} onChange={event=>setWarehouseType(event.target.value)}>{warehouseTypes.map(item=><option key={item}>{item}</option>)}</select></label>
+        <label><span>适存品类</span><select value={goodsType} onChange={event=>setGoodsType(event.target.value)}>{goodsTypes.map(item=><option key={item}>{item}</option>)}</select></label>
+        <button onClick={()=>{setMapOpen(current=>!current);setSelected("")}}>{mapOpen?"收起地图":"⌖ 地图找仓"}</button>
+      </div>
+      {mapOpen&&<section className="cloudMarketplaceMap"><header><div><small>按位置查找</small><h3>地图找仓</h3></div><button onClick={()=>setMapOpen(false)}>关闭地图 ×</button></header><div><ChinaAdministrativeMap selectedId={selected} onSelect={setSelected} onDetail={setDetail}/></div></section>}
       {filtered.length?<div className="cloudWarehouseGrid">{filtered.map(item=><article key={item.id} onClick={()=>setDetail(item)}><div className="cloudWarehouseCover"><img src={warehouseImages[item.id]} alt={`${item.name}实景`}/><span>{item.type}</span></div><div className="cloudWarehouseCardBody"><header><h3>{item.name}</h3><strong>价格面议</strong></header><p>⌖ {item.city} · {item.address}</p><dl><div><dt>可租面积</dt><dd>{item.available.toLocaleString()}㎡</dd></div><div><dt>库房顶高</dt><dd>{item.height}m</dd></div><div><dt>场地权属</dt><dd>{item.ownership}</dd></div></dl><section>{item.tags.slice(0,3).map(tag=><i key={tag}>{tag}</i>)}</section><footer><span>适存：{item.goods.join("、")}</span><button onClick={event=>{event.stopPropagation();setDetail(item)}}>查看详情</button></footer></div></article>)}</div>:<div className="cloudWarehouseEmpty"><b>暂未找到匹配仓库</b><p>可以调整筛选条件，或发布选址需求由顾问协助匹配。</p><button onClick={()=>setLeadOpen(true)}>发布选址需求</button></div>}
     </section>
     {leadOpen&&<div className="cloudModal" onClick={()=>setLeadOpen(false)}><section onClick={event=>event.stopPropagation()}><button onClick={()=>setLeadOpen(false)}>×</button><small>智能选址需求</small><h3>告诉我们，你需要什么仓？</h3><p>填写基础信息，系统将匹配区域内合适仓源。</p><label>目标城市<input placeholder="例如：上海、临沂"/></label><label>所需面积<input placeholder="例如：10,000㎡"/></label><label>联系电话<input placeholder="请输入手机号"/></label><button className="submit" onClick={()=>{setLeadOpen(false);setSent(true)}}>提交需求 →</button></section></div>}
