@@ -31,8 +31,66 @@ export default function DemoArticle({
         </dl>
       </header>
 
+      <figure className="demoArticleVisual" aria-labelledby="demo-visual-title">
+        <div>
+          <span>PROCESS MAP / 核心流程图</span>
+          <h3 id="demo-visual-title">{article.visual.title}</h3>
+        </div>
+        <ol>
+          {article.visual.steps.map((step, index) => (
+            <li key={step.label}>
+              <b>{String(index + 1).padStart(2, "0")}</b>
+              <strong>{step.label}</strong>
+              <small>{step.note}</small>
+            </li>
+          ))}
+        </ol>
+        <figcaption>{article.visual.caption}</figcaption>
+      </figure>
+
       <div className="demoArticleLayout">
         <div className="demoArticleBody">
+          <section className="demoArticleToolkit">
+            <span>{article.toolkit.eyebrow}</span>
+            <h3>{article.toolkit.title}</h3>
+            <p>{article.toolkit.intro}</p>
+            <div className="demoArticleTableWrap">
+              <table>
+                <thead>
+                  <tr>
+                    {article.toolkit.columns.map((column) => (
+                      <th key={column}>{column}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {article.toolkit.rows.map((row) => (
+                    <tr key={row.join("-")}>
+                      {row.map((cell, index) => (
+                        <td key={`${cell}-${index}`}>{cell}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="demoArticleToolkitNote">
+              <b>落地建议</b>
+              {article.toolkit.note}
+            </p>
+            <div className="demoArticleChecklist">
+              <h4>上线前检查清单</h4>
+              <ul>
+                {article.checklist.map((item) => (
+                  <li key={item}>
+                    <i aria-hidden="true">✓</i>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+
           {article.sections.map((section) => (
             <section key={section.heading}>
               <h3>{section.heading}</h3>
