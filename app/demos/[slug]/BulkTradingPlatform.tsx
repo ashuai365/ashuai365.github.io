@@ -128,11 +128,16 @@ export default function BulkTradingPlatform() {
         </section>
 
         <section className="btpNextIndexStrip">
-          <b>核心指数</b>
-          {indexItems.map(item =>
-            <button className={`btpNextIndexItem ${selectedIndex === item[0] ? "active" : ""}`} onClick={() => setSelectedIndex(item[0])} key={item[0]}><small>{item[0]}</small><strong>{item[1]}</strong><i className={item[2].startsWith("+") ? "up" : "down"}>{item[2]}</i></button>
-          )}
-          <button>全部行情 →</button>
+          <header><div><b>核心指数</b><small>重点品类实时价格概览</small></div><button>查看全部行情 →</button></header>
+          <div className="btpNextIndexGrid">
+            {indexItems.map(item =>
+              <button className={`btpNextIndexItem ${selectedIndex === item[0] ? "active" : ""}`} onClick={() => setSelectedIndex(item[0])} key={item[0]}>
+                <span><small>{item[0]}</small><i className={item[2].startsWith("+") ? "up" : "down"}>{item[2]}</i></span>
+                <strong>{item[1]}</strong>
+                <em aria-hidden="true"><b></b></em>
+              </button>
+            )}
+          </div>
         </section>
 
         <section className="btpNextSectionHead">
