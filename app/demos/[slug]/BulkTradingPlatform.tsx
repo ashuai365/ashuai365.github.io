@@ -45,6 +45,14 @@ const productGroups = [
   ["农林产品", "玉米 · 大豆 · 棉花 · 白糖"],
 ];
 
+const indexItems = [["钢材综合","3,684.26","-0.32%"],["铁矿石","781.00","-0.76%"],["沪铜","78,420","+0.46%"],["焦煤","1,452","+1.04%"],["布伦特原油","82.36","+0.21%"]];
+
+const assistantAnswers = [
+  { question: "最近钢材价格怎么走？", verdict: "短期震荡偏强", detail: "库存去化速度加快，成本支撑增强；关注华东成交持续性与终端补库节奏。", factors: ["社会库存周环比 -3.2%","主流钢厂挺价意愿增强","需求恢复仍存在区域分化"] },
+  { question: "现在适合补库吗？", verdict: "建议分批补库", detail: "当前价格处于区间中位，建议覆盖基础用量，并为价格回调保留采购空间。", factors: ["现货成交较昨日改善","短期波动区间仍未突破","重点关注库存覆盖天数"] },
+  { question: "有哪些采购风险？", verdict: "关注交付与价差", detail: "跨区域价差正在收窄，采购决策应同时核验货权、交期和物流成本。", factors: ["核验供应商履约记录","锁定合同交付窗口","比较含运价而非裸价"] },
+];
+
 function OpportunityList({ type, rows }: { type: "采购" | "供应"; rows: string[][] }) {
   return (
     <article className={`btpNextOpportunity ${type === "采购" ? "isBuy" : "isSell"}`}>
@@ -69,7 +77,13 @@ function OpportunityList({ type, rows }: { type: "采购" | "供应"; rows: stri
 export default function BulkTradingPlatform() {
   const [category, setCategory] = useState("钢材");
   const [region, setRegion] = useState("全国");
+  const [activeNav, setActiveNav] = useState("首页");
+  const [assistantTopic, setAssistantTopic] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState("钢材综合");
+  const [watched, setWatched] = useState<string[]>([]);
   const rows = marketData[category] || marketData.钢材;
+  const assistant = assistantAnswers[assistantTopic];
+  const toggleWatch = (name: string) => setWatched(items => items.includes(name) ? items.filter(item => item !== name) : [...items, name]);
 
   return (
     <div className="btpNext">
@@ -85,8 +99,7 @@ export default function BulkTradingPlatform() {
           <div className="btpNextHeaderActions"><button>发布采购</button><button>发布资源</button></div>
         </header>
         <nav className="btpNextNav">
-          <button className="active">首页</button><button>采购大厅</button><button>供应大厅</button><button>行情中心</button>
-          <button>万联云仓</button><button>供应链金融</button><button>产业集群</button><button>研究资讯</button>
+          {["首页","采购大厅","供应大厅","行情中心","万联云仓","供应链金融","产业集群","研究资讯"].map(item => <button key={item} className={activeNav === item ? "active" : ""} onClick={() => setActiveNav(item)}>{item}</button>)}
           <button className="ai">✦ 智能助手</button>
         </nav>
       </div>
@@ -119,11 +132,13 @@ export default function BulkTradingPlatform() {
 
           <aside className="btpNextAssistant">
             <header><i>✦</i><span><b>产业智能助手</b><small>实时理解市场与供需</small></span><em>在线</em></header>
-            <div className="btpNextAssistantQuestion">最近钢材价格怎么走？</div>
+            <div className="btpNextAssistantQuestions">
+              {assistantAnswers.map((item,index) => <button key={item.question} className={assistantTopic === index ? "active" : ""} onClick={() => setAssistantTopic(index)}>{item.question}</button>)}
+            </div>
             <div className="btpNextAssistantAnswer">
-              <span>综合判断</span><strong>短期震荡偏强</strong>
-              <p>库存去化速度加快，成本支撑增强；关注华东成交持续性与终端补库节奏。</p>
-              <ul><li>社会库存周环比 -3.2%</li><li>主流钢厂挺价意愿增强</li><li>需求恢复仍存在区域分化</li></ul>
+              <span>综合判断</span><strong>{assistant.verdict}</strong>
+              <p>{assistant.detail}</p>
+              <ul>{assistant.factors.map(item => <li key={item}>{item}</li>)}</ul>
             </div>
             <button>开始智能对话 <b>→</b></button>
           </aside>
@@ -131,8 +146,8 @@ export default function BulkTradingPlatform() {
 
         <section className="btpNextIndexStrip">
           <b>核心指数</b>
-          {[["钢材综合","3,684.26","-0.32%"],["铁矿石","781.00","-0.76%"],["沪铜","78,420","+0.46%"],["焦煤","1,452","+1.04%"],["布伦特原油","82.36","+0.21%"]].map(item =>
-            <span key={item[0]}><small>{item[0]}</small><strong>{item[1]}</strong><i className={item[2].startsWith("+") ? "up" : "down"}>{item[2]}</i></span>
+          {indexItems.map(item =>
+            <button className={`btpNextIndexItem ${selectedIndex === item[0] ? "active" : ""}`} onClick={() => setSelectedIndex(item[0])} key={item[0]}><small>{item[0]}</small><strong>{item[1]}</strong><i className={item[2].startsWith("+") ? "up" : "down"}>{item[2]}</i></button>
           )}
           <button>全部行情 →</button>
         </section>
@@ -163,8 +178,8 @@ export default function BulkTradingPlatform() {
               <div className="btpNextChartDates"><span>6月1日</span><span>6月8日</span><span>6月15日</span><span>6月22日</span><span>今日</span></div>
             </div>
             <div className="btpNextQuoteTable">
-              <div className="head"><span>品种 / 规格</span><span>市场</span><span>含税价（元/吨）</span><span>日涨跌</span></div>
-              {rows.map(row => <div key={row.name}><span><b>{row.name}</b><small>{row.spec}</small></span><span>{region === "全国" ? row.market : region}</span><strong>{row.price}</strong><i className={row.change.startsWith("+") ? "up" : row.change.startsWith("-") ? "down" : ""}>{row.change}</i></div>)}
+              <div className="head"><span>品种 / 规格</span><span>市场</span><span>含税价（元/吨）</span><span>日涨跌</span><span>关注</span></div>
+              {rows.map(row => <div key={row.name}><span><b>{row.name}</b><small>{row.spec}</small></span><span>{region === "全国" ? row.market : region}</span><strong>{row.price}</strong><i className={row.change.startsWith("+") ? "up" : row.change.startsWith("-") ? "down" : ""}>{row.change}</i><button className={watched.includes(row.name) ? "watched" : ""} aria-pressed={watched.includes(row.name)} onClick={() => toggleWatch(row.name)}>{watched.includes(row.name) ? "已关注" : "+ 关注"}</button></div>)}
             </div>
           </article>
           <aside className="btpNextInsight">
