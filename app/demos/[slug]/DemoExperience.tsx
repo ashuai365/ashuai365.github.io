@@ -4,6 +4,7 @@ import { FormEvent, ReactNode, useEffect, useState } from "react";
 import CommodityAiApp from "./CommodityAiApp";
 import CloudWarehouseMap from "./CloudWarehouseMap";
 import CommodityAiOps from "./CommodityAiOps";
+import BulkTradingPlatform from "./BulkTradingPlatform";
 import { getDemoAccessPassword, getDemoAccessSessionKey } from "../access-config";
 
 function DemoPasswordGate({children,slug}:{children:ReactNode;slug:string}){
@@ -156,7 +157,7 @@ export default function DemoExperience({slug}:{slug:string}) {
   let content:ReactNode;
   if(slug==="commodity-ai-app") content=<CommodityAiSuite/>;
   else if(slug==="cloud-warehouse-map") content=<CloudWarehouseMap/>;
-  else if(slug==="bulk-trading-platform") content=<BulkTradingDocument/>;
+  else if(slug==="bulk-trading-platform") content=<BulkTradingPlatform/>;
   else if(slug==="price-alert") content=<PriceAlert/>;
   else if(slug==="priority-matrix") content=<PriorityMatrix/>;
   else content=<AiConfidence/>;
