@@ -2,27 +2,6 @@
 
 import { useState } from "react";
 
-const marketData: Record<string, { name: string; spec: string; market: string; price: string; change: string }[]> = {
-  钢材: [
-    { name: "螺纹钢", spec: "HRB400E · 20毫米", market: "上海", price: "3,289", change: "-18" },
-    { name: "热轧板卷", spec: "Q235B · 4.75毫米", market: "杭州", price: "3,412", change: "+12" },
-    { name: "中厚板", spec: "Q235B · 20毫米", market: "无锡", price: "3,526", change: "-6" },
-    { name: "冷轧板卷", spec: "SPCC · 1.0毫米", market: "乐从", price: "4,018", change: "+8" },
-  ],
-  原料: [
-    { name: "铁矿石", spec: "PB粉 · 61.5%", market: "青岛港", price: "781", change: "-6" },
-    { name: "主焦煤", spec: "低硫 · A10.5", market: "山西", price: "1,452", change: "+15" },
-    { name: "冶金焦", spec: "一级 · 现货", market: "唐山", price: "1,680", change: "0" },
-    { name: "重废", spec: "厚度≥6毫米", market: "张家港", price: "2,395", change: "-10" },
-  ],
-  有色: [
-    { name: "电解铜", spec: "1号标准阴极铜", market: "上海", price: "78,420", change: "+360" },
-    { name: "铝锭", spec: "A00", market: "佛山", price: "20,180", change: "-45" },
-    { name: "锌锭", spec: "0号", market: "天津", price: "23,760", change: "+90" },
-    { name: "电解镍", spec: "1号", market: "无锡", price: "126,500", change: "-800" },
-  ],
-};
-
 const demandRows = [
   ["螺纹钢 HRB400E", "500 吨", "上海", "今日 16:00 截止"],
   ["电解铜 1号", "120 吨", "江苏", "月度长协"],
@@ -53,6 +32,13 @@ const assistantAnswers = [
   { question: "有哪些采购风险？", verdict: "关注交付与价差", detail: "跨区域价差正在收窄，采购决策应同时核验货权、交期和物流成本。", factors: ["核验供应商履约记录","锁定合同交付窗口","比较含运价而非裸价"] },
 ];
 
+const trendPanels = [
+  { id:"copper", group:"有色", name:"电解铜价格走势", source:"长江现货 · 1号电解铜", price:"78,420", unit:"元/吨", change:"+0.46%", high:"79,180", low:"76,920", trend:"up", series:[72,68,61,55,47,39,31,24] },
+  { id:"steel", group:"黑色", name:"螺纹钢价格走势", source:"上海现货 · HRB400E", price:"3,684", unit:"元/吨", change:"+1.62%", high:"3,720", low:"3,445", trend:"up", series:[79,72,66,58,61,49,38,29] },
+  { id:"meal", group:"农粮", name:"豆粕价格走势", source:"张家港现货 · 43%蛋白", price:"3,285", unit:"元/吨", change:"+0.22%", high:"3,360", low:"3,210", trend:"steady", series:[62,58,61,55,50,47,42,39] },
+  { id:"oil", group:"石化", name:"原油价格走势", source:"上海能源中心 · 主力合约", price:"582", unit:"元/桶", change:"-0.38%", high:"605", low:"548", trend:"down", series:[28,34,39,46,42,51,58,65] },
+];
+
 function OpportunityList({ type, rows }: { type: "采购" | "供应"; rows: string[][] }) {
   return (
     <article className={`btpNextOpportunity ${type === "采购" ? "isBuy" : "isSell"}`}>
@@ -75,15 +61,12 @@ function OpportunityList({ type, rows }: { type: "采购" | "供应"; rows: stri
 }
 
 export default function BulkTradingPlatform() {
-  const [category, setCategory] = useState("钢材");
-  const [region, setRegion] = useState("全国");
   const [activeNav, setActiveNav] = useState("首页");
   const [assistantTopic, setAssistantTopic] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState("钢材综合");
-  const [watched, setWatched] = useState<string[]>([]);
-  const rows = marketData[category] || marketData.钢材;
+  const [marketFocus, setMarketFocus] = useState("copper");
+  const [marketPeriod, setMarketPeriod] = useState("近3月");
   const assistant = assistantAnswers[assistantTopic];
-  const toggleWatch = (name: string) => setWatched(items => items.includes(name) ? items.filter(item => item !== name) : [...items, name]);
 
   return (
     <div className="btpNext">
@@ -165,34 +148,32 @@ export default function BulkTradingPlatform() {
           </aside>
         </section>
 
-        <section className="btpNextMarket">
-          <article className="btpNextMarketBoard">
-            <header>
-              <div><span>市场决策台</span><h2>{category}价格趋势</h2></div>
-              <nav>{["钢材","原料","有色"].map(item => <button className={category === item ? "active" : ""} onClick={() => setCategory(item)} key={item}>{item}</button>)}</nav>
-              <select value={region} onChange={event => setRegion(event.target.value)}><option>全国</option><option>华东</option><option>华北</option><option>华南</option></select>
-            </header>
-            <div className="btpNextChart">
-              <div className="btpNextChartScale"><span>3,700</span><span>3,600</span><span>3,500</span><span>3,400</span></div>
-              <div className="btpNextChartCanvas"><i className="segment s1"></i><i className="segment s2"></i><i className="segment s3"></i><i className="segment s4"></i><i className="segment s5"></i><i className="segment s6"></i><i className="segment s7"></i><b className="point p1"></b><b className="point p2"></b><b className="point p3"></b><b className="point p4"></b><strong>3,684</strong></div>
-              <div className="btpNextChartDates"><span>6月1日</span><span>6月8日</span><span>6月15日</span><span>6月22日</span><span>今日</span></div>
-            </div>
-            <div className="btpNextQuoteTable">
-              <div className="head"><span>品种 / 规格</span><span>市场</span><span>含税价（元/吨）</span><span>日涨跌</span><span>关注</span></div>
-              {rows.map(row => <div key={row.name}><span><b>{row.name}</b><small>{row.spec}</small></span><span>{region === "全国" ? row.market : region}</span><strong>{row.price}</strong><i className={row.change.startsWith("+") ? "up" : row.change.startsWith("-") ? "down" : ""}>{row.change}</i><button className={watched.includes(row.name) ? "watched" : ""} aria-pressed={watched.includes(row.name)} onClick={() => toggleWatch(row.name)}>{watched.includes(row.name) ? "已关注" : "+ 关注"}</button></div>)}
-            </div>
-          </article>
-          <aside className="btpNextInsight">
-            <header><i>✦</i><div><b>智能行情研判</b><small>更新于 10:36</small></div><em>偏多</em></header>
-            <div className="btpNextSignal"><span><small>趋势强度</small><b>72</b></span><i><b></b></i><em>中等偏强</em></div>
-            <section><b>核心结论</b><p>供应压力可控，需求端边际修复，预计短期价格维持震荡偏强。</p></section>
-            <ol>
-              <li><i>1</i><span><b>库存继续下降</b><small>五大钢材社会库存连续两周去化</small></span></li>
-              <li><i>2</i><span><b>成本支撑增强</b><small>原料价格回升，钢厂利润空间收窄</small></span></li>
-              <li><i>3</i><span><b>成交仍有分化</b><small>华东表现较好，北方需求相对平稳</small></span></li>
-            </ol>
-            <button>生成完整研判报告 →</button>
-          </aside>
+        <section className="btpQuadMarket">
+          <header className="btpQuadHeader">
+            <div><span>四大品类 · 一屏掌握</span><h2>品类价格趋势</h2><p>围绕有色、黑色、农粮与石化四类核心商品，快速比较市场方向与波动区间。</p></div>
+            <nav aria-label="行情周期">{["近7天","近1月","近3月","近半年"].map(item => <button className={marketPeriod === item ? "active" : ""} onClick={() => setMarketPeriod(item)} key={item}>{item}</button>)}</nav>
+          </header>
+          <div className="btpQuadTabs">
+            {trendPanels.map(item => <button className={marketFocus === item.id ? "active" : ""} onClick={() => setMarketFocus(item.id)} key={item.id}><i></i><span><b>{item.group}</b><small>{item.name.replace("价格走势","")}</small></span></button>)}
+          </div>
+          <div className="btpQuadGrid">
+            {trendPanels.map(item => {
+              const polygon = item.series.map((point,index) => `${index * (100 / (item.series.length - 1))}% ${point}%`).join(",");
+              return <article className={`${marketFocus === item.id ? "active" : ""} tone-${item.trend}`} key={item.id} onClick={() => setMarketFocus(item.id)}>
+                <header>
+                  <div><span>{item.group}</span><h3>{item.name}</h3><small>{item.source}</small></div>
+                  <button aria-label={`关注${item.name}`}>＋</button>
+                </header>
+                <div className="btpQuadPrice"><strong>{item.price}</strong><small>{item.unit}</small><em>{item.change}</em></div>
+                <div className="btpQuadPlot" aria-label={`${item.name}${marketPeriod}趋势图`}>
+                  <i className="btpQuadArea" style={{clipPath:`polygon(${polygon},100% 100%,0 100%)`}}></i>
+                  {item.series.map((point,index) => <b key={index} style={{left:`${index * (100 / (item.series.length - 1))}%`,top:`${point}%`}}></b>)}
+                  <div><span>{marketPeriod === "近7天" ? "周一" : "期初"}</span><span>中段</span><span>今日</span></div>
+                </div>
+                <footer><span><small>区间最高</small><b>{item.high}</b></span><span><small>区间最低</small><b>{item.low}</b></span><button>查看行情 →</button></footer>
+              </article>;
+            })}
+          </div>
         </section>
 
         <section className="btpNextFinanceBanner">
