@@ -963,3 +963,28 @@ body{background:var(--paper);color:var(--ink);font-family:Inter,"SF Pro Display"
   .page,.demoListWrap,.hubPage{width:calc(100% - 36px);margin-top:64px}.siteFrame .post{padding:22px}.siteFrame .homeDemoPost{grid-template-columns:1fr}.siteFrame .homeDemoVisual .demoThumb{height:190px}.siteFrame .sidebar{display:flex}.siteFrame .profile,.siteFrame .sideCard{padding:22px}.demoGrid{grid-template-columns:1fr}.demoCard .demoThumb{height:230px}.categoryGrid,.tagIndex{grid-template-columns:1fr}.categoryTile{padding:28px}.aboutHero{grid-template-columns:1fr;gap:28px}.aboutHero img{width:150px;border-radius:20px}.aboutStory,.aboutFocus{padding:54px 0}.aboutWechat{padding:28px 22px}.articleWrap{width:calc(100% - 36px)}.demoStage,.wideDemoStage{width:calc(100% - 20px);margin-top:34px}.demoStage>header{padding-inline:8px}.demoDetailNav{border-radius:9px!important}.demoExperienceRegion{border-radius:10px}.siteFooter{width:calc(100% - 36px)}
 }
 @media(prefers-reduced-motion:reduce){.heroPanelTop,.heroPanelBottom{animation:none}.siteFrame .post,.demoCard,.homeHeroActions a{transition:none}}
+
+/* 公共页面浅色化：产品演示内部仍保留各自的视觉主题 */
+body{background:#f8f9fb}
+.siteHeader{background:rgba(250,251,252,.92);border-bottom-color:#e9ebef}
+.headerDemoCta{border:1px solid #d9dffb;background:#eef1ff;color:#4357d3;box-shadow:0 5px 16px rgba(83,104,238,.08)}
+.headerDemoCta:hover{border-color:#c8d0ff;background:#e3e8ff;color:#3047c5}
+.homeHeroActions a:first-child{border-color:#cfd6ff;background:#e8ecff;color:#3349c4;box-shadow:0 9px 24px rgba(83,104,238,.1)}
+.homeHeroActions a:first-child:hover{border-color:#bec8ff;background:#dfe5ff;color:#263db9}
+.homeHeroActions a:last-child{border-color:#e1e4ea;background:rgba(255,255,255,.86)}
+.homeFeatureRail>a:hover{background:#f0f3ff}
+.siteFrame .post,.siteFrame .profile,.siteFrame .sideCard{background:rgba(255,255,255,.9)}
+.pagination a:hover,.pagination button:hover,.pagination .current{border-color:#cbd3ff;background:#e6eaff;color:#3349c4}
+.siteFooter>a{border:1px solid #d8def8;background:#eef1ff;color:#4357d3}
+.tagFeatured{border:1px solid #dfe4fb;background:radial-gradient(circle at 82% 0,#e1e6ff,#f2f4ff 48%,#fff 100%);color:#202430;box-shadow:0 18px 48px rgba(58,69,112,.06)}
+.tagFeatured>span{color:#5368ee}.tagFeatured p{color:#697181}.tagFeatured a{color:#4056d2}
+.aboutWechat{border:1px solid #dde2f6;background:linear-gradient(135deg,#eef1ff,#fff 56%,#f5f1ff);color:#202430;box-shadow:0 18px 50px rgba(49,58,97,.07)}
+.aboutWechat>div p{color:#66707d}.aboutWechat>div small{color:#596de9}.aboutWechat figure{border:1px solid #e2e5eb;background:#fff;box-shadow:0 10px 30px rgba(46,52,75,.08)}
+.aboutCta{border:1px solid #e0e4f6;background:linear-gradient(135deg,#eef1ff,#faf8ff)}
+.aboutCta a{border:1px solid #cfd6ff;background:#e7ebff;color:#3349c4}.aboutCta a+a{border:1px solid #e0e3ea;background:#fff;color:#343942}
+.demoAdminMark{border:1px solid #cfd6ff;background:#e8ecff;color:#3e52cc}
+.demoAdminLogin form>button{border:1px solid #cbd3ff;background:#e5eaff;color:#3349c4}
+.demoAdminLogin form>button:hover{background:#dce3ff}.demoAdminListHead{border-bottom:1px solid #dfe3f5;background:#edf0ff;color:#556078}
+.demoAdminDashboard header button,.demoAdminActions button,.demoAdminActions a{background:#fafbff}
+.demoDetailNav{border:1px solid #e5e8ee}
+@media(max-width:640px){.headerDemoCta{display:none}}
