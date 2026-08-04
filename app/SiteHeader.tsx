@@ -12,8 +12,8 @@ export default function SiteHeader({ active }: { active: Section }) {
   return <header className="siteHeader"><div className="headerInner">
     <a className="siteBrand" href="/">
       <img className="brandAvatar" src="/product-manager-club-logo.png" alt="产品经理club Logo" />
-      <span className="brandCopy"><strong>产品经理club</strong><small>作者：MADAO</small></span>
+      <span className="brandCopy"><strong>产品经理<span>club</span></strong><small>MADAO 的产品实践</small></span>
     </a>
-    <nav aria-label="网站主导航">{links.map(link=><a key={link.key} className={active===link.key?"navActive":""} aria-current={active===link.key?"page":undefined} href={link.href}>{link.label}</a>)}</nav>
+    <div className="headerActions"><nav aria-label="网站主导航">{links.map(link=><a key={link.key} className={active===link.key?"navActive":""} aria-current={active===link.key?"page":undefined} href={link.href}>{link.label}</a>)}</nav><a className="headerDemoCta" href="/demos/">查看作品 <span>↗</span></a></div>
   </div></header>;
 }

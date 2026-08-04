@@ -12,7 +12,7 @@ export default function DemoListPage() {
     <SiteHeader active="demos" />
     <main className="demoListWrap">
       <header className="demoListHero">
-        <span>PRODUCT PLAYGROUND / 交互实验室</span>
+        <span>交互实验室 · 产品作品</span>
         <h1>产品演示</h1>
         <p>一些可以亲手操作的产品片段。每个演示都聚焦一个具体问题，用最小交互验证产品逻辑。</p>
       </header>

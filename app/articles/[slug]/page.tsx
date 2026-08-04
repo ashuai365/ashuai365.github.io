@@ -29,7 +29,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             {section.bullets && <ul>{section.bullets.map((item) => <li key={item}>{item}</li>)}</ul>}
           </section>)}
         </article>
-        <footer className="articleEnd"><span>END</span><a href="/">继续浏览文章 →</a></footer>
+        <footer className="articleEnd"><span>全文完</span><a href="/">继续浏览文章 →</a></footer>
       </main>
     </div>
   );

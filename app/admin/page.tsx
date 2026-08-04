@@ -34,10 +34,10 @@ export default function DemoAdminPage(){
 
   return <div className="demoAdminPage"><SiteHeader active="demos"/><main className="demoAdminWrap">
     {!authenticated?<section className="demoAdminLogin">
-      <div className="demoAdminMark">M</div><span>DEMO ACCESS CONSOLE</span><h1>演示密码后台</h1><p>登录后查看当前产品演示的查阅密码。</p>
+      <div className="demoAdminMark">M</div><span>演示访问管理</span><h1>演示密码后台</h1><p>登录后查看当前产品演示的查阅密码。</p>
       <form onSubmit={login}><label>登录账号<input value={username} onChange={event=>{setUsername(event.target.value);setError("")}} autoComplete="username" placeholder="请输入账号"/></label><label>登录密码<input type="password" value={password} onChange={event=>{setPassword(event.target.value);setError("")}} autoComplete="current-password" placeholder="请输入密码"/></label>{error&&<strong role="alert">{error}</strong>}<button disabled={!username||!password}>登录后台 →</button></form>
     </section>:<section className="demoAdminDashboard">
-      <header><div><span>DEMO ACCESS CONSOLE</span><h1>演示访问管理</h1><p>共 {sortedDemos.length} 个产品演示，每项使用独立的四位访问密码。</p></div><button onClick={()=>{sessionStorage.removeItem(ADMIN_SESSION_KEY);setAuthenticated(false);setUsername("");setPassword("")}}>退出登录</button></header>
+      <header><div><span>演示访问管理</span><h1>演示访问管理</h1><p>共 {sortedDemos.length} 个产品演示，每项使用独立的四位访问密码。</p></div><button onClick={()=>{sessionStorage.removeItem(ADMIN_SESSION_KEY);setAuthenticated(false);setUsername("");setPassword("")}}>退出登录</button></header>
       <section className="demoAdminList" aria-label="产品演示访问密码列表">
         <div className="demoAdminListHead"><span>产品演示</span><span>类型 / 更新时间</span><span>查看密码</span><span>操作</span></div>
         {sortedDemos.map(demo=><article key={demo.slug}>

@@ -13,7 +13,7 @@ export default async function DemoPage({params}:{params:Promise<{slug:string}>})
   return <div className="demoDetail">
     <SiteHeader active="demos" />
     <main id="top" className={`demoStage ${slug==="bulk-trading-platform"||slug==="cloud-warehouse-map"||slug==="commodity-ai-app"?"wideDemoStage":""}`} style={{"--demo-accent":demo.accent} as React.CSSProperties}>
-      <header><a href="/demos/">← 返回演示列表</a><div><span>{demo.category} / DEMO {demo.index}</span><h1>{demo.title}</h1><p>{demo.description}</p></div></header>
+      <header><a href="/demos/">← 返回演示列表</a><div><span>{demo.category} · 演示 {demo.index}</span><h1>{demo.title}</h1><p>{demo.description}</p></div></header>
       <nav className="demoDetailNav" aria-label="本页内容">
         <a href="#demo-experience">体验产品演示</a>
         <a href="#demo-introduction">阅读产品介绍</a>

@@ -42,17 +42,35 @@ export default function Home() {
     <div className="siteFrame">
       <SiteHeader active="home" />
 
+      <section className="homeHero" aria-labelledby="home-title">
+        <div className="homeHeroCopy">
+          <span className="homeEyebrow"><i /> 产品经理的思考与实践</span>
+          <h1 id="home-title">把复杂业务，<br />做成<strong>清晰产品</strong>。</h1>
+          <p>聚焦大宗交易、供应链金融、产业互联网与 AI 产品。这里不只记录观点，也把产品判断做成可以亲手体验的原型。</p>
+          <div className="homeHeroActions"><a href="/demos/">浏览产品演示 <span>→</span></a><a href="/about/">了解 MADAO</a></div>
+        </div>
+        <div className="homeHeroVisual" aria-hidden="true">
+          <div className="heroGlow" />
+          <div className="heroPanel heroPanelMain"><small>产品实践</small><b>从业务问题<br />到可验证方案</b><div><span>洞察</span><i>→</i><span>设计</span><i>→</i><span>验证</span></div></div>
+          <div className="heroPanel heroPanelTop"><i>AI</i><span><b>行业智能体</b><small>让信息走向决策</small></span></div>
+          <div className="heroPanel heroPanelBottom"><strong>06</strong><span>个可交互产品原型</span></div>
+        </div>
+        <div className="homeFeatureRail">
+          {demos.slice(0,3).map((demo,index)=><a href={`/demos/${demo.slug}/`} key={demo.slug}><span>0{index+1}</span><div><small>{demo.category}</small><b>{demo.title}</b></div><i>↗</i></a>)}
+        </div>
+      </section>
+
       <main className="page" id="top">
         <section className="content" aria-label="最新内容列表">
           <div className="intro">
-            <h1>把复杂的业务，<br />写成清晰的产品。</h1>
-            <p>这里记录一名产品经理对大宗交易、供应链金融、产业互联网与 AI 产品的实践和思考。</p>
+            <span>持续更新</span><h1>最新内容</h1>
+            <p>文章、产品拆解与交互原型，按更新时间排列。</p>
           </div>
 
           <div className="postList">
             {visibleItems.map((post) => (
               <article className={post.type==="产品演示"?"post homeDemoPost":"post"} key={post.title}>
-                {post.type==="产品演示"&&<a className="homeDemoVisual" href={post.href} style={{"--demo-accent":demos.find(d=>d.slug===post.slug)?.accent} as React.CSSProperties}><DemoThumbnail index={post.index}/><span>INTERACTIVE DEMO</span></a>}
+                {post.type==="产品演示"&&<a className="homeDemoVisual" href={post.href} style={{"--demo-accent":demos.find(d=>d.slug===post.slug)?.accent} as React.CSSProperties}><DemoThumbnail index={post.index}/><span>可交互演示</span></a>}
                 <div className={post.type==="产品演示"?"homeDemoCopy":undefined}>
                 <header>
                   <h2><a href={post.href}>{post.title}</a></h2>
