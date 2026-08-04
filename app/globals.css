@@ -1009,3 +1009,16 @@ body{background:#f8f9fb}
 .ecosystemArticleVisual{border-color:#d9e3ee;background:linear-gradient(145deg,#f1f6fb,#fff);box-shadow:0 18px 48px rgba(33,76,117,.05)}
 .ecosystemCore{background:#e8f1fb;color:#1f4f7d;box-shadow:0 18px 40px rgba(23,79,137,.09)}.ecosystemCore small{color:#5d82a5}.ecosystemNode{box-shadow:0 8px 20px rgba(23,79,137,.06)}
 @media(max-width:640px){.demoArticleVisual{padding:24px 18px}.demoArticleVisual>header{align-items:flex-start;flex-direction:column;gap:10px}.demoArticleVisual>header h3{text-align:left}}
+
+/* 配图二次排查：测算组件与频道缩略图同步浅色化 */
+.commercialMetricBoard article{border:1px solid #dddff0;background:#fff;color:#2d3040;box-shadow:0 8px 22px rgba(62,64,112,.04)}
+.commercialMetricBoard span{color:#747b8d}.commercialMetricBoard strong{color:#554fb0}.commercialMetricBoard small{color:#71798a}
+.commercialMetricBoard article.featured{border-color:#d4d8f3;background:linear-gradient(120deg,#eceeff,#f7f6ff);color:#292d40}.commercialMetricBoard article.featured span{color:#666d85}.commercialMetricBoard article.featured strong{color:#4f49af}.commercialMetricBoard article.featured small{color:#697184}
+.toolkit-metrics{border:1px solid #e2e3f0;background:#f7f7fd}
+.demoThumb{background:#fafbfe}.thumbPhone{border-color:#cfd5e3;box-shadow:0 12px 25px rgba(82,91,128,.1)}
+.thumbTrading header{border-bottom:1px solid #d7e3f4;background:#edf4ff;color:#1f5794}.thumbTrading header b{color:#1d5694}
+.thumbCloudMap header{border-bottom:1px solid #d3e3da;background:#eef7f1;color:#285f48}
+.thumbOps>aside,.thumbSuitePc>aside{border-right:1px solid #dfe1ef;background:#f0f1fb}.thumbOps>aside b,.thumbSuitePc>aside b{background:#dfe2fa;color:#514ba7}.thumbOps>aside i,.thumbSuitePc>aside i{background:#d8dbea}
+.thumbAiSuitePreview>.thumbPhone{border-color:#d2d6e3}.thumbSuitePc{border:1px solid #e0e3eb;box-shadow:0 5px 13px rgba(53,59,86,.08)}
+.thumbMatrix b{background:#eae4fb;color:#5b3f9f}.thumbTradingHero{background:linear-gradient(120deg,#f2f7ff,#fff)}
+@media(max-width:760px){.demoArticleVisual li,.demoArticleVisual li:first-child,.demoArticleVisual li:last-child{border-top-color:#e3e7ee}.commercialMetricBoard{grid-template-columns:1fr}.commercialMetricBoard article.featured{grid-column:1}}

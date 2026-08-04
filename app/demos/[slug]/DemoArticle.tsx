@@ -188,7 +188,7 @@ export default function DemoArticle({
   return (
     <article className="demoIntroduction" id="demo-introduction">
       <header className="demoIntroductionHeader">
-        <div><span>PRODUCT STORY / 产品介绍</span><h2>{article.title}</h2><p>{article.summary}</p></div>
+        <div><span>产品介绍 · 从问题到方案</span><h2>{article.title}</h2><p>{article.summary}</p></div>
         <dl>
           <div><dt>适合阅读</dt><dd>{article.audience}</dd></div>
           <div><dt>阅读时间</dt><dd>{article.readTime}</dd></div>
