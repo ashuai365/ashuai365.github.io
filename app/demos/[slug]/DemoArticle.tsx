@@ -13,7 +13,7 @@ function FigureFrame({
   return (
     <figure className={`demoArticleVisual ${className}`} aria-label={article.visual.title}>
       <header>
-        <span>PRODUCT VISUAL / 产品拆解图</span>
+        <span>产品拆解图 · 关键逻辑示意</span>
         <h3>{article.visual.title}</h3>
       </header>
       {children}

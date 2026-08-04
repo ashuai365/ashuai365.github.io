@@ -988,3 +988,24 @@ body{background:#f8f9fb}
 .demoAdminDashboard header button,.demoAdminActions button,.demoAdminActions a{background:#fafbff}
 .demoDetailNav{border:1px solid #e5e8ee}
 @media(max-width:640px){.headerDemoCta{display:none}}
+
+/* 产品介绍配图浅色化：统一白底、浅色分区与低饱和强调色 */
+.demoArticleVisual{border:1px solid #dfe4ee;background:linear-gradient(145deg,#f7f9ff,#fff);color:#252a36;box-shadow:0 18px 48px rgba(45,55,84,.07)}
+.demoArticleVisual>header>span{color:var(--demo-accent);opacity:1}.demoArticleVisual>header h3{color:#252a36}.demoArticleVisual>figcaption{border-top-color:#e3e7ee;color:#7f8795;opacity:1}
+.demoArticleVisual li{border-left-color:#e1e5ec}.demoArticleVisual li>small{color:#747d8b}
+.warehouseArticleVisual{border-color:#d9e5dc;background:linear-gradient(145deg,#f1f8f3,#fbfdfb);box-shadow:0 18px 48px rgba(45,82,61,.06)}
+.warehouseResultCards img{filter:saturate(.78) brightness(1.08) contrast(.94)}
+.flywheelArticleVisual{border-color:#dcdff2;background:radial-gradient(circle at 50% 44%,#e8e9ff,#f5f5ff 52%,#fbfbff 100%);color:#292b3b}
+.flywheelArticleVisual>header h3{color:#292b3b}.revenueEngine{border-color:#d9ddef;background:rgba(255,255,255,.82);box-shadow:0 10px 28px rgba(70,68,126,.06)}
+.revenueEngine small{color:#665fc3}.revenueEngine p{color:#687080}.revenueEngine>b{background:#ececff;color:#544db5}
+.flywheelCore{border-color:#c8cdf4;background:#fff;color:#30324a;box-shadow:0 0 0 10px rgba(111,104,218,.08),0 12px 32px rgba(65,66,112,.08)}
+.flywheelCore span,.flywheelCore i{color:#665fc3}.flywheelLoop span{border:1px solid #e0e2f2;background:rgba(255,255,255,.86)}.flywheelLoop i{background:#7770d9;color:#fff}.flywheelLoop small{color:#7a8090}
+.alertArticleVisual{border-color:#eadfd5;background:linear-gradient(145deg,#fdf8f3,#fff);box-shadow:0 18px 48px rgba(100,70,45,.05)}
+.matrixArticleVisual{border-color:#e1dceb;background:linear-gradient(145deg,#f7f4fb,#fff);box-shadow:0 18px 48px rgba(72,55,104,.05)}
+.confidenceArticleVisual{border-color:#d5e7df;background:linear-gradient(145deg,#eef8f3,#fbfdfc);color:#204136;box-shadow:0 18px 48px rgba(32,91,68,.06)}
+.confidenceArticleVisual>header h3{color:#204136}.confidenceGauge{background:radial-gradient(circle,#fff 54%,transparent 55%),conic-gradient(#55bd92 var(--gauge),#dcebe5 0);box-shadow:0 10px 26px rgba(46,105,81,.08)}
+.confidenceGauge strong{color:#245d49}.confidenceGauge span{color:#5c8172}.evidenceBars em{color:#3d8066}.evidenceBars>div>i{background:#dceae4}.evidenceBars>div>i b{background:#55bd92}
+.evidenceDashboard>aside{border-color:#d7e7e0;background:#fff}.evidenceDashboard>aside b{color:#b26a2d}.evidenceDashboard>aside p{color:#64766f}
+.ecosystemArticleVisual{border-color:#d9e3ee;background:linear-gradient(145deg,#f1f6fb,#fff);box-shadow:0 18px 48px rgba(33,76,117,.05)}
+.ecosystemCore{background:#e8f1fb;color:#1f4f7d;box-shadow:0 18px 40px rgba(23,79,137,.09)}.ecosystemCore small{color:#5d82a5}.ecosystemNode{box-shadow:0 8px 20px rgba(23,79,137,.06)}
+@media(max-width:640px){.demoArticleVisual{padding:24px 18px}.demoArticleVisual>header{align-items:flex-start;flex-direction:column;gap:10px}.demoArticleVisual>header h3{text-align:left}}
