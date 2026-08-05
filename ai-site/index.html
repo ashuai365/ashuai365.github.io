@@ -76,8 +76,9 @@
     .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.02fr .98fr; gap: 70px; align-items: center; }
     .kicker { display: inline-flex; align-items: center; gap: 9px; padding: 9px 13px; color: var(--orange-dark); background: var(--orange-soft); border: 1px solid #ffd0ae; border-radius: 999px; font-size: 13px; font-weight: 700; }
     .kicker::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 4px rgba(255,106,0,.12); }
-    .hero h1 { max-width: 700px; margin: 28px 0 24px; font-size: clamp(48px, 5.4vw, 74px); line-height: 1.08; letter-spacing: -.06em; }
-    .hero h1 span { display: block; color: var(--orange); }
+    .hero h1 { max-width: 700px; margin: 28px 0 24px; font-size: clamp(44px, 4.4vw, 64px); line-height: 1.1; letter-spacing: -.06em; }
+    .hero h1 span { display: block; white-space: nowrap; }
+    .hero h1 span:last-child { color: var(--orange); }
     .hero-lead { max-width: 650px; margin-bottom: 0; color: #515a67; font-size: 17px; line-height: 1.9; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
     .hero-actions a { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 18px; border-radius: 11px; font-size: 13px; font-weight: 700; transition: transform .2s, box-shadow .2s; }
@@ -249,7 +250,7 @@
       .site-header { padding: 0 16px; }
       .site-header nav { display: none; }
       .hero { padding: 112px 0 52px; }
-      .hero h1 { font-size: 46px; }
+      .hero h1 { font-size: clamp(32px, 9.8vw, 42px); }
       .hero-lead { font-size: 15px; }
       .hero-panel { padding: 20px; border-radius: 20px; }
       .thinking { grid-template-columns: repeat(2, 1fr); }
@@ -293,7 +294,7 @@
       <div class="shell hero-grid">
         <div>
           <span class="kicker">大宗产业的智能入口</span>
-          <h1>让产业信息进入判断<span>让供需信号进入交易</span></h1>
+          <h1><span>让产业信息进入判断</span><span>让供需信号进入交易</span></h1>
           <p class="hero-lead">以产业问答、行业数据、价格预测和企业洞察形成判断，以商机采集、发布和智能撮合连接真实供需；统一底座继续协同智能风控、云仓、物流与供应链金融。</p>
           <div class="hero-actions">
             <a class="primary" href="#advantages">查看核心能力 →</a>
