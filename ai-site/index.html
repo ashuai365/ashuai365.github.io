@@ -148,12 +148,6 @@
     .agent-flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 26px; }
     .agent-flow div { position: relative; padding: 15px 8px; text-align: center; color: rgba(255,255,255,.7); background: rgba(255,255,255,.055); border-radius: 9px; font-size: 11px; }
     .agent-flow div:not(:last-child)::after { content: "›"; position: absolute; right: -6px; top: 50%; z-index: 2; color: #ff9850; transform: translateY(-50%); }
-    .engine-position { display: grid; grid-template-columns: 1.08fr .92fr .92fr; gap: 10px; margin-top: 18px; padding: 18px; background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.11); border-radius: 18px; }
-    .engine-position div { padding: 15px 16px; border-right: 1px solid rgba(255,255,255,.1); }
-    .engine-position div:last-child { border-right: 0; }
-    .engine-position span { display: block; color: #ff9850; font-size: 11px; font-weight: 700; }
-    .engine-position strong { display: block; margin-top: 8px; color: rgba(255,255,255,.88); font-size: 13px; line-height: 1.6; }
-    .engine-position p { margin: 7px 0 0; color: rgba(255,255,255,.5); font-size: 11px; line-height: 1.7; }
     .opportunity-demo { padding: 105px 0; background: #fff; }
     .demo-shell { display: grid; grid-template-columns: 330px 1fr; gap: 18px; align-items: stretch; }
     .demo-copy { padding: 34px; color: #fff; background: var(--orange); border-radius: 22px; }
@@ -271,9 +265,6 @@
       .engine-features { grid-template-columns: 1fr; }
       .agent-flow { grid-template-columns: 1fr; }
       .agent-flow div:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -11px; transform: translateX(-50%); }
-      .engine-position { grid-template-columns: 1fr; }
-      .engine-position div { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.1); }
-      .engine-position div:last-child { border-bottom: 0; }
       .capture-box { grid-template-columns: 1fr; }
       .match-card { grid-template-columns: auto 1fr; }
       .match-card > span { grid-column: 2; }
@@ -303,7 +294,7 @@
         <div>
           <span class="kicker">大宗产业的智能入口</span>
           <h1>让产业信息进入判断<span>让供需信号进入交易</span></h1>
-          <p class="hero-lead">数据智能体和商机采集与撮合智能体构成核心能力组合，集中提供产业问答、行业数据、价格预测与企业洞察，并把供需信息继续转化为真实商机；依托统一产业智能底座，更多专业能力与产业服务也能协同连接。</p>
+          <p class="hero-lead">数据智能体负责产业判断，商机智能体连接真实供需；统一底座进一步协同风控、云仓、物流与金融服务。</p>
           <div class="hero-actions">
             <a class="primary" href="#advantages">查看核心能力 →</a>
             <a class="secondary" href="#opportunity-demo">体验商机闭环</a>
@@ -367,8 +358,8 @@
     <section class="block engines" id="engines">
       <div class="shell">
         <div class="section-head">
-          <div><span class="section-label">双智能体协同</span><h2>双智能体构成核心能力组合，也连接更广阔的产业服务。</h2></div>
-          <p>数据智能体负责理解市场与企业，商机采集与撮合智能体负责理解需求与资源，共同贯通从产业判断到商机推进的关键链路；统一产业智能底座则让更多角色、工具与专业服务协同进入经营场景。</p>
+          <div><span class="section-label">双智能体协同</span><h2>双智能体打通判断与商机，统一底座连接更多产业服务。</h2></div>
+          <p>一个理解市场，一个连接供需；风控、云仓、物流与金融等能力共享同一业务上下文。</p>
         </div>
         <div class="engine-grid">
           <article class="engine-card data">
@@ -396,11 +387,6 @@
               <div>发现线索</div><div>结构化</div><div>发布商机</div><div>智能匹配</div><div>推进反馈</div>
             </div>
           </article>
-        </div>
-        <div class="engine-position" aria-label="双智能体与产业服务体系">
-          <div><span>核心组合</span><strong>双智能体贯通判断与商机</strong><p>从理解市场到连接供需，形成清晰、连续的经营价值链路。</p></div>
-          <div><span>共同底座</span><strong>数据、知识、企业、供需与工具统一承载</strong><p>同一产业语义和业务上下文，为后续能力复用提供基础。</p></div>
-          <div><span>能力延展</span><strong>专业智能体与集团服务持续接入</strong><p>逐步连接风控、四流、云仓、物流、金融等更多经营场景。</p></div>
         </div>
       </div>
     </section>
