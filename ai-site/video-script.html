@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>大宗智能体视频脚本｜万联易达</title>
+  <meta name="description" content="依据大宗智能体产品主页整理的三分钟品牌介绍片视频脚本。">
+  <style>
+    :root {
+      --ink: #171717;
+      --copy: #454b55;
+      --muted: #858d99;
+      --line: #e7e8ea;
+      --paper: #f7f7f5;
+      --white: #ffffff;
+      --orange: #ff6a00;
+      --orange-soft: #fff1e7;
+      --blue-soft: #edf4ff;
+      --blue: #3777da;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--paper); }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    ::selection { color: var(--ink); background: #ffd6b8; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 max(24px, calc((100vw - 1120px) / 2));
+      background: rgba(255,255,255,.93);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      color: #fff;
+      background: var(--orange);
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .brand strong { font-size: 14px; letter-spacing: .04em; }
+    .back-link { color: #6d7480; font-size: 13px; transition: color .2s; }
+    .back-link:hover { color: var(--orange); }
+    .page-shell { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+    .hero { padding: 96px 0 72px; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 72px; align-items: end; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #b94900;
+      background: var(--orange-soft);
+      border: 1px solid #ffd0ae;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); }
+    h1 { max-width: 720px; margin: 24px 0 18px; font-size: clamp(42px, 6vw, 68px); line-height: 1.08; letter-spacing: -.055em; }
+    .hero-copy { max-width: 680px; margin: 0; color: var(--copy); font-size: 17px; line-height: 1.85; }
+    .brief-card {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(39, 43, 50, .06);
+    }
+    .brief-card div { min-height: 104px; padding: 22px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .brief-card div:nth-child(2n) { border-right: 0; }
+    .brief-card div:nth-last-child(-n+2) { border-bottom: 0; }
+    .brief-card span { display: block; color: var(--muted); font-size: 12px; }
+    .brief-card strong { display: block; margin-top: 12px; font-size: 17px; }
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+    .toolbar h2 { margin: 0; font-size: 24px; letter-spacing: -.02em; }
+    .copy-button {
+      cursor: pointer;
+      color: #59616d;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-size: 13px;
+      transition: color .2s, border-color .2s, transform .2s;
+    }
+    .copy-button:hover { color: var(--orange); border-color: #ffc79f; transform: translateY(-1px); }
+    .script-layout { display: grid; grid-template-columns: 210px 1fr; gap: 28px; align-items: start; padding-bottom: 100px; }
+    .scene-nav {
+      position: sticky;
+      top: 94px;
+      padding: 18px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    .scene-nav strong { display: block; margin-bottom: 10px; font-size: 13px; }
+    .scene-nav a { display: block; color: #7d8490; padding: 8px 0; font-size: 13px; transition: color .2s, transform .2s; }
+    .scene-nav a:hover { color: var(--orange); transform: translateX(3px); }
+    .script-list { display: grid; gap: 16px; }
+    .scene {
+      scroll-margin-top: 94px;
+      display: grid;
+      grid-template-columns: 128px 1fr;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 34px rgba(41, 45, 52, .035);
+    }
+    .scene-index { padding: 28px 22px; background: #fafafa; border-right: 1px solid var(--line); }
+    .scene-index b { display: block; color: var(--orange); font-size: 24px; }
+    .scene-index time { display: block; margin-top: 10px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .scene-body { padding: 28px 30px 30px; }
+    .scene-title { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 24px; }
+    .scene-title h3 { margin: 0; font-size: 22px; letter-spacing: -.02em; }
+    .scene-title span { color: var(--muted); font-size: 12px; white-space: nowrap; }
+    .script-row { display: grid; grid-template-columns: 72px 1fr; gap: 18px; padding: 18px 0; border-top: 1px solid #eff0f1; }
+    .script-row:first-of-type { border-top: 0; padding-top: 0; }
+    .script-row:last-child { padding-bottom: 0; }
+    .script-row > b { color: #9299a3; font-size: 12px; font-weight: 600; }
+    .script-row p { margin: 0; color: var(--copy); font-size: 15px; line-height: 1.9; }
+    .script-row.voiceover p { color: var(--ink); font-size: 16px; font-weight: 560; }
+    .screen-copy { display: flex; flex-wrap: wrap; gap: 7px; }
+    .screen-copy span { color: #9e4200; background: var(--orange-soft); border-radius: 7px; padding: 6px 9px; font-size: 12px; }
+    .scene:nth-child(4) .scene-index,
+    .scene:nth-child(5) .scene-index { background: var(--blue-soft); }
+    .scene:nth-child(4) .scene-index b,
+    .scene:nth-child(5) .scene-index b { color: var(--blue); }
+    .production-note {
+      margin-top: 18px;
+      padding: 28px 30px;
+      color: #fff;
+      background: #1c1d1f;
+      border-radius: 20px;
+    }
+    .production-note h3 { margin: 0 0 12px; font-size: 19px; }
+    .production-note p { margin: 0; color: rgba(255,255,255,.72); font-size: 14px; line-height: 1.85; }
+    footer { border-top: 1px solid var(--line); background: var(--white); }
+    .footer-inner { min-height: 110px; display: flex; align-items: center; justify-content: space-between; gap: 24px; color: var(--muted); font-size: 13px; }
+    .footer-inner a { border-bottom: 1px solid #d9dfe7; }
+    @media (max-width: 860px) {
+      .hero { padding: 64px 0 52px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 34px; }
+      .script-layout { grid-template-columns: 1fr; }
+      .scene-nav { position: static; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+      .scene-nav strong { width: 100%; }
+      .scene-nav a { padding: 5px 0; }
+    }
+    @media (max-width: 600px) {
+      .page-shell { width: min(100% - 28px, 1120px); }
+      .topbar { height: 62px; padding: 0 16px; }
+      h1 { font-size: 42px; }
+      .hero-copy { font-size: 15px; }
+      .toolbar { align-items: flex-end; }
+      .scene { grid-template-columns: 1fr; }
+      .scene-index { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .scene-index time { margin: 0; }
+      .scene-body { padding: 22px 20px 24px; }
+      .scene-title { align-items: flex-start; flex-direction: column; gap: 6px; }
+      .script-row { grid-template-columns: 1fr; gap: 7px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; justify-content: center; }
+    }
+    @media print {
+      .topbar, .scene-nav, .copy-button, footer { display: none; }
+      body { background: #fff; }
+      .hero { padding: 24px 0 36px; }
+      .hero-grid, .script-layout { grid-template-columns: 1fr; }
+      .brief-card { box-shadow: none; }
+      .scene { break-inside: avoid; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./index.html" aria-label="返回大宗智能体主页">
+      <span class="brand-mark">万</span>
+      <strong>万联易达 · 大宗智能体</strong>
+    </a>
+    <a class="back-link" href="./index.html">返回产品主页 →</a>
+  </header>
+
+  <main>
+    <section class="hero page-shell">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">品牌介绍片脚本</span>
+          <h1>让产业看见变化，算得清影响，抓得住机会。</h1>
+          <p class="hero-copy">一支围绕“大宗智能体如何缩短产业决策链路”展开的三分钟视频。脚本从产业变化切入，以双智能体产品能力为核心，最终落到经营行动与产业价值。</p>
+        </div>
+        <aside class="brief-card" aria-label="脚本概要">
+          <div><span>建议时长</span><strong>约 3 分钟</strong></div>
+          <div><span>画面比例</span><strong>横版宽屏</strong></div>
+          <div><span>叙事语气</span><strong>理性 · 有力量</strong></div>
+          <div><span>核心受众</span><strong>产业经营者</strong></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="page-shell">
+      <div class="toolbar">
+        <h2>分镜与旁白</h2>
+        <button class="copy-button" type="button" id="copy-script">复制全部旁白</button>
+      </div>
+
+      <div class="script-layout">
+        <nav class="scene-nav" aria-label="分镜目录">
+          <strong>脚本目录</strong>
+          <a href="#scene-1">一、产业脉搏</a>
+          <a href="#scene-2">二、决策困局</a>
+          <a href="#scene-3">三、智能破局</a>
+          <a href="#scene-4">四、数据智能体</a>
+          <a href="#scene-5">五、撮合智能体</a>
+          <a href="#scene-6">六、经营现场</a>
+          <a href="#scene-7">七、产业价值</a>
+          <a href="#scene-8">八、品牌收束</a>
+        </nav>
+
+        <div class="script-list">
+          <article class="scene" id="scene-1">
+            <div class="scene-index"><b>01</b><time>00:00—00:18</time></div>
+            <div class="scene-body">
+              <div class="scene-title"><h3>开场：产业脉搏</h3><span>建立宏观尺度与真实感</span></div>
+              <div class="script-row"><b>画面</b><p>黑场中传来矿山机械的低频声。晨光掠过矿山、港口、钢卷、粮仓与运输车队，价格曲线和物流轨迹从真实场景中缓慢浮现。</p></div>
+              <div class="script-row voiceover"><b>旁白</b><p>一块矿石、一吨钢材、一船粮食，连接着生产、流通、消费与金融，也牵动着整个实体经济。</p></div>
+              <div class="script-row"><b>字幕</b><div class="screen-copy"><span>资源</span><span>生产</span><span>流通</span><span>需求</span><span>金融</span><span>治理</span></div></div>
+            </div>
+          </article>
+
+          <article class="scene" id="scene-2">
+            <div class="scene-index"><b>02</b><time>00:18—00:40</time></div>
+            <div class="scene-body">
+              <div class="scene-title"><h3>矛盾：信息很多，决策仍然很慢</h3><span>快切与停顿形成反差</span></div>
+              <div class="script-row"><b>画面</b><p>行情终端、政策文件、研究报告、库存表格和即时消息快速叠加。采购人员在多个窗口间切换，画面突然定格在“下一步怎么办”。</p></div>
+              <div class="script-row voiceover"><b>旁白</b><p>价格每一次波动，都会沿产业链传导为成本、库存、利润与风险。可真正困扰经营者的，往往不是信息太少，而是信息有时差、业务有断点、专业有门槛。</p></div>
+              <div class="script-row"><b>字幕</b><div class="screen-copy"><span>信息有时差</span><span>业务有断点</span><span>专业有门槛</span></div></div>
+            </div>
+          </article>
+
+          <article class="scene" id="scene-3">
+            <div class="scene-index"><b>03</b><time>00:40—01:02</time></div>
+            <div class="scene-body">
+              <div class="scene-title"><h3>转折：让智能进入经营现场</h3><span>由杂乱转向清晰</span></div>
+              <div class="script-row"><b>画面</b><p>纷杂信息收束成一个统一入口。行情、库存、政策、研报与供需信号被自动识别，逐层形成清晰的产业因果链。</p></div>
+              <div class="script-row voiceover"><b>旁白</b><p>大宗智能体，不只是回答问题。它持续感知产业变化，理解供需、库存、成本与政策之间的关系，把复杂市场信号转化为可信判断和可执行动作。</p></div>
+              <div class="script-row"><b>字幕</b><div class="screen-copy"><span>懂产业</span><span>会推理</span><span>能行动</span></div></div>
+            </div>
+          </article>
+
+          <article class="scene" id="scene-4">
+            <div class="scene-index"><b>04</b><time>01:02—01:30</time></div>
+            <div class="scene-body">
+              <div class="scene-title"><h3>能力一：数据智能体</h3><span>用一个采购问题贯穿</span></div>
+              <div class="script-row"><b>画面</b><p>用户输入：“华东热卷近期库存上升，采购节奏要不要调整？”系统先呈现结论，再展开库存变化、区域价差、供需节奏与采购约束的分析链路。</p></div>
+              <div class="script-row voiceover"><b>旁白</b><p>数据智能体，把行情、政策、资讯与研报放进同一个入口。简单问题快速作答，复杂问题沿分析链路展开；先给结论，再给依据，信息不足时主动追问。</p></div>
+              <div class="script-row"><b>字幕</b><div class="screen-copy"><span>行情问答</span><span>政策解读</span><span>深度分析</span><span>趋势判断</span></div></div>
+            </div>
+          </article>
+
+          <article class="scene" id="scene-5">
+            <div class="scene-index"><b>05</b><time>01:30—01:58</time></div>
+            <div class="scene-body">
+              <div class="scene-title"><h3>能力二：撮合智能体</h3><span>从判断自然过渡到行动</span></div>
+              <div class="script-row"><b>画面</b><p>采购建议继续向右延展：系统提取品类、规格、区域、数量、交期与价格区间，匹配多条供应资源，并解释匹配理由和潜在风险。</p></div>
+              <div class="script-row voiceover"><b>旁白</b><p>撮合智能体，把自然语言中的采购与销售需求转化为结构化商机，连接合适的供需资源，解释为什么匹配，并让机会可以沉淀、跟踪和持续推进。</p></div>
+              <div class="script-row"><b>字幕</b><div class="screen-copy"><span>理解需求</span><span>匹配资源</span><span>解释理由</span><span>跟踪商机</span></div></div>
+            </div>
+          </article>
+
+          <article class="scene" id="scene-6">
+            <div class="scene-index"><b>06</b><time>01:58—02:25</time></div>
+            <div class="scene-body">
+              <div class="scene-title"><h3>落地：同一底座，进入不同经营现场</h3><span>四类角色并行展开</span></div>
+              <div class="script-row"><b>画面</b><p>四分屏依次展示生产企业、贸易商、采购企业与研究机构。每个角色的关键任务从画面上方落下，最终汇入同一个智能交互底座。</p></div>
+              <div class="script-row voiceover"><b>旁白</b><p>对生产企业，它辅助稳生产、控成本、保利润；对贸易企业，它帮助抓价差、管库存、快周转；对采购方，它关注保供应、降成本、控风险；对金融与研究机构，它提升产业判断和风险识别效率。</p></div>
+              <div class="script-row"><b>字幕</b><div class="screen-copy"><span>生产供应</span><span>流通贸易</span><span>采购需求</span><span>金融研究</span></div></div>
+            </div>
+          </article>
+
+          <article class="scene" id="scene-7">
+            <div class="scene-index"><b>07</b><time>02:25—02:44</time></div>
+            <div class="scene-body">
+              <div class="scene-title"><h3>价值：让专业能力规模化流动</h3><span>节奏渐稳，视野拉远</span></div>
+              <div class="script-row"><b>画面</b><p>数据节点沿产业链亮起，从一家企业扩展到一个区域，再延伸到更广泛的产业网络。信息、知识与资源在网络中顺畅流动。</p></div>
+              <div class="script-row voiceover"><b>旁白</b><p>当信息更及时、判断更可信、资源连接更高效，智能带来的不只是一次回答，而是更短的决策链路、更稳的产业协同，以及更普惠的专业服务。</p></div>
+              <div class="script-row"><b>字幕</b><div class="screen-copy"><span>客户增益</span><span>行业共建</span><span>社会向善</span></div></div>
+            </div>
+          </article>
+
+          <article class="scene" id="scene-8">
+            <div class="scene-index"><b>08</b><time>02:44—03:00</time></div>
+            <div class="scene-body">
+              <div class="scene-title"><h3>收束：从看见变化，到推进行动</h3><span>品牌标识居中出现</span></div>
+              <div class="script-row"><b>画面</b><p>“看见变化、理解影响、形成策略、连接资源、推进行动”依次点亮，最终收束为万联易达大宗智能体品牌标识。</p></div>
+              <div class="script-row voiceover"><b>旁白</b><p>让每一个产业主体，都拥有理解变化、判断影响、抓住机会的能力。万联易达大宗智能体——大宗行业的智能入口。</p></div>
+              <div class="script-row"><b>字幕</b><div class="screen-copy"><span>让产业看见变化，算得清影响，抓得住机会</span></div></div>
+            </div>
+          </article>
+
+          <aside class="production-note">
+            <h3>制作建议</h3>
+            <p>整体采用“真实产业场景＋轻量数据动效＋产品界面演示”的组合方式。前四十秒建立产业规模与矛盾，中段用具体问题演示双智能体闭环，结尾回到实体经济与品牌价值。配乐由低频工业质感逐步转为明亮、坚定，旁白语速建议每分钟二百二十至二百四十字。</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="page-shell footer-inner">
+      <span>万联易达 · 大宗智能事业群</span>
+      <a href="./index.html">返回大宗智能体主页 →</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var button = document.getElementById("copy-script");
+      if (!button) return;
+      button.addEventListener("click", function () {
+        var paragraphs = Array.prototype.map.call(document.querySelectorAll(".voiceover p"), function (item) {
+          return item.textContent.trim();
+        });
+        var text = paragraphs.join("\n\n");
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(text).then(function () {
+          var original = button.textContent;
+          button.textContent = "已复制旁白";
+          window.setTimeout(function () { button.textContent = original; }, 1600);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
