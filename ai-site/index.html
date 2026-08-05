@@ -1,50 +1,539 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>大宗智能体｜万联易达</title>
-<meta name="description" content="数据智能体与撮合智能体双引擎驱动，贯通资讯研判、商机撮合与交易推进。">
-<style>
-/*! tailwindcss v4.2.1 | MIT License | https://tailwindcss.com */
-@layer theme{:root,:host{--font-sans:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--font-mono:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--spacing:.25rem;--default-font-family:var(--font-sans);--default-mono-font-family:var(--font-mono)}}@layer base{*,:after,:before,::backdrop{box-sizing:border-box;border:0 solid;margin:0;padding:0}::file-selector-button{box-sizing:border-box;border:0 solid;margin:0;padding:0}html,:host{-webkit-text-size-adjust:100%;tab-size:4;line-height:1.5;font-family:var(--default-font-family,ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");font-feature-settings:var(--default-font-feature-settings,normal);font-variation-settings:var(--default-font-variation-settings,normal);-webkit-tap-highlight-color:transparent}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,samp,pre{font-family:var(--default-mono-font-family,ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);font-feature-settings:var(--default-mono-font-feature-settings,normal);font-variation-settings:var(--default-mono-font-variation-settings,normal);font-size:1em}small{font-size:80%}sub,sup{vertical-align:baseline;font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}:-moz-focusring{outline:auto}progress{vertical-align:baseline}summary{display:list-item}ol,ul,menu{list-style:none}img,svg,video,canvas,audio,iframe,embed,object{vertical-align:middle;display:block}img,video{max-width:100%;height:auto}button,input,select,optgroup,textarea{font:inherit;font-feature-settings:inherit;font-variation-settings:inherit;letter-spacing:inherit;color:inherit;opacity:1;background-color:#0000;border-radius:0}::file-selector-button{font:inherit;font-feature-settings:inherit;font-variation-settings:inherit;letter-spacing:inherit;color:inherit;opacity:1;background-color:#0000;border-radius:0}:where(select:is([multiple],[size])) optgroup{font-weight:bolder}:where(select:is([multiple],[size])) optgroup option{padding-inline-start:20px}::file-selector-button{margin-inline-end:4px}::placeholder{opacity:1}@supports (not ((-webkit-appearance:-apple-pay-button))) or (contain-intrinsic-size:1px){::placeholder{color:currentColor}@supports (color:color-mix(in lab, red, red)){::placeholder{color:color-mix(in oklab, currentcolor 50%, transparent)}}}textarea{resize:vertical}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-date-and-time-value{min-height:1lh;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-datetime-edit{padding-block:0}::-webkit-datetime-edit-year-field{padding-block:0}::-webkit-datetime-edit-month-field{padding-block:0}::-webkit-datetime-edit-day-field{padding-block:0}::-webkit-datetime-edit-hour-field{padding-block:0}::-webkit-datetime-edit-minute-field{padding-block:0}::-webkit-datetime-edit-second-field{padding-block:0}::-webkit-datetime-edit-millisecond-field{padding-block:0}::-webkit-datetime-edit-meridiem-field{padding-block:0}::-webkit-calendar-picker-indicator{line-height:1}:-moz-ui-invalid{box-shadow:none}button,input:where([type=button],[type=reset],[type=submit]){appearance:button}::file-selector-button{appearance:button}::-webkit-inner-spin-button{height:auto}::-webkit-outer-spin-button{height:auto}[hidden]:where(:not([hidden=until-found])){display:none!important}}@layer components;@layer utilities{.start{inset-inline-start:var(--spacing)}.contents{display:contents}.table{display:table}}:root{--ink:#111;--muted:#666b75;--soft:#989ca5;--paper:#f7f7f5;--white:#fff;--line:#e8e6e2;--orange:#ff6a00;--orange-deep:#e85600;--orange-soft:#fff1e7;--blue:#3777da;--deep-blue:#2864bf;--cyan:#75cbd7;--violet:#998ce8;--dark-strong:#fff;--dark-copy:#ffffffdb;--dark-muted:#ffffffb8;--dark-line:#ffffff38;--header-height:78px;--anchor-gap:16px}*{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:calc(var(--header-height) + var(--anchor-gap));background:var(--paper);overflow-x:clip}body{background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-break:strict;word-break:normal;touch-action:pan-y;margin:0;font-family:PingFang SC,Hiragino Sans GB,Microsoft YaHei,Arial,sans-serif;font-size:14px;overflow-x:clip}a{color:inherit;text-decoration:none}button{font:inherit}h1,h2,h3{text-wrap:balance;overflow-wrap:break-word}p{text-wrap:pretty}::selection{color:var(--ink);background:#ffd8bb}.section-shell{width:min(1180px,100% - 48px);margin:0 auto}.industry-section,.problem-section,.breakthrough-section,.value-section,.product-section,.scenario-section,.coverage-section,.roadmap-section{scroll-margin-top:calc(var(--header-height) + var(--anchor-gap))}.site-header{z-index:60;background:#fffffff7;border-bottom:1px solid #ece9e5;grid-template-columns:auto 1fr;align-items:center;height:78px;padding:0 max(32px,50vw - 680px);display:grid;position:fixed;inset:0 0 auto;box-shadow:0 8px 28px #312a220b}.brand{align-items:center;gap:11px;width:fit-content;display:inline-flex}.brand-symbol{background:var(--orange);color:#fff;border:1px solid #ffb47f;border-radius:11px;place-items:center;width:34px;height:34px;font-size:15px;font-weight:900;display:grid}.brand-copy{gap:1px;display:grid}.brand-copy strong{letter-spacing:.04em;font-size:15px}.brand-copy small{color:var(--muted);letter-spacing:.12em;font-size:14px}.site-header nav{justify-self:end;align-items:center;gap:28px;font-size:14px;display:flex}.site-header nav a{color:#3d485a;transition:opacity .2s}.site-header nav a:hover{opacity:.55}.site-header a,.hero-actions a{touch-action:manipulation}.hero{background:linear-gradient(135deg,#fff 0% 52%,#fff5ed 100%);min-height:880px;padding:154px 0 64px;position:relative;overflow:hidden}.hero:before{content:"";background:radial-gradient(circle,#ffa55d3d,#ffa55d00 70%);border-radius:50%;width:680px;height:680px;position:absolute;top:70px;right:-190px}.hero:after{content:"";background:linear-gradient(90deg,#0000,#e8e3de 12% 88%,#0000);height:1px;position:absolute;bottom:0;left:0;right:0}.hero-inner{z-index:2;text-align:left;grid-template-columns:1.03fr .97fr;align-items:center;gap:72px;width:min(1180px,100% - 48px);margin:0 auto;display:grid;position:relative}.hero-copy{min-width:0}.hero-badge{background:var(--orange-soft);color:#c94e00;border:1px solid #ffd0ae;border-radius:999px;align-items:center;gap:9px;padding:9px 14px;font-size:14px;font-weight:650;display:inline-flex}.hero-badge i{background:var(--orange);border-radius:50%;width:7px;height:7px;box-shadow:0 0 0 4px #ff6a001f}.hero h1{letter-spacing:-.065em;max-width:680px;margin:30px 0 24px;font-size:clamp(54px,5vw,74px);font-weight:780;line-height:1.1}.hero-line{color:inherit;display:block}.hero-highlight{color:var(--orange)}.hero-lead{color:#64676e;max-width:650px;margin:0;font-size:16px;line-height:1.95}.hero-actions{align-items:center;gap:12px;margin-top:34px;display:flex}.hero-actions a{white-space:nowrap;border-radius:12px;justify-content:center;align-items:center;gap:24px;min-height:52px;padding:0 20px;font-size:14px;font-weight:750;display:flex}.hero-actions i{font-size:16px;font-style:normal}.primary-action{background:var(--orange);color:#fff;box-shadow:0 14px 30px #ff6a0038}.secondary-action{color:#303030;background:#fff;border:1px solid #dedbd6}.hero-keywords{gap:9px;margin-top:24px;display:flex}.hero-keywords span{color:#737373;background:#f3f2f0;border-radius:7px;padding:8px 12px;font-size:14px}.hero-showcase{color:#fff;background:#171717;border:1px solid #f3d2bb;border-radius:28px;min-height:640px;padding:34px;position:relative;overflow:visible;box-shadow:0 32px 80px #472d1a33}.hero-showcase:before{content:"";border-radius:inherit;pointer-events:none;background:radial-gradient(circle at 90% 10%,#ff6a0059,#0000 42%),linear-gradient(145deg,#0000,#ffffff06);position:absolute;inset:0}.showcase-status{border-bottom:1px solid var(--dark-line);justify-content:space-between;align-items:center;padding-bottom:22px;display:flex;position:relative}.showcase-status span{color:var(--dark-copy);align-items:center;gap:8px;font-size:14px;font-weight:600;display:flex}.showcase-status span i{background:#ff7a1c;border-radius:50%;width:7px;height:7px;box-shadow:0 0 0 5px #ff6a0024}.showcase-status b{color:#ff9a55;background:#ff6a0029;border-radius:999px;padding:6px 9px;font-size:14px}.showcase-main{padding:64px 0 40px;position:relative}.showcase-main>span,.showcase-answer span{color:#ff9a55;font-size:14px;font-weight:750}.showcase-main h2{letter-spacing:-.04em;max-width:470px;margin:18px 0;font-size:clamp(28px,2.6vw,34px);line-height:1.4}.showcase-main p{color:var(--dark-muted);margin:0;font-size:15px;font-weight:500}.showcase-answer{border:1px solid var(--dark-line);background:#ffffff14;border-radius:16px;padding:20px;position:relative}.showcase-answer strong{color:var(--dark-strong);margin-top:10px;font-size:15px;line-height:1.65;display:block}.showcase-metrics{background:#ffffff1c;border-radius:15px;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:28px;display:grid;position:relative;overflow:hidden}.showcase-metrics div{text-align:center;background:#242424;padding:20px 12px}.showcase-metrics strong{color:#ff8a38;font-size:25px;display:block}.showcase-metrics span{color:var(--dark-muted);margin-top:7px;font-size:14px;font-weight:500;display:block}.signal-chip{color:#555;background:#fff;border:1px solid #eee8e2;border-radius:13px;padding:12px 14px;font-size:14px;position:absolute;box-shadow:0 18px 38px #32282124}.signal-chip b{color:var(--orange);margin-left:12px}.signal-one{top:96px;right:-48px}.signal-two{bottom:112px;left:-42px}.hero-stats{background:#fff;border:1px solid #e8e4df;border-radius:18px;grid-column:1/-1;grid-template-columns:repeat(3,1fr);margin-top:22px;display:grid;overflow:hidden;box-shadow:0 14px 42px #4232270f}.hero-stats div{border-right:1px solid #e8e4df;padding:24px 26px}.hero-stats div:last-child{border-right:none}.hero-stats strong{letter-spacing:-.02em;font-size:17px;display:block}.hero-stats span{color:#8b8985;margin-top:8px;font-size:14px;display:block}.section-title>span,.section-title.split>div>span{background:var(--orange-soft);color:var(--orange-deep);letter-spacing:.06em;border:1px solid #ffc79f;border-radius:999px;align-items:center;gap:9px;padding:9px 13px;font-size:15px;font-weight:800;display:inline-flex}.section-title>span:before,.section-title.split>div>span:before{content:"";background:var(--orange);border-radius:50%;width:8px;height:8px;box-shadow:0 0 0 4px #ff6a001f}.section-title h2{letter-spacing:-.048em;margin:18px 0 0;font-size:clamp(36px,3.7vw,52px);line-height:1.24}.section-title.centered{text-align:left;max-width:930px;margin:0}.section-title.centered>span{justify-content:flex-start}.section-title.split{grid-template-columns:1.3fr .8fr;align-items:end;gap:72px;display:grid}.chapter-subtitle{border-left:4px solid var(--orange);color:#3f444d;max-width:820px;margin:24px 0 0;padding:13px 0 13px 22px;font-size:18px;font-weight:620;line-height:1.78}.section-title.split>.chapter-subtitle{border:1px solid #eadfd6;border-left:4px solid var(--orange);background:#ffffffc7;border-radius:4px 16px 16px 4px;max-width:none;margin:0 0 4px;padding:20px 22px 20px 25px;box-shadow:0 14px 36px #4a392b0e}.positioning-statement{border:1px solid #ffd0ae;border-left:5px solid var(--orange);background:linear-gradient(135deg,#fffaf6,#fff2e8);border-radius:4px 18px 18px 4px;margin:0 0 2px;padding:24px 28px 26px 30px;position:relative;overflow:hidden;box-shadow:0 18px 42px #81481f17}.positioning-statement:after{content:"“";color:#ff6a001a;font-size:96px;font-weight:800;line-height:1;position:absolute;top:-20px;right:16px}.positioning-statement>span{z-index:1;background:var(--orange);color:#fff;letter-spacing:.08em;border-radius:999px;padding:6px 10px;font-size:14px;font-weight:800;display:inline-flex;position:relative}.positioning-statement p{z-index:1;color:#343434;margin:16px 0 0;font-size:17px;font-weight:560;line-height:1.85;position:relative}.positioning-statement strong{color:var(--orange-deep);font-weight:800}.positioning-statement em{color:#111;margin-top:9px;font-style:normal;font-weight:760;display:block}.industry-section{color:#fff;background:#171717;padding:128px 0}.chapter-kicker{align-items:center;gap:16px;display:flex}.chapter-kicker span{background:var(--orange);letter-spacing:.06em;border-radius:999px;padding:10px 14px;font-size:15px;font-weight:800;box-shadow:0 10px 24px #ff6a0033}.chapter-kicker b{color:var(--dark-copy);letter-spacing:.035em;font-size:17px;font-weight:650}.industry-opening{grid-template-columns:1.1fr .9fr;align-items:end;gap:96px;margin-top:48px;display:grid}.industry-opening h2{letter-spacing:-.052em;max-width:700px;margin:0;font-size:clamp(42px,4.4vw,62px);line-height:1.2}.industry-opening .chapter-subtitle{max-width:none;color:var(--dark-copy);margin:0;padding:17px 0 17px 24px;font-size:18px;font-weight:580;line-height:1.85}.industry-chain{border:1px solid var(--dark-line);border-radius:22px;grid-template-columns:repeat(6,1fr);margin-top:72px;display:grid;overflow:clip}.industry-chain article{border-right:1px solid var(--dark-line);background:#222;min-height:250px;padding:26px 20px}.industry-chain article:last-child{border-right:none}.industry-chain b{color:#ff9145;font-size:14px}.industry-chain h3{color:var(--dark-strong);margin:34px 0 12px;font-size:19px;font-weight:680}.industry-chain p{color:var(--dark-muted);margin:0;font-size:15px;font-weight:500;line-height:1.7}.industry-meaning{grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;display:grid}.industry-meaning article{border:1px solid var(--dark-line);background:#202020;border-radius:16px;padding:24px 26px}.industry-meaning span{color:#ff9145;font-size:14px;font-weight:750;display:block}.industry-meaning strong{color:var(--dark-copy);margin-top:12px;font-size:15px;font-weight:650;line-height:1.65;display:block}.problem-section{background:#fff;padding:125px 0}.problem-grid{grid-template-columns:repeat(3,1fr);gap:18px;margin-top:64px;display:grid}.problem-card{background:#faf9f7;border:1px solid #e8e3dd;border-radius:22px;flex-direction:column;min-height:360px;padding:30px;display:flex}.problem-card>b{color:var(--orange);font-size:14px}.problem-card h3{margin:52px 0 16px;font-size:27px;line-height:1.35}.problem-card p{color:var(--muted);margin:0;font-size:14px;line-height:1.85}.problem-card strong{color:#a84400;margin-top:auto;padding-top:28px;font-size:14px}.problem-card:nth-child(2){background:var(--orange);color:#fff;border-color:var(--orange);box-shadow:0 22px 52px #ff6a002e}.problem-card:nth-child(2)>b,.problem-card:nth-child(2) p,.problem-card:nth-child(2) strong{color:#ffffffd1}.mode-shift{border:1px solid #e8e3dd;border-radius:24px;grid-template-columns:1fr 100px 1fr;align-items:stretch;margin-top:64px;display:grid;overflow:clip}.mode-column{padding:36px}.mode-column>span{color:#8c8c8c;letter-spacing:.1em;font-size:14px;font-weight:750}.mode-column h3{margin:20px 0 24px;font-size:24px;line-height:1.4}.mode-column ul{margin:0;padding:0;list-style:none}.mode-column li{color:var(--muted);padding:9px 0;font-size:14px}.mode-column li:before{content:"·";color:#aaa;margin-right:10px}.mode-column.agent-mode{color:#fff;background:#171717}.mode-column.agent-mode>span,.mode-column.agent-mode li:before{color:#ff9145}.mode-column.agent-mode li{color:var(--dark-copy);font-size:15px;font-weight:500}.mode-arrow{color:var(--orange-deep);background:#fff1e7;flex-direction:column;justify-content:center;align-items:center;gap:7px;display:flex}.mode-arrow b{font-size:20px}.mode-arrow span{font-size:14px;font-weight:700}.problem-conclusion{color:#fff;background:#171717;border-radius:18px;justify-content:space-between;align-items:center;gap:30px;margin-top:18px;padding:24px 28px;display:flex}.problem-conclusion span{color:#ff9850;letter-spacing:.1em;font-size:14px;font-weight:750}.problem-conclusion strong{letter-spacing:-.02em;font-size:20px}.breakthrough-section{padding-top:122px;padding-bottom:36px}.breakthrough-grid{grid-template-columns:repeat(2,1fr);gap:18px;margin-top:66px;display:grid}.breakthrough-card{background:#fff;border:1px solid #e8e3dd;border-radius:22px;min-height:390px;padding:32px;position:relative;overflow:hidden;box-shadow:0 14px 46px #4432250b}.breakthrough-card:after{content:"";background:radial-gradient(circle,#7eaeeb2b,#7eaeeb00 72%);border-radius:50%;width:180px;height:180px;position:absolute;bottom:-90px;right:-70px}.breakthrough-top{justify-content:space-between;align-items:center;display:flex}.breakthrough-top b{background:var(--orange-soft);width:34px;height:34px;color:var(--orange-deep);border-radius:11px;place-items:center;font-size:14px;display:grid}.breakthrough-top span{color:#7c756f;background:#ffffffbf;border:1px solid #ece4dc;border-radius:999px;padding:6px 9px;font-size:14px;font-weight:700}.breakthrough-card h3{letter-spacing:-.03em;max-width:470px;margin:42px 0 16px;font-size:24px;line-height:1.46}.breakthrough-card p{max-width:500px;color:var(--muted);margin:0;font-size:14px;line-height:1.85}.breakthrough-card em{z-index:1;color:var(--orange-deep);letter-spacing:.08em;font-size:14px;font-style:normal;font-weight:750;position:absolute;bottom:28px;left:32px}.breakthrough-card:first-child{border-color:var(--orange);color:#fff;background:linear-gradient(145deg,#ff7a1b,#ff6200);box-shadow:0 24px 56px #ff6a0033}.breakthrough-card:first-child .breakthrough-top b,.breakthrough-card:first-child .breakthrough-top span{color:#fff;background:#ffffff29;border-color:#ffffff47}.breakthrough-card:first-child p,.breakthrough-card:first-child em{color:#ffffffc7}.breakthrough-card:last-child{color:#fff;background:#171717}.breakthrough-card:last-child p{color:var(--dark-copy);font-size:15px;font-weight:500}.breakthrough-card:last-child .breakthrough-top span{border-color:var(--dark-line);color:var(--dark-copy);background:#ffffff1a}.breakthrough-summary{color:#7b8799;background:linear-gradient(90deg,#fff,#fff0e5,#fff);border:1px solid #eadfd6;border-radius:18px;justify-content:center;align-items:center;gap:28px;margin-top:18px;padding:22px 28px;font-size:14px;display:flex}.breakthrough-summary i{color:var(--orange);font-style:normal}.breakthrough-summary strong{color:#b64600;font-size:14px}.value-section{padding-top:120px;padding-bottom:135px}.value-grid{grid-template-columns:repeat(3,1fr);gap:18px;margin-top:66px;display:grid}.value-card{border:1px solid var(--line);background:#fffffff0;border-top-width:4px;border-radius:22px;min-height:570px;padding:32px;transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden;box-shadow:0 14px 50px #344c700e}.value-card:hover{transform:translateY(-5px);box-shadow:0 24px 62px #2c49771a}.value-card:before{content:"";opacity:.1;border-radius:50%;width:240px;height:240px;position:absolute;inset:auto -70px -90px auto}.value-card.blue:before{background:#79aef4}.value-card.violet:before{background:#b8a9f2}.value-card.cyan:before{background:#93d9e1}.value-card.blue{border-top-color:var(--orange)}.value-card.violet{border-top-color:#3e78d4}.value-card.cyan{border-top-color:#202020}.card-top{color:#8794a7;letter-spacing:.1em;justify-content:space-between;align-items:center;font-size:14px;font-weight:700;display:flex}.card-top b{font-size:14px}.value-label{background:var(--orange-soft);color:var(--orange-deep);border-radius:7px;margin:54px 0 16px;padding:6px 9px;font-size:14px;font-weight:700;display:inline-block}.value-card h3{letter-spacing:-.035em;margin:0;font-size:26px;line-height:1.42}.value-description{color:var(--muted);margin:22px 0 0;font-size:14px;line-height:1.85}.value-card ul{border-top:1px solid var(--line);margin:38px 0 0;padding:20px 0 0;list-style:none;position:relative}.value-card li{color:#47556b;padding:7px 0;font-size:14px}.value-card li:before{content:"↗";color:var(--orange);margin-right:9px}.product-section{background:#f3f2ef;padding:125px 0}.capability-grid{grid-template-columns:1.05fr 1fr 1fr;gap:18px;margin-top:66px;display:grid}.capability-card{border:1px solid var(--line);background:#fffffff0;border-radius:22px;min-height:510px;padding:30px;position:relative;overflow:hidden;box-shadow:0 14px 44px #3750760d}.capability-card.featured{color:#fff;border-color:var(--orange);background:linear-gradient(145deg,#ff7919 0%,#ff6200 100%);box-shadow:0 24px 56px #ff6a0038}.capability-card.featured:after{content:"";background:#74a3e714;border-radius:50%;width:260px;height:260px;position:absolute;bottom:-90px;right:-80px;box-shadow:0 0 0 45px #ffffff61,0 0 0 90px #7e77de0a}.capability-icon{color:#4d78b9;background:#f1f6fc;border:1px solid #dbe7f7;border-radius:13px;place-items:center;width:40px;height:40px;font-size:14px;font-weight:800;display:grid}.featured .capability-icon{color:#fff;background:#ffffff2b;border-color:#ffffff47}.capability-tag{color:#8b96a5;margin-top:44px;font-size:14px;font-weight:700;display:block}.featured .capability-tag{color:#ffffffb8}.capability-card h3{margin:10px 0 16px;font-size:26px;line-height:1.4}.capability-card>p{color:var(--muted);margin:0;font-size:14px;line-height:1.8}.featured>p{color:#ffffffc7}.capability-list{z-index:2;flex-wrap:wrap;gap:8px;display:flex;position:absolute;bottom:28px;left:28px;right:28px}.capability-list span{color:#687589;background:#f2f5f9;border-radius:7px;padding:7px 9px;font-size:14px}.featured .capability-list span{color:#fff;background:#ffffff26;border:1px solid #ffffff38}.journey-heading{justify-content:space-between;align-items:end;gap:32px;margin-top:76px;display:flex}.journey-heading span{color:var(--orange-deep);letter-spacing:.1em;font-size:14px;font-weight:750}.journey-heading strong{letter-spacing:-.03em;font-size:24px}.product-journey{margin-top:24px}.agent-panel{background:linear-gradient(135deg,#fff,#fff6ef);border:1px solid #e8ded5;border-radius:26px;grid-template-columns:.78fr 1.22fr;align-items:center;gap:90px;margin-top:80px;padding:68px;display:grid;box-shadow:0 20px 65px #5c3f2b0f}.agent-panel-copy>span{color:var(--orange-deep);letter-spacing:.1em;font-size:14px;font-weight:750}.agent-panel-copy h3{letter-spacing:-.04em;margin:18px 0;font-size:36px;line-height:1.34}.agent-panel-copy>p{color:var(--muted);margin:0;font-size:14px;line-height:1.9}.panel-chips{flex-wrap:wrap;gap:8px;margin-top:28px;display:flex}.panel-chips i{color:#66758a;background:#fbfdff;border:1px solid #dce6f2;border-radius:999px;padding:7px 10px;font-size:14px;font-style:normal}.conversation-card{background:#fff;border:1px solid #e1e8f1;border-radius:18px;padding:18px;box-shadow:0 28px 70px #304e7a17}.conversation-head{border-bottom:1px solid #edf1f5;justify-content:space-between;align-items:center;padding-bottom:16px;display:flex}.conversation-head>span{align-items:center;gap:10px;display:flex}.conversation-head i{background:var(--orange-soft);width:32px;height:32px;color:var(--orange-deep);border-radius:10px;place-items:center;font-size:14px;font-style:normal;font-weight:800;display:grid}.conversation-head b{font-size:14px}.conversation-head em{color:#6f8b77;align-items:center;gap:6px;font-size:14px;font-style:normal;display:flex}.conversation-head em:before{content:"";background:#66bd83;border-radius:50%;width:6px;height:6px}.question{color:#7b3a0d;background:linear-gradient(135deg,#fff2e8,#fff8f2);border:1px solid #ffd5b8;border-radius:12px 12px 3px;width:88%;margin:18px 0 18px auto;padding:13px 15px;font-size:14px;line-height:1.6}.reasoning{background:#f4f7fb;border-radius:10px;padding:14px}.reasoning span{color:var(--orange-deep);font-size:14px;font-weight:700}.reasoning p{color:#858f9e;margin:5px 0 0;font-size:14px}.answer{border:1px solid #e5eaf1;border-radius:10px;margin-top:10px;padding:17px}.answer small{color:var(--orange-deep);font-size:14px;font-weight:700;display:block}.answer strong{margin-top:10px;font-size:14px;line-height:1.55;display:block}.answer p{color:#737f91;border-top:1px solid #edf0f2;margin:12px 0 0;padding-top:12px;font-size:14px;line-height:1.65}.scenario-section{background:linear-gradient(#fff7f1,#fff);padding:128px 0}.scenario-grid{grid-template-columns:repeat(2,1fr);gap:18px;margin-top:66px;display:grid}.scenario-card{background:#ffffffeb;border:1px solid #eadfd7;border-radius:22px;flex-direction:column;min-height:450px;padding:32px;display:flex;box-shadow:0 14px 46px #4432250b}.scenario-top{justify-content:space-between;align-items:center;display:flex}.scenario-top b{background:var(--orange);color:#fff;border-radius:11px;place-items:center;width:34px;height:34px;font-size:14px;display:grid}.scenario-top span{color:var(--orange-deep);letter-spacing:.08em;font-size:14px;font-weight:750}.scenario-card h3{margin:50px 0 16px;font-size:27px;line-height:1.4}.scenario-card>p{max-width:480px;color:var(--muted);margin:0;font-size:14px;line-height:1.85}.scenario-card>div:last-child{flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:28px;display:flex}.scenario-card>div:last-child span{color:#6f6a65;background:#f4f2ef;border-radius:7px;padding:7px 9px;font-size:14px}.scenario-card:first-child{color:#fff;background:#171717;border-color:#171717}.scenario-card:first-child .scenario-top span{color:#ff9145}.scenario-card:first-child>p{color:var(--dark-copy);font-size:15px;font-weight:500}.scenario-card:first-child>div:last-child span{border:1px solid var(--dark-line);color:var(--dark-copy);background:#ffffff1a;font-weight:600}.scenario-thread{background:#fff;border:1px solid #eadfd7;border-radius:18px;flex-wrap:wrap;justify-content:center;align-items:center;gap:18px;margin-top:18px;padding:24px 28px;font-size:14px;display:flex}.scenario-thread span{color:var(--muted)}.scenario-thread i{color:var(--orange);font-style:normal}.scenario-thread strong{font-size:14px}.impact-heading{border-top:1px solid #e6e2dd;margin-top:84px;padding-top:54px}.impact-heading span{color:var(--orange-deep);letter-spacing:.1em;font-size:14px;font-weight:750}.impact-heading h3{letter-spacing:-.04em;max-width:760px;margin:18px 0 0;font-size:30px;line-height:1.35}.impact-grid{grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px;display:grid}.impact-grid article{color:#fff;background:#171717;border-radius:18px;min-height:310px;padding:26px}.impact-grid article:nth-child(2){background:var(--orange)}.impact-grid article:nth-child(3){background:#244f46}.impact-grid article:nth-child(4){background:#2b4565}.impact-grid b{border:1px solid #fff3;border-radius:12px;place-items:center;width:38px;height:38px;font-size:14px;display:grid}.impact-grid h3{color:var(--dark-strong);margin:44px 0 12px;font-size:19px}.impact-grid p{color:var(--dark-copy);margin:0;font-size:15px;font-weight:500;line-height:1.8}.method-section{background:#fff;padding-top:130px;padding-bottom:130px}.method-grid{grid-template-columns:repeat(3,1fr);gap:18px;margin-top:68px;display:grid}.method-card{border:1px solid var(--line);background:#fff;border-radius:22px;min-height:440px;padding:30px;position:relative;overflow:hidden;box-shadow:0 14px 46px #364e720b}.method-number{color:#ffe0ca;letter-spacing:-.06em;font-size:42px;font-weight:800;position:absolute;top:22px;right:25px}.method-card>span{color:var(--orange-deep);letter-spacing:.1em;font-size:14px;font-weight:750}.method-card h3{margin:80px 0 16px;font-size:27px;line-height:1.4}.method-card>p{color:var(--muted);margin:0;font-size:14px;line-height:1.85}.method-visual{color:#596a82;letter-spacing:.08em;background:#f3f6fa;border-radius:12px;justify-content:center;align-items:center;height:78px;padding:0 16px;font-size:14px;display:flex;position:absolute;bottom:30px;left:30px;right:30px;overflow:hidden}.visual-1:before,.visual-1:after{content:"";background:var(--orange);border-radius:50%;width:12px;height:12px;position:absolute}.visual-1:before{left:28px}.visual-1:after{right:28px}.visual-1{background:linear-gradient(90deg,#fff2e9,#fff7f2)}.visual-2{background:linear-gradient(90deg,#fff3e9 0 28%,#ffe8d7 28% 62%,#ffdbc0 62%)}.visual-3{word-spacing:14px;background:linear-gradient(135deg,#fff2e8,#f3f3f1)}.analyst-model{color:#fff;background:#171717;border:1px solid #292929;border-radius:26px;grid-template-columns:.75fr 1.25fr;gap:70px;margin-top:84px;padding:58px 60px;display:grid;position:relative;overflow:hidden;box-shadow:0 24px 62px #221b1629}.analyst-model:after{content:"";background:radial-gradient(circle,#9dc4f461,#9dc4f400 72%);border-radius:50%;width:320px;height:320px;position:absolute;bottom:-190px;left:-145px}.analyst-model>div,.analyst-model ol{z-index:1;position:relative}.analyst-model>div>span{color:#ff9348;letter-spacing:.1em;font-size:14px;font-weight:750}.analyst-model h3{margin:18px 0 0;font-size:32px;line-height:1.38}.analyst-model ol{border-top:1px solid #59749b2b;margin:0;padding:0;list-style:none}.analyst-model li{border-bottom:1px solid var(--dark-line);color:var(--dark-muted);grid-template-columns:50px 1fr 1.2fr;align-items:center;gap:14px;padding:17px 0;display:grid}.analyst-model li b,.analyst-model li span,.analyst-model li small{font-size:14px}.analyst-model li.active{color:var(--dark-strong);font-weight:650}.analyst-model li.active b{color:#ff9348}.analyst-model li.active span:after{content:"当前重点";color:#ff9b57;background:#ff6a002b;border-radius:999px;margin-left:10px;padding:4px 7px;font-size:14px}.journey-section{color:var(--ink);background:linear-gradient(#fff5ee,#fffaf6);padding:125px 0;position:relative;overflow:hidden}.journey-section:before{content:"";background:radial-gradient(#d3cafb57,#d3cafb00 72%);border-radius:50%;width:560px;height:380px;position:absolute;top:35px;right:-190px}.journey-section .section-shell{z-index:1;position:relative}.section-title.light>span{color:var(--orange-deep)}.section-title.light>p{color:var(--muted)}.journey-track{background:#ffffffe6;border:1px solid #e0e9f5;border-radius:22px;grid-template-columns:repeat(6,1fr);margin-top:68px;display:grid;overflow:hidden;box-shadow:0 18px 55px #37537b0f}.journey-track article{border-right:1px solid #e5ecf5;min-height:230px;padding:27px 18px 24px}.journey-track article:last-child{border-right:none}.journey-track b{background:var(--orange);color:#fff;border-radius:9px;place-items:center;width:26px;height:26px;font-size:14px;display:grid}.journey-track h3{margin:24px 0 8px;font-size:16px}.journey-track p{color:#8a96a8;margin:0;font-size:14px}.role-grid{grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px;display:grid}.role-grid article{background:#ffffffd1;border:1px solid #e0e9f5;border-radius:18px;padding:26px}.role-grid span{color:var(--orange-deep);font-size:14px;font-weight:700}.role-grid h3{margin:20px 0 10px;font-size:17px;line-height:1.45}.role-grid p{color:#8a95a6;margin:0;font-size:14px}.coverage-section{padding-top:120px;padding-bottom:130px}.coverage-hero{background:linear-gradient(135deg,#fff5ed,#fff 52%,#fff0e4);border:1px solid #ffd2b3;border-radius:26px;grid-template-columns:1fr 1fr;gap:90px;padding:70px;display:grid;position:relative;overflow:hidden;box-shadow:0 20px 64px #623f2612}.coverage-hero:after{content:"";border:1px solid #4364aa1f;border-radius:50%;width:350px;height:350px;position:absolute;bottom:-180px;right:-130px;box-shadow:0 0 0 55px #ffffff40,0 0 0 110px #ffffff29}.coverage-copy{z-index:2;position:relative}.coverage-copy>span{background:var(--orange-soft);color:var(--orange-deep);letter-spacing:.06em;border:1px solid #ffc79f;border-radius:999px;align-items:center;gap:9px;padding:9px 13px;font-size:15px;font-weight:800;display:inline-flex}.coverage-copy>span:before{content:"";background:var(--orange);border-radius:50%;width:8px;height:8px;box-shadow:0 0 0 4px #ff6a001f}.coverage-copy h2{letter-spacing:-.045em;margin:20px 0;font-size:42px;line-height:1.25}.coverage-copy p{border-left:4px solid var(--orange);color:#3f444d;margin:0;padding-left:20px;font-size:18px;font-weight:620;line-height:1.8}.coverage-numbers{z-index:2;grid-template-columns:repeat(3,1fr);align-items:center;display:grid;position:relative}.coverage-numbers div{text-align:center;border-right:1px solid #3c4b6924}.coverage-numbers div:last-child{border-right:none}.coverage-numbers strong{color:var(--orange);letter-spacing:-.06em;font-size:60px;line-height:1;display:block}.coverage-numbers span{color:#6f7c8f;margin-top:12px;font-size:14px;display:block}.category-grid{grid-template-columns:repeat(6,1fr);gap:10px;margin-top:16px;display:grid}.category-grid article{background:#fff;border:1px solid #e8e3dd;border-radius:14px;flex-direction:column;justify-content:space-between;min-height:140px;padding:20px 14px;display:flex}.category-grid strong{color:var(--orange);font-size:24px}.category-grid span{color:#727272;font-size:14px;line-height:1.5}.coverage-note{color:#858b95;text-align:center;margin:18px 0 0;font-size:14px;line-height:1.6}.roadmap-section{padding-top:20px;padding-bottom:130px}.roadmap-grid{grid-template-columns:repeat(4,1fr);gap:14px;margin-top:66px;display:grid}.roadmap-grid article{border:1px solid var(--line);background:#fff;border-radius:18px;min-height:370px;padding:26px;position:relative;box-shadow:0 12px 38px #364e720a}.roadmap-grid article.current{color:#fff;background:#171717;border-color:#171717;box-shadow:0 20px 48px #1e181429}.roadmap-grid article>div{justify-content:space-between;align-items:flex-start;display:flex}.roadmap-grid article>div b{letter-spacing:-.04em;font-size:25px}.roadmap-grid article>div span{color:#949eac;font-size:14px}.roadmap-grid article.current>div span{color:var(--dark-copy);font-weight:600}.roadmap-grid em{color:var(--orange-deep);margin-top:64px;font-size:14px;font-style:normal;font-weight:750;display:inline-block}.roadmap-grid .current em{color:#ff974f}.roadmap-grid h3{margin:12px 0 10px;font-size:20px}.roadmap-grid p{color:var(--muted);margin:0;font-size:14px;line-height:1.7}.roadmap-grid .current p{color:var(--dark-copy);font-size:15px;font-weight:500}.expert-panel{color:#fff;background:#171717;border-radius:24px;grid-template-columns:.8fr 1.2fr;align-items:start;gap:70px;margin-top:70px;padding:54px;display:grid}.expert-copy>span{color:#ff9145;letter-spacing:.1em;font-size:14px;font-weight:750}.expert-copy h3{margin:20px 0 16px;font-size:28px;line-height:1.4}.expert-copy p{color:var(--dark-copy);margin:0;font-size:15px;font-weight:500;line-height:1.85}.expert-ladder{border-top:1px solid var(--dark-line)}.expert-ladder article{border-bottom:1px solid var(--dark-line);opacity:.82;grid-template-columns:52px 1fr;align-items:center;gap:16px;padding:17px 0;display:grid}.expert-ladder article.active{opacity:1}.expert-ladder article.next{opacity:.92}.expert-ladder article>b{color:#ff9145;font-size:14px}.expert-ladder article>div{grid-template-columns:.8fr 1.2fr;align-items:center;gap:18px;display:grid}.expert-ladder strong{color:var(--dark-strong);font-size:15px;font-weight:650}.expert-ladder span{color:var(--dark-copy);font-size:14px;font-weight:500}.manifesto-section{color:#fff;background:linear-gradient(135deg,#ff6a00,#f05600);padding:120px 0}.manifesto-inner>span{letter-spacing:.08em;background:#ffffff24;border:1px solid #ffffff73;border-radius:999px;width:fit-content;padding:9px 13px;font-size:15px;font-weight:800;display:inline-flex}.manifesto-inner h2{letter-spacing:-.055em;max-width:1000px;margin:28px 0 20px;font-size:clamp(42px,5.2vw,70px);line-height:1.18}.manifesto-inner>p{color:#ffffffe6;border-left:4px solid #ffffffd1;max-width:820px;margin:0;padding-left:20px;font-size:18px;font-weight:620;line-height:1.85}.manifesto-inner>div{border-top:1px solid #ffffff47;flex-wrap:wrap;align-items:center;gap:16px;margin-top:58px;padding-top:24px;display:flex}.manifesto-inner b{font-size:14px}.manifesto-inner i{color:#ffffffd1;font-style:normal}footer{color:var(--ink);background:#fff;border-top:1px solid #e3eaf3}.footer-inner{justify-content:space-between;align-items:center;gap:40px;min-height:130px;display:flex}.footer-inner>div{gap:5px;display:grid}.footer-inner strong{font-size:14px}.footer-inner span,.footer-inner p{color:#9aa4b2;font-size:14px}.footer-inner p{text-align:right;margin:0}@media (width<=1040px){.site-header{grid-template-columns:1fr}.site-header nav{display:none}.hero-inner{grid-template-columns:1fr;gap:52px}.hero-copy{max-width:760px}.hero-showcase{width:min(680px,100%)}.signal-one{right:-20px}.signal-two{left:-20px}.value-grid,.capability-grid{grid-template-columns:1fr 1fr}.value-card:last-child,.capability-card:last-child{grid-column:1/-1}.agent-panel,.analyst-model,.coverage-hero{grid-template-columns:1fr;gap:50px}.journey-track{grid-template-columns:repeat(3,1fr)}.journey-track article:nth-child(3n){border-right:none}.journey-track article:nth-child(-n+3){border-bottom:1px solid #e5ecf5}.role-grid,.roadmap-grid,.method-grid{grid-template-columns:1fr 1fr}.method-card:last-child{grid-column:1/-1}.section-title.split{grid-template-columns:1fr;align-items:start;gap:26px}.positioning-statement{max-width:720px}.problem-grid{grid-template-columns:1fr 1fr}.problem-card:last-child{grid-column:1/-1}.industry-opening,.expert-panel{grid-template-columns:1fr;gap:44px}.industry-chain{grid-template-columns:repeat(3,1fr)}.industry-chain article:nth-child(3n){border-right:none}.industry-chain article:nth-child(-n+3){border-bottom:1px solid var(--dark-line)}.impact-grid{grid-template-columns:1fr 1fr}.category-grid{grid-template-columns:repeat(3,1fr)}}@media (width<=720px){:root{--header-height:68px;--anchor-gap:12px}.section-shell{width:min(100% - 28px,1180px)}.site-header{height:68px;padding:0 14px}.brand-copy small{display:none}.hero{min-height:auto;padding:126px 0 76px}.hero-inner{gap:38px;width:min(100% - 28px,1180px)}.hero h1{max-width:620px;font-size:48px;line-height:1.12}.hero-lead{font-size:14px}.hero-actions{flex-wrap:wrap}.hero-showcase{border-radius:22px;min-height:auto;padding:22px}.showcase-main{padding:42px 0 28px}.showcase-main h2{font-size:28px}.signal-chip{display:none}.hero-stats{grid-template-columns:1fr}.hero-stats div{border-bottom:1px solid #e8e4df;border-right:none;padding:18px 20px}.industry-section,.problem-section,.breakthrough-section,.value-section,.product-section,.scenario-section,.coverage-section,.manifesto-section{padding-top:88px;padding-bottom:88px}.roadmap-section{padding-bottom:88px}.breakthrough-grid,.value-grid,.capability-grid,.method-grid,.role-grid,.roadmap-grid{grid-template-columns:1fr}.breakthrough-card{min-height:390px}.breakthrough-summary{text-align:center;flex-wrap:wrap;gap:14px}.value-card:last-child,.capability-card:last-child,.method-card:last-child{grid-column:auto}.value-card{min-height:540px}.agent-panel{margin-top:50px;padding:30px 18px}.agent-panel-copy h3{font-size:30px}.conversation-card{padding:13px}.journey-track{grid-template-columns:1fr 1fr}.journey-track article,.journey-track article:nth-child(3n){border-bottom:1px solid #e5ecf5;border-right:1px solid #e5ecf5}.journey-track article:nth-child(2n){border-right:none}.journey-track article:nth-last-child(-n+2){border-bottom:none}.analyst-model{padding:34px 22px}.analyst-model h3{font-size:27px}.analyst-model li{grid-template-columns:40px 1fr}.analyst-model li small{grid-column:2}.coverage-hero{padding:38px 22px}.coverage-copy h2{font-size:34px}.coverage-copy p,.manifesto-inner>p{font-size:16px}.coverage-numbers strong{font-size:42px}.problem-grid{grid-template-columns:1fr}.problem-card:last-child{grid-column:auto}.problem-conclusion,.journey-heading{flex-direction:column;align-items:flex-start}.industry-opening{margin-top:38px}.industry-opening h2{font-size:38px}.industry-chain{grid-template-columns:1fr 1fr;margin-top:50px}.industry-chain article,.industry-chain article:nth-child(3n){border-right:1px solid var(--dark-line);border-bottom:1px solid var(--dark-line)}.industry-chain article:nth-child(2n){border-right:none}.industry-chain article:nth-last-child(-n+2){border-bottom:none}.industry-meaning,.scenario-grid,.mode-shift{grid-template-columns:1fr}.mode-arrow{flex-direction:row;min-height:76px}.scenario-thread{flex-wrap:wrap;justify-content:flex-start}.impact-grid,.category-grid{grid-template-columns:1fr 1fr}.expert-panel{padding:34px 22px}.expert-ladder article>div{grid-template-columns:1fr;gap:5px}.footer-inner{flex-direction:column;justify-content:center;align-items:flex-start;padding:28px 0}.footer-inner p{text-align:left}}@media (width<=440px){.hero h1{letter-spacing:-.055em;font-size:40px;line-height:1.14}.hero-actions a{width:100%}.hero-keywords{flex-wrap:wrap}.showcase-metrics{grid-template-columns:1fr}.section-title h2{font-size:34px}.positioning-statement{padding:22px 22px 24px 24px}.positioning-statement p{font-size:16px;line-height:1.8}.journey-track{grid-template-columns:1fr}.journey-track article,.journey-track article:nth-child(2n),.journey-track article:nth-last-child(-n+2){border-bottom:1px solid #e5ecf5;border-right:none}.journey-track article:last-child{border-bottom:none}.coverage-numbers{grid-template-columns:1fr}.coverage-numbers div{border-bottom:1px solid #3c4b6924;border-right:none;padding:15px 0}.coverage-numbers div:last-child{border-bottom:none}.industry-chain{grid-template-columns:1fr}.industry-chain article,.industry-chain article:nth-child(2n),.industry-chain article:nth-last-child(-n+2){border-right:none;border-bottom:1px solid var(--dark-line)}.industry-chain article:last-child{border-bottom:none}.impact-grid,.category-grid{grid-template-columns:1fr}.manifesto-inner h2{font-size:40px}}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-
-</style>
-<style>
-footer .footer-inner > p { display: none; }
-.script-link { color: #7e8998; font-size: 13px; line-height: 1.7; text-decoration: none; border-bottom: 1px solid #d9dfe7; transition: color .2s, border-color .2s; }
-.script-link:hover { color: var(--orange); border-color: #ffc79f; }
-.script-link:focus-visible { outline: 2px solid var(--orange); outline-offset: 5px; border-radius: 2px; }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>大宗智能体｜产业判断与商机撮合</title>
+  <meta name="description" content="以产业问答、行业数据、价格预测、企业洞察为核心，贯通商机采集、发布、撮合与集团产业生态。">
+  <meta property="og:title" content="大宗智能体｜产业判断与商机撮合">
+  <meta property="og:description" content="让产业信息进入判断，让供需信号进入交易。">
+  <style>
+    :root {
+      --ink: #17191d;
+      --copy: #4d5663;
+      --muted: #87909d;
+      --line: #e5e9ee;
+      --paper: #f5f7f9;
+      --white: #fff;
+      --orange: #ff6a00;
+      --orange-dark: #d95400;
+      --orange-soft: #fff1e7;
+      --blue: #3777da;
+      --blue-soft: #edf4ff;
+      --green: #19a774;
+      --green-soft: #eaf8f3;
+      --violet: #725bd8;
+      --violet-soft: #f1efff;
+      --header-height: 74px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 18px); background: var(--paper); }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+      line-break: strict;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    h1, h2, h3, p { margin-top: 0; }
+    ::selection { color: var(--ink); background: #ffd5b5; }
+    .shell { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 50;
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 0 max(24px, calc((100vw - 1280px) / 2));
+      background: rgba(255,255,255,.94);
+      border-bottom: 1px solid rgba(226,230,235,.95);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 8px 28px rgba(30,39,50,.045);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; flex: none; }
+    .brand-mark { display: grid; place-items: center; width: 34px; height: 34px; color: #fff; background: var(--orange); border-radius: 11px; font-size: 14px; font-weight: 800; }
+    .brand-copy { display: grid; gap: 1px; }
+    .brand-copy strong { letter-spacing: .04em; font-size: 14px; }
+    .brand-copy span { color: #7a828d; font-size: 12px; }
+    .site-header nav { display: flex; align-items: center; justify-content: flex-end; gap: 26px; color: #4c5664; font-size: 13px; }
+    .site-header nav a { transition: color .2s; }
+    .site-header nav a:hover { color: var(--orange); }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 150px 0 74px;
+      background: linear-gradient(135deg, #fff 0%, #fff 55%, #fff3e9 100%);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero::before { content: ""; position: absolute; width: 640px; height: 640px; right: -230px; top: 36px; border-radius: 50%; background: radial-gradient(circle, rgba(255,106,0,.17), rgba(255,106,0,0) 70%); }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.02fr .98fr; gap: 70px; align-items: center; }
+    .kicker { display: inline-flex; align-items: center; gap: 9px; padding: 9px 13px; color: var(--orange-dark); background: var(--orange-soft); border: 1px solid #ffd0ae; border-radius: 999px; font-size: 13px; font-weight: 700; }
+    .kicker::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 4px rgba(255,106,0,.12); }
+    .hero h1 { max-width: 700px; margin: 28px 0 24px; font-size: clamp(48px, 5.4vw, 74px); line-height: 1.08; letter-spacing: -.06em; }
+    .hero h1 span { display: block; color: var(--orange); }
+    .hero-lead { max-width: 650px; margin-bottom: 0; color: #515a67; font-size: 17px; line-height: 1.9; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .hero-actions a { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 18px; border-radius: 11px; font-size: 13px; font-weight: 700; transition: transform .2s, box-shadow .2s; }
+    .hero-actions a:hover { transform: translateY(-2px); }
+    .primary { color: #fff; background: var(--orange); box-shadow: 0 14px 30px rgba(255,106,0,.24); }
+    .secondary { background: #fff; border: 1px solid #dfe3e8; }
+    .hero-panel { position: relative; min-height: 560px; padding: 28px; color: #fff; background: #191b20; border: 1px solid #3a3d45; border-radius: 28px; box-shadow: 0 34px 80px rgba(32,30,28,.24); overflow: hidden; }
+    .hero-panel::before { content: ""; position: absolute; inset: -120px -120px auto auto; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(255,106,0,.32), rgba(255,106,0,0) 72%); }
+    .panel-head { position: relative; display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,.14); }
+    .panel-head span { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,.76); font-size: 13px; }
+    .panel-head span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #46d59a; box-shadow: 0 0 0 5px rgba(70,213,154,.12); }
+    .panel-head b { color: #ff9b57; background: rgba(255,106,0,.16); border-radius: 999px; padding: 6px 9px; font-size: 12px; }
+    .question { position: relative; margin-top: 34px; padding: 18px 20px; color: rgba(255,255,255,.9); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); border-radius: 15px; font-size: 15px; line-height: 1.65; }
+    .thinking { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin: 20px 0; }
+    .thinking span { padding: 10px 7px; text-align: center; color: rgba(255,255,255,.62); background: rgba(255,255,255,.055); border-radius: 8px; font-size: 11px; }
+    .answer { padding: 20px; color: #26303d; background: #fff; border-radius: 16px; }
+    .answer small { color: var(--orange); font-size: 12px; font-weight: 700; }
+    .answer strong { display: block; margin: 10px 0; font-size: 17px; line-height: 1.6; }
+    .answer p { margin: 0; color: #66707e; font-size: 12px; line-height: 1.75; }
+    .panel-opportunity { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 16px; margin-top: 14px; padding: 16px 18px; background: linear-gradient(90deg, rgba(255,106,0,.2), rgba(255,255,255,.06)); border: 1px solid rgba(255,158,90,.28); border-radius: 14px; }
+    .panel-opportunity span { display: block; color: #ffad73; font-size: 11px; }
+    .panel-opportunity strong { display: block; margin-top: 5px; color: rgba(255,255,255,.9); font-size: 13px; }
+    .panel-opportunity b { display: grid; place-items: center; width: 34px; height: 34px; color: #fff; background: var(--orange); border-radius: 10px; }
+    .hero-points { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 22px; background: #fff; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; box-shadow: 0 14px 42px rgba(42,49,60,.055); }
+    .hero-points div { padding: 22px 24px; border-right: 1px solid var(--line); }
+    .hero-points div:last-child { border-right: 0; }
+    .hero-points b { display: block; font-size: 15px; }
+    .hero-points span { display: block; margin-top: 7px; color: var(--muted); font-size: 12px; }
+    section.block { padding: 110px 0; }
+    .section-head { display: grid; grid-template-columns: 1.05fr .75fr; gap: 72px; align-items: end; margin-bottom: 54px; }
+    .section-head.single { display: block; max-width: 850px; }
+    .section-label { display: inline-flex; align-items: center; gap: 8px; color: var(--orange-dark); font-size: 13px; font-weight: 750; letter-spacing: .06em; }
+    .section-label::before { content: ""; width: 22px; height: 2px; background: var(--orange); }
+    .section-head h2 { margin: 15px 0 0; font-size: clamp(36px, 4vw, 54px); line-height: 1.2; letter-spacing: -.05em; }
+    .section-head p { margin: 0; padding-left: 20px; color: var(--copy); border-left: 3px solid var(--orange); font-size: 16px; line-height: 1.85; }
+    .advantages { background: #fff; }
+    .advantage-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .advantage-card { position: relative; min-height: 330px; padding: 28px; background: #f8f9fa; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; transition: transform .25s, box-shadow .25s, border-color .25s; }
+    .advantage-card:hover { transform: translateY(-5px); border-color: #ffd0ae; box-shadow: 0 22px 50px rgba(44,54,67,.09); }
+    .advantage-card::after { content: ""; position: absolute; right: -65px; bottom: -75px; width: 170px; height: 170px; border-radius: 50%; background: radial-gradient(circle, rgba(255,106,0,.14), rgba(255,106,0,0) 70%); }
+    .advantage-card:nth-child(2)::after { background: radial-gradient(circle, rgba(55,119,218,.15), rgba(55,119,218,0) 70%); }
+    .advantage-card:nth-child(3)::after { background: radial-gradient(circle, rgba(25,167,116,.16), rgba(25,167,116,0) 70%); }
+    .advantage-card:nth-child(4)::after { background: radial-gradient(circle, rgba(114,91,216,.15), rgba(114,91,216,0) 70%); }
+    .advantage-icon { display: grid; place-items: center; width: 42px; height: 42px; color: var(--orange-dark); background: var(--orange-soft); border-radius: 12px; font-size: 16px; font-weight: 800; }
+    .advantage-card:nth-child(2) .advantage-icon { color: var(--blue); background: var(--blue-soft); }
+    .advantage-card:nth-child(3) .advantage-icon { color: var(--green); background: var(--green-soft); }
+    .advantage-card:nth-child(4) .advantage-icon { color: var(--violet); background: var(--violet-soft); }
+    .advantage-card h3 { margin: 34px 0 13px; font-size: 23px; }
+    .advantage-card p { min-height: 82px; margin-bottom: 22px; color: var(--copy); font-size: 13px; line-height: 1.8; }
+    .advantage-card ul { position: relative; z-index: 1; margin: 0; padding: 0; list-style: none; }
+    .advantage-card li { padding: 6px 0; color: #6d7580; font-size: 12px; }
+    .advantage-card li::before { content: "·"; margin-right: 8px; color: var(--orange); }
+    .engines { color: #fff; background: #17191d; }
+    .engines .section-label { color: #ff9a55; }
+    .engines .section-head p { color: rgba(255,255,255,.68); border-left-color: #ff8c3d; }
+    .engine-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .engine-card { min-height: 530px; padding: 34px; background: #22252b; border: 1px solid rgba(255,255,255,.13); border-radius: 24px; }
+    .engine-card.data { background: linear-gradient(145deg, #29221e, #1f2024); border-color: rgba(255,143,66,.38); }
+    .engine-top { display: flex; align-items: center; justify-content: space-between; }
+    .engine-number { color: #ff9850; font-size: 12px; font-weight: 700; letter-spacing: .12em; }
+    .engine-tag { padding: 7px 10px; color: rgba(255,255,255,.68); background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); border-radius: 999px; font-size: 11px; }
+    .engine-card h3 { margin: 44px 0 14px; font-size: 31px; letter-spacing: -.03em; }
+    .engine-intro { min-height: 76px; color: rgba(255,255,255,.66); font-size: 14px; line-height: 1.85; }
+    .engine-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 28px; }
+    .engine-features div { min-height: 94px; padding: 16px; background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.09); border-radius: 12px; }
+    .engine-features b { display: block; font-size: 13px; }
+    .engine-features span { display: block; margin-top: 7px; color: rgba(255,255,255,.47); font-size: 11px; line-height: 1.6; }
+    .agent-flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 26px; }
+    .agent-flow div { position: relative; padding: 15px 8px; text-align: center; color: rgba(255,255,255,.7); background: rgba(255,255,255,.055); border-radius: 9px; font-size: 11px; }
+    .agent-flow div:not(:last-child)::after { content: "›"; position: absolute; right: -6px; top: 50%; z-index: 2; color: #ff9850; transform: translateY(-50%); }
+    .opportunity-demo { padding: 105px 0; background: #fff; }
+    .demo-shell { display: grid; grid-template-columns: 330px 1fr; gap: 18px; align-items: stretch; }
+    .demo-copy { padding: 34px; color: #fff; background: var(--orange); border-radius: 22px; }
+    .demo-copy span { color: rgba(255,255,255,.72); font-size: 12px; }
+    .demo-copy h3 { margin: 32px 0 16px; font-size: 30px; line-height: 1.35; letter-spacing: -.03em; }
+    .demo-copy p { color: rgba(255,255,255,.82); font-size: 13px; line-height: 1.85; }
+    .demo-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 34px; }
+    .demo-tab { cursor: pointer; padding: 9px 11px; color: rgba(255,255,255,.72); background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: 8px; font-size: 12px; }
+    .demo-tab.active { color: var(--orange-dark); background: #fff; border-color: #fff; font-weight: 700; }
+    .demo-stage { position: relative; min-height: 500px; padding: 30px; background: #f7f8fa; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; }
+    .demo-panel { display: none; height: 100%; }
+    .demo-panel.active { display: block; animation: fade-in .25s ease; }
+    @keyframes fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .demo-panel h4 { margin: 0; font-size: 20px; }
+    .demo-panel > p { max-width: 650px; margin: 10px 0 25px; color: var(--copy); font-size: 13px; line-height: 1.8; }
+    .capture-box { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .source-list, .structured-card, .publish-preview, .match-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; }
+    .source-list, .structured-card { padding: 20px; }
+    .source-list strong, .structured-card strong { font-size: 13px; }
+    .source-list div { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding: 12px; color: #5f6874; background: #f6f7f9; border-radius: 9px; font-size: 12px; }
+    .source-list i { color: var(--green); font-style: normal; }
+    .field-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px; margin-top: 14px; }
+    .field-grid span { padding: 11px; color: #58616d; background: var(--blue-soft); border-radius: 8px; font-size: 11px; }
+    .publish-preview { padding: 24px; }
+    .publish-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+    .publish-head span { color: var(--green); background: var(--green-soft); border-radius: 999px; padding: 7px 10px; font-size: 11px; }
+    .publish-preview h5 { margin: 24px 0 12px; font-size: 19px; }
+    .publish-preview p { margin-bottom: 18px; color: var(--copy); line-height: 1.75; }
+    .publish-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+    .publish-meta span { padding: 7px 9px; color: #66707c; background: #f3f5f7; border-radius: 7px; font-size: 11px; }
+    .match-list { display: grid; gap: 10px; }
+    .match-card { display: grid; grid-template-columns: auto 1fr auto; gap: 15px; align-items: center; padding: 17px; }
+    .match-score { display: grid; place-items: center; width: 52px; height: 52px; color: var(--orange-dark); background: var(--orange-soft); border-radius: 14px; font-size: 15px; font-weight: 800; }
+    .match-card strong { display: block; font-size: 13px; }
+    .match-card p { margin: 7px 0 0; color: var(--muted); font-size: 11px; }
+    .match-card > span { color: var(--blue); font-size: 11px; }
+    .data-foundation { background: linear-gradient(180deg, #f5f7f9, #fff); }
+    .foundation-flow { display: grid; grid-template-columns: 1fr 90px 1.15fr 90px 1fr; gap: 10px; align-items: stretch; }
+    .foundation-column { padding: 26px; background: #fff; border: 1px solid var(--line); border-radius: 20px; }
+    .foundation-column.center { color: #fff; background: #1d2025; border-color: #1d2025; }
+    .foundation-column > span { color: var(--muted); font-size: 11px; }
+    .foundation-column.center > span { color: rgba(255,255,255,.5); }
+    .foundation-column h3 { margin: 18px 0 22px; font-size: 20px; }
+    .foundation-column ul { margin: 0; padding: 0; list-style: none; }
+    .foundation-column li { margin-top: 9px; padding: 11px 12px; color: #65707d; background: #f6f7f9; border-radius: 9px; font-size: 12px; }
+    .foundation-column.center li { color: rgba(255,255,255,.75); background: rgba(255,255,255,.07); }
+    .flow-arrow { display: grid; place-items: center; color: var(--orange); font-size: 28px; }
+    .foundation-note { margin-top: 18px; padding: 18px 22px; color: #58616d; background: var(--orange-soft); border: 1px solid #ffd5b7; border-radius: 14px; font-size: 13px; line-height: 1.75; }
+    .extensions { color: #fff; background: #1b1d22; }
+    .extensions .section-label { color: #ff9a55; }
+    .extensions .section-head p { color: rgba(255,255,255,.65); border-left-color: var(--orange); }
+    .extension-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .extension-card { min-height: 360px; padding: 27px; background: #24272d; border: 1px solid rgba(255,255,255,.11); border-radius: 19px; }
+    .extension-card b { display: grid; place-items: center; width: 40px; height: 40px; color: #ff9b57; background: rgba(255,106,0,.12); border-radius: 11px; font-size: 15px; }
+    .extension-card h3 { margin: 31px 0 13px; font-size: 21px; }
+    .extension-card p { min-height: 94px; color: rgba(255,255,255,.6); font-size: 13px; line-height: 1.8; }
+    .extension-card ul { margin: 22px 0 0; padding: 0; list-style: none; }
+    .extension-card li { padding: 6px 0; color: rgba(255,255,255,.72); font-size: 11px; }
+    .extension-card li::before { content: "·"; color: #ff9b57; margin-right: 8px; }
+    .ecosystem { background: #fff; }
+    .ecosystem-map { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .ecosystem-core { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; padding: 30px 34px; color: #fff; background: linear-gradient(120deg, #ff6a00, #f04c00); border-radius: 22px; box-shadow: 0 22px 52px rgba(255,106,0,.2); }
+    .ecosystem-core span { color: rgba(255,255,255,.7); font-size: 12px; }
+    .ecosystem-core h3 { margin: 12px 0 0; font-size: 28px; }
+    .ecosystem-core p { margin: 0; color: rgba(255,255,255,.84); font-size: 14px; line-height: 1.8; }
+    .ecosystem-card { min-height: 190px; padding: 24px; background: #f7f8fa; border: 1px solid var(--line); border-radius: 17px; transition: transform .2s, border-color .2s; }
+    .ecosystem-card:hover { transform: translateY(-3px); border-color: #ffc89f; }
+    .ecosystem-card span { color: var(--orange); font-size: 11px; font-weight: 700; }
+    .ecosystem-card h3 { margin: 22px 0 10px; font-size: 18px; }
+    .ecosystem-card p { margin: 0; color: var(--copy); font-size: 12px; line-height: 1.75; }
+    .fusion-line { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 20px; padding: 20px; background: var(--orange-soft); border: 1px solid #ffd4b5; border-radius: 15px; color: #6c5a4e; font-size: 12px; }
+    .fusion-line b { color: var(--orange-dark); }
+    .closing { padding: 100px 0; color: #fff; background: #17191d; text-align: center; }
+    .closing span { color: #ff9850; font-size: 12px; font-weight: 700; letter-spacing: .1em; }
+    .closing h2 { max-width: 900px; margin: 24px auto 18px; font-size: clamp(36px, 4.8vw, 60px); line-height: 1.2; letter-spacing: -.05em; }
+    .closing p { max-width: 760px; margin: 0 auto; color: rgba(255,255,255,.64); font-size: 15px; line-height: 1.85; }
+    .closing-flow { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+    .closing-flow b { padding: 10px 13px; color: rgba(255,255,255,.76); background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 9px; font-size: 11px; }
+    footer { background: #fff; border-top: 1px solid var(--line); }
+    .footer-inner { min-height: 116px; display: flex; justify-content: space-between; align-items: center; gap: 30px; }
+    .footer-brand { display: grid; gap: 5px; }
+    .footer-brand strong { font-size: 13px; }
+    .footer-brand span { color: var(--muted); font-size: 12px; }
+    .footer-links { display: flex; gap: 18px; color: #7e8793; font-size: 12px; }
+    .footer-links a { border-bottom: 1px solid #d9dfe7; transition: color .2s, border-color .2s; }
+    .footer-links a:hover { color: var(--orange); border-color: #ffc79f; }
+    @media (max-width: 980px) {
+      .site-header nav { gap: 16px; }
+      .hero-grid, .section-head { grid-template-columns: 1fr; gap: 34px; }
+      .hero-panel { min-height: auto; }
+      .advantage-grid, .extension-grid { grid-template-columns: repeat(2, 1fr); }
+      .demo-shell { grid-template-columns: 1fr; }
+      .foundation-flow { grid-template-columns: 1fr; }
+      .flow-arrow { transform: rotate(90deg); min-height: 44px; }
+    }
+    @media (max-width: 760px) {
+      :root { --header-height: 64px; }
+      .shell { width: min(100% - 28px, 1180px); }
+      .site-header { padding: 0 16px; }
+      .site-header nav { display: none; }
+      .hero { padding: 112px 0 52px; }
+      .hero h1 { font-size: 46px; }
+      .hero-lead { font-size: 15px; }
+      .hero-panel { padding: 20px; border-radius: 20px; }
+      .thinking { grid-template-columns: repeat(2, 1fr); }
+      .hero-points { grid-template-columns: repeat(2, 1fr); }
+      .hero-points div:nth-child(2) { border-right: 0; }
+      .hero-points div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      section.block, .opportunity-demo { padding: 78px 0; }
+      .section-head { margin-bottom: 38px; }
+      .section-head h2 { font-size: 39px; }
+      .advantage-grid, .engine-grid, .extension-grid, .ecosystem-map, .ecosystem-core { grid-template-columns: 1fr; }
+      .advantage-card { min-height: auto; }
+      .engine-card { min-height: auto; padding: 26px; }
+      .engine-features { grid-template-columns: 1fr; }
+      .agent-flow { grid-template-columns: 1fr; }
+      .agent-flow div:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -11px; transform: translateX(-50%); }
+      .capture-box { grid-template-columns: 1fr; }
+      .match-card { grid-template-columns: auto 1fr; }
+      .match-card > span { grid-column: 2; }
+      .ecosystem-core { grid-column: auto; }
+      .footer-inner { min-height: 140px; flex-direction: column; align-items: flex-start; justify-content: center; }
+    }
+  </style>
 </head>
 <body>
-<main><header class="site-header"><a class="brand" href="#top" aria-label="返回首页"><span class="brand-symbol">万</span><span class="brand-copy"><strong>万联易达</strong><small>大宗智能体</small></span></a><nav aria-label="页面导航"><a href="#industry">产业底座</a><a href="#breakthrough">智能突破</a><a href="#product">产品闭环</a><a href="#scenarios">产业场景</a><a href="#value">三重价值</a><a href="#roadmap">未来</a></nav></header><section class="hero" id="top"><div class="hero-inner"><div class="hero-copy"><div class="hero-badge"><i></i> 大宗商品产业数字化新基建</div><h1><span class="hero-line">让产业看见变化</span><span class="hero-line">算得清影响</span><span class="hero-line hero-highlight">抓得住机会</span></h1><p class="hero-lead">以数据智能体与撮合智能体为双引擎，贯通资讯研判、商机撮合与交易推进， 把复杂市场信号转化为可信判断和可执行的经营动作。</p><div class="hero-actions"><a class="primary-action" href="#industry">进入产业叙事 <i>↗</i></a><a class="secondary-action" href="#product">查看产品闭环 <i>→</i></a></div><div class="hero-keywords"><span>懂产业</span><span>会推理</span><span>能行动</span></div></div><div class="hero-showcase" aria-label="大宗智能体产业判断示意"><div class="showcase-status"><span><i></i> 产业信号已更新</span><b>今日判断</b></div><div class="showcase-main"><span>华东热卷 · 采购策略</span><h2>库存持续上升，采购节奏宜转向分批执行。</h2><p>库存变化 → 区域价差 → 需求节奏 → 采购约束</p></div><div class="showcase-answer"><span>智能体建议</span><strong>先缩短采购周期，再观察库存拐点。</strong></div><div class="showcase-metrics"><div><strong>104</strong><span>品类规划</span></div><div><strong>23</strong><span>产业主体</span></div><div><strong>6</strong><span>业务能力</span></div></div><div class="signal-chip signal-one">供需变化 <b>↑</b></div><div class="signal-chip signal-two">价格风险 <b>可控</b></div></div><div class="hero-stats" aria-label="三项核心指标"><div><strong>2 秒 / 10 秒</strong><span>行情快答 · 复杂逻辑理清</span></div><div><strong>7 × 24</strong><span>持续感知 · 全天候响应</span></div><div><strong>双引擎</strong><span>数据研判 · 商机撮合</span></div></div></div></section><section class="industry-section" id="industry"><div class="section-shell"><div class="chapter-kicker"><span>序章</span><b>一切经营，始于对产业变化的理解</b></div><div class="industry-opening"><div><h2>一块矿石、一吨钢材、一船粮食，连接的是整个实体经济。</h2></div><p class="chapter-subtitle">大宗商品从资源地出发，穿过生产、流通、消费、金融与治理体系。价格的一次波动，会沿产业链传导为成本、库存、利润与风险。真正重要的，从来不只是“发生了什么”，而是“将影响谁、如何影响、下一步怎么办”。</p></div><div class="industry-chain" aria-label="大宗商品产业链"><article><b>01</b><h3>资源端</h3><p>矿山 · 农场 · 能源基地</p></article><article><b>02</b><h3>生产端</h3><p>冶炼 · 制造 · 加工</p></article><article><b>03</b><h3>流通端</h3><p>贸易 · 仓储 · 物流</p></article><article><b>04</b><h3>需求端</h3><p>采购 · 消费 · 建设</p></article><article><b>05</b><h3>金融端</h3><p>银行 · 机构 · 资方</p></article><article><b>06</b><h3>治理端</h3><p>政府 · 交易所 · 协会</p></article></div><div class="industry-meaning"><article><span>影响成本</span><strong>原料与能源价格，决定制造业经营底线。</strong></article><article><span>影响供应</span><strong>库存与物流变化，关系产业链稳定运行。</strong></article><article><span>影响决策</span><strong>政策与需求拐点，重塑采购和销售节奏。</strong></article></div></div></section><section class="problem-section" id="problem"><div class="section-shell"><div class="section-title split"><div><span>第一幕 · 产业困局</span><h2>大宗产业缺的不是更多信息，而是更短的决策链路。</h2></div><p class="chapter-subtitle">信息不对称、业务链路割裂、专业服务成本高企，构成了产业效率长期难以突破的三个关键瓶颈。</p></div><div class="problem-grid"><article class="problem-card"><b>01</b><h3>信息有时差</h3><p>行情、政策与产业事件依赖人工采集和逐层传递，市场已经变化，判断仍停留在日报与研报周期。</p><strong>从按天更新，到实时感知</strong></article><article class="problem-card"><b>02</b><h3>业务有断点</h3><p>资讯、研究、供需、客户与交易分散在不同系统里，看懂行情之后，仍要重新寻找资源和推进商机。</p><strong>从一份报告，到一条行动链</strong></article><article class="problem-card"><b>03</b><h3>专业有门槛</h3><p>高质量产业判断依赖资深经验与大量人力，专业能力集中在少数机构，难以低成本、规模化地服务更多主体。</p><strong>从少数人经验，到可复用能力</strong></article></div><div class="mode-shift" aria-label="传统模式与智能体模式对比"><div class="mode-column legacy"><span>传统服务模式</span><h3>靠人找信息，靠经验做判断</h3><ul><li>人工采价、按天更新</li><li>资讯与交易彼此割裂</li><li>专业能力依赖人力堆积</li><li>中小企业难以低成本获得服务</li></ul></div><div class="mode-arrow"><b>AI</b><span>重构</span></div><div class="mode-column agent-mode"><span>大宗智能体模式</span><h3>让系统感知变化，让判断直通行动</h3><ul><li>7×24 小时实时响应</li><li>资讯研判直接连接商机</li><li>产业知识可沉淀、可复制</li><li>专业分析能力规模化普惠</li></ul></div></div><div class="problem-conclusion"><span>核心命题</span><strong>用 AI 同时重构信息效率与交易效率。</strong></div></div></section><section class="breakthrough-section section-shell" id="breakthrough"><div class="section-title centered"><span>第二幕 · AI 破局</span><h2>不只是会回答，更要懂产业、会推理、能行动。</h2><p class="chapter-subtitle">通用模型解决语言理解，大宗智能体进一步解决产业知识、实时信号、可信决策与业务闭环，让人工智能真正进入经营现场。</p></div><div class="breakthrough-grid"><article class="breakthrough-card"><div class="breakthrough-top"><b>01</b><span>实时响应</span></div><h3>从人工资讯周期，走向 7×24 小时秒级响应</h3><p>简单行情快速作答，复杂问题沿分析链路展开，让市场变化不再等待日报、研报和人工排期。</p><em>2 秒快答 · 10 秒理清</em></article><article class="breakthrough-card"><div class="breakthrough-top"><b>02</b><span>产业认知</span></div><h3>从关键词检索，走向产业因果推理</h3><p>不是简单复述资讯，而是把供需、库存、成本、利润、物流与政策放回产业链和周期中理解。</p><em>空间 × 时间 × 要素</em></article><article class="breakthrough-card"><div class="breakthrough-top"><b>03</b><span>可信决策</span></div><h3>从标准答案生成，走向经营约束下的建议</h3><p>先给结论，再呈现依据与推理链；信息不足时主动追问库存、用量、价格区间等条件，降低建议失真。</p><em>结论 × 依据 × 边界</em></article><article class="breakthrough-card"><div class="breakthrough-top"><b>04</b><span>业务行动</span></div><h3>从看懂行情，走向商机与交易推进</h3><p>让一次市场发现继续转化为采购节奏、销售机会、资源匹配和商机跟踪，推动智能真正进入经营过程。</p><em>资讯研判 × 商机撮合 × 交易推进</em></article></div><div class="breakthrough-summary" aria-label="产业智能突破方向"><span>搜索工具</span><i>→</i><strong>产业推理伙伴</strong><i>→</i><strong>经营行动助手</strong></div></section><section class="product-section" id="product"><div class="section-shell"><div class="section-title split"><div><span>第三幕 · 双引擎登场</span><h2>从看懂行情，到发现商机，再到推进交易。</h2></div><aside class="positioning-statement" aria-label="大宗智能体核心定位"><span>核心定位</span><p><strong>数据智能体</strong>负责理解市场、形成判断；<strong>撮合智能体</strong>负责理解需求、连接资源。<em>统一底座让每一次交互继续向业务结果推进。</em></p></aside></div><div class="capability-grid"><article class="capability-card featured"><div class="capability-icon">数</div><span class="capability-tag">核心能力</span><h3>数据智能体</h3><p>把行情、政策、资讯与研报放进同一个入口，先给结论，再展开依据。</p><div class="capability-list"><span>智能行情问答</span><span>资讯与政策解读</span><span>研报与深度分析</span><span>价格趋势判断</span></div></article><article class="capability-card "><div class="capability-icon">撮</div><span class="capability-tag">业务贯通</span><h3>撮合智能体</h3><p>把自然语言中的采购与销售需求结构化，形成匹配建议与可跟踪商机。</p><div class="capability-list"><span>需求结构化</span><span>供需资源匹配</span><span>匹配理由解释</span><span>商机沉淀与跟踪</span></div></article><article class="capability-card "><div class="capability-icon">智</div><span class="capability-tag">统一底座</span><h3>智能交互底座</h3><p>用多轮对话承载业务，在互动中沉淀画像、观点、需求与内容资产。</p><div class="capability-list"><span>统一智能入口</span><span>上下文记忆</span><span>主动反问补全</span><span>内容再输出与分享</span></div></article></div><div class="journey-heading"><span>一条连续的业务链路</span><strong>信息不止被看见，更要被转化。</strong></div><div class="journey-track product-journey"><article><b>01</b><h3>发现市场</h3><p>行情 · 资讯 · 政策</p></article><article><b>02</b><h3>分析判断</h3><p>研报 · 风险 · 驱动</p></article><article><b>03</b><h3>制定策略</h3><p>趋势 · 时机 · 方案</p></article><article><b>04</b><h3>匹配商机</h3><p>需求 · 资源 · 理由</p></article><article><b>05</b><h3>推进交易</h3><p>询价 · 比选 · 跟进</p></article><article><b>06</b><h3>履约复盘</h3><p>状态 · 预警 · 评估</p></article></div><div class="agent-panel"><div class="agent-panel-copy"><span>可信回答，不止一个结论</span><h3>先理解产业逻辑，再给经营建议。</h3><p>智能体会沿着库存、区域价差、供需节奏和企业约束建立分析链路；信息不足时主动反问，避免给出脱离业务条件的答案。</p><div class="panel-chips"><i>快</i><i>准</i><i>可解释</i><i>会反问</i></div></div><div class="conversation-card" aria-label="大宗智能体交互示意"><div class="conversation-head"><span><i>智</i><b>大宗智能体</b></span><em>在线</em></div><div class="question">华东热卷近期库存上升，采购节奏要不要调整？</div><div class="reasoning"><span>分析链路</span><p>库存变化 → 区域价差 → 供需节奏 → 采购约束</p></div><div class="answer"><small>结论先行</small><strong>建议先缩短采购周期，再根据库存拐点分批执行。</strong><p>请补充月均用量、当前库存天数与可接受价格区间，以生成更贴近经营的方案。</p></div></div></div></div></section><section class="scenario-section" id="scenarios"><div class="section-shell"><div class="section-title split"><div><span>第四幕 · 进入经营现场</span><h2>同一个产业智能底座，服务不同角色的真实任务。</h2></div><p class="chapter-subtitle">智能体不是展示型能力。它需要理解每个角色的经营目标、约束条件和业务语言，把通用智能转化为具体的产业动作。</p></div><div class="scenario-grid"><article class="scenario-card"><div class="scenario-top"><b>0<!-- -->1</b><span>生产供应端</span></div><h3>稳生产、控成本、保利润</h3><p>当原料成本、产能政策与区域需求同时变化，智能体快速梳理影响链，辅助判断排产、库存与销售节奏。</p><div><span>产能与成本模型</span><span>库存与利润预警</span><span>区域需求洞察</span></div></article><article class="scenario-card"><div class="scenario-top"><b>0<!-- -->2</b><span>流通贸易端</span></div><h3>抓价差、管库存、快周转</h3><p>将行情、基差、仓单、物流和客户需求放在同一上下文中，识别可执行的采购窗口与销售机会。</p><div><span>基差与价差监测</span><span>供需商机撮合</span><span>客户需求跟踪</span></div></article><article class="scenario-card"><div class="scenario-top"><b>0<!-- -->3</b><span>采购需求端</span></div><h3>保供应、降成本、控风险</h3><p>结合用量、库存天数、可接受价格和交付约束，生成更贴近真实经营条件的分批采购建议。</p><div><span>采购节点判断</span><span>分批执行策略</span><span>供应风险预警</span></div></article><article class="scenario-card"><div class="scenario-top"><b>0<!-- -->4</b><span>金融与研究端</span></div><h3>看资产、识风险、提效率</h3><p>穿透企业、货物与交易背景，用产业数据支撑授信研究、资产判断、专题分析与风险识别。</p><div><span>企业与贸易背景</span><span>行业专题研究</span><span>风险要素提示</span></div></article></div><div class="scenario-thread"><span>从一个问题开始</span><i>→</i><strong>补全经营约束</strong><i>→</i><strong>建立产业推理链</strong><i>→</i><strong>给出可执行建议</strong><i>→</i><strong>持续跟踪结果</strong></div></div></section><section class="value-section section-shell" id="value"><div class="section-title centered"><span>第五幕 · 价值扩散</span><h2>客户经营改善，行业协同升级，最终服务实体经济。</h2><p class="chapter-subtitle">价值沿着一条清晰路径展开：先帮助客户更快决策，再推动行业知识与资源协同，进一步服务保供稳链与信息普惠。</p></div><div class="value-grid"><article class="value-card blue"><div class="card-top"><span>社会向善</span><b>01</b></div><p class="value-label">社会价值</p><h3>让产业信息成为更普惠的决策基础</h3><p class="value-description">降低专业信息的获取与理解门槛，帮助更多产业主体及时识别供需变化与经营风险，为保供稳链、资源高效配置和实体经济稳健运行提供智能支持。</p><ul><li>缓解产业信息不对称</li><li>帮助风险更早识别</li><li>服务保供稳链与实体经济</li></ul></article><article class="value-card violet"><div class="card-top"><span>行业共建</span><b>02</b></div><p class="value-label">行业价值</p><h3>把分散链路连成可计算的产业网络</h3><p class="value-description">连接行情、资讯、研报、供需与商机，推动数据口径、分析框架和业务协同逐步标准化，让行业知识可以沉淀、复用并持续进化。</p><ul><li>统一数据与知识入口</li><li>沉淀可复用分析框架</li><li>贯通信息、判断与商机</li></ul></article><article class="value-card cyan"><div class="card-top"><span>客户增益</span><b>03</b></div><p class="value-label">客户价值</p><h3>让每一次判断更快、更准、更接近行动</h3><p class="value-description">面向采购、销售、交易、研究与经营管理者，把高频检索、分析和匹配工作交给智能体，帮助企业降本、控险、提效并更快抓住机会。</p><ul><li>缩短研究与决策时间</li><li>提升采购销售协同效率</li><li>降低库存、价格与履约风险</li></ul></article></div><div class="impact-heading"><span>价值继续向产业之外扩散</span><h3>让智能能力服务更稳定、更普惠、更绿色的实体经济。</h3></div><div class="impact-grid"><article><b>保</b><h3>助力保供稳价</h3><p>更快识别供需、成本与政策变化，为实体产业稳生产、稳供应提供决策支持。</p></article><article><b>普</b><h3>缩小信息鸿沟</h3><p>让区域中小企业也能使用原本稀缺、昂贵的专业分析能力，提升产业机会公平。</p></article><article><b>融</b><h3>连接产业金融</h3><p>以真实产业信号与供需关系连接资金和资产两端，提升供应链金融服务效率。</p></article><article><b>绿</b><h3>服务绿色转型</h3><p>把能源、碳资产、环境权益与产业经营放进同一数据视野，辅助绿色决策。</p></article></div></section><section class="coverage-section section-shell"><div class="coverage-hero"><div class="coverage-copy"><span>第六幕 · 规模进化</span><h2>一套底座，服务更广泛的产业主体。</h2><p>以六大产业板块和 104 个品类规划为覆盖蓝图，逐步贯通数据、知识与产业资源。</p></div><div class="coverage-numbers"><div><strong>104</strong><span>品类规划</span></div><div><strong>6</strong><span>产业板块</span></div><div><strong>23</strong><span>类产业主体</span></div></div></div><div class="category-grid"><article><strong>19</strong><span>有色金属及贵金属</span></article><article><strong>10</strong><span>黑色金属及铁合金</span></article><article><strong>28</strong><span>农产品</span></article><article><strong>27</strong><span>化工品</span></article><article><strong>8</strong><span>能源类</span></article><article><strong>12</strong><span>其他特色品种</span></article></div><p class="coverage-note">“品类规划”不等同于所有品类均已完成全量数据与交易资源接入；具体能力以实际测试与发布版本为准。</p></section><section class="roadmap-section section-shell" id="roadmap"><div class="section-title split"><div><span>第七幕 · 能力进化</span><h2>从问答工具，到分析伙伴，再到产业智库。</h2></div><p class="chapter-subtitle">每一阶段解决一个关键问题：先验证可信问答，再提升分析效率，随后贯通商机与交易，最终沉淀企业综合解决方案能力。</p></div><div class="roadmap-grid"><article class="current"><div><b>07.31</b><span>内测版本</span></div><em>01<!-- --> · <!-- -->能用</em><h3>智能问答工具</h3><p>验证统一入口与核心交互</p></article><article class=""><div><b>08.31</b><span>公测计划</span></div><em>02<!-- --> · <!-- -->好用</em><h3>分析师工作台</h3><p>扩展资讯中心与商机中心</p></article><article class=""><div><b>09.15</b><span>商业化计划</span></div><em>03<!-- --> · <!-- -->价值闭环</em><h3>个性化行业产品</h3><p>验证内容与撮合权益</p></article><article class=""><div><b>持续</b><span>长期方向</span></div><em>04<!-- --> · <!-- -->专业进化</em><h3>企业综合方案行业专家</h3><p>融合数据、专家经验与产业资源</p></article></div><div class="expert-panel"><div class="expert-copy"><span>专业能力进化</span><h3>不仅迭代产品版本，也持续提升“产业分析师”的能力等级。</h3><p>当前重点是把数据执行与逻辑构建做深、做稳，并逐步向策略、框架与企业综合方案能力演进。</p></div><div class="expert-ladder"><article class="active"><b>L1</b><div><strong>数据执行者</strong><span>查询数据、生成标准输出</span></div></article><article class="active"><b>L2</b><div><strong>逻辑构建者</strong><span>理解供需与产业关系</span></div></article><article class="next"><b>L3</b><div><strong>策略掌舵者</strong><span>建立平衡表与策略建议</span></div></article><article class="future"><b>L4</b><div><strong>框架定调者</strong><span>融合宏观、产业与微观</span></div></article><article class="future"><b>L5</b><div><strong>生态设计者</strong><span>形成企业综合解决方案</span></div></article></div></div></section><section class="manifesto-section"><div class="section-shell manifesto-inner"><span>尾声 · 产业共益</span><h2>让每一个产业主体，都拥有理解变化、判断影响、抓住机会的能力。</h2><p>从市场信号到产业判断，从经营策略到资源连接，大宗智能体正在把专业能力沉淀为可持续进化的产业智能基础设施。</p><div><b>看见变化</b><i>→</i><b>理解影响</b><i>→</i><b>形成策略</b><i>→</i><b>连接资源</b><i>→</i><b>推进行动</b></div></div></section><footer><div class="section-shell footer-inner"><div><strong>万联易达 · 大宗智能事业群</strong><span>大宗行业的智能入口</span></div><p>内容依据项目历次汇报及 7.31 产品需求资料整理 · 数据与路线截至 2026 年 7 月</p></div></footer></main>
-<script>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="返回首页">
+      <span class="brand-mark">万</span>
+      <span class="brand-copy"><strong>万联易达</strong><span>大宗智能体</span></span>
+    </a>
+    <nav aria-label="页面导航">
+      <a href="#advantages">核心优势</a>
+      <a href="#engines">双智能体</a>
+      <a href="#foundation">数据底座</a>
+      <a href="#extensions">延展能力</a>
+      <a href="#ecosystem">集团生态</a>
+    </nav>
+  </header>
 
-(function () {
-  var footer = document.querySelector("footer .footer-inner");
-  var oldFooterNote = footer && footer.querySelector(":scope > p");
-  if (oldFooterNote) oldFooterNote.remove();
-  if (footer && !footer.querySelector(".script-link")) {
-    var scriptLink = document.createElement("a");
-    scriptLink.className = "script-link";
-    scriptLink.href = "./video-script.html";
-    scriptLink.textContent = "查看视频脚本 →";
-    footer.appendChild(scriptLink);
-  }
+  <main>
+    <section class="hero" id="top">
+      <div class="shell hero-grid">
+        <div>
+          <span class="kicker">大宗产业的智能入口</span>
+          <h1>让产业信息进入判断<span>让供需信号进入交易</span></h1>
+          <p class="hero-lead">以数据智能体和商机采集与撮合智能体为双引擎，集中提供产业问答、行业数据、价格预测与企业洞察，并把供需信息继续转化为可发布、可匹配、可跟踪的真实商机。</p>
+          <div class="hero-actions">
+            <a class="primary" href="#advantages">查看核心能力 →</a>
+            <a class="secondary" href="#opportunity-demo">体验商机闭环</a>
+          </div>
+        </div>
 
-  document.addEventListener("click", function (event) {
-    var link = event.target.closest('a[href^="#"]');
-    if (!link) return;
-    var id = decodeURIComponent(link.getAttribute("href").slice(1));
-    var target = document.getElementById(id);
-    if (!target) return;
-    event.preventDefault();
-    target.scrollIntoView({ behavior: "auto", block: "start" });
-    try { history.replaceState(null, "", "#" + id); } catch (_) {}
-    link.blur();
-  });
-})();
-</script>
+        <div class="hero-panel" aria-label="大宗智能体工作示意">
+          <div class="panel-head"><span>产业信号实时研判</span><b>智能回答</b></div>
+          <div class="question">华东热卷库存上升，未来两周价格与采购节奏怎么判断？</div>
+          <div class="thinking"><span>行业数据</span><span>供需结构</span><span>价格驱动</span><span>企业约束</span></div>
+          <div class="answer">
+            <small>结论先行</small>
+            <strong>短期承压，建议缩短采购周期并按价格区间分批执行。</strong>
+            <p>依据：区域库存连续回升、现货成交放缓；需结合月均用量、库存天数和交付范围进一步校准。</p>
+          </div>
+          <div class="panel-opportunity">
+            <div><span>商机智能识别</span><strong>已提取采购需求，可进入资源匹配</strong></div><b>撮</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="shell hero-points" aria-label="四项核心优势">
+        <div><b>产业问答</b><span>懂行业语境与经营约束</span></div>
+        <div><b>行业数据</b><span>统一查询与关联分析</span></div>
+        <div><b>价格预测</b><span>呈现驱动、区间与风险</span></div>
+        <div><b>企业洞察</b><span>识别主体、关系与机会</span></div>
+      </div>
+    </section>
+
+    <section class="block advantages" id="advantages">
+      <div class="shell">
+        <div class="section-head">
+          <div><span class="section-label">核心优势</span><h2>把产业知识、数据与判断，集中到一个入口。</h2></div>
+          <p>不是简单搜索和内容汇总，而是围绕真实经营问题组织数据、建立推理链，并明确结论的依据、边界与下一步行动。</p>
+        </div>
+        <div class="advantage-grid">
+          <article class="advantage-card">
+            <span class="advantage-icon">问</span><h3>产业问答</h3>
+            <p>理解品类、区域、规格、库存、基差与交付等行业语境，支持连续追问和经营条件补全。</p>
+            <ul><li>行情与政策解读</li><li>供需与库存归因</li><li>采购销售策略建议</li></ul>
+          </article>
+          <article class="advantage-card">
+            <span class="advantage-icon">数</span><h3>行业数据</h3>
+            <p>将行情、库存、产能、进出口、物流及资讯数据放在统一上下文中查询和关联。</p>
+            <ul><li>多维数据查询</li><li>产业链关联分析</li><li>异常信号提示</li></ul>
+          </article>
+          <article class="advantage-card">
+            <span class="advantage-icon">价</span><h3>价格预测</h3>
+            <p>结合供需驱动、历史区间和事件影响，给出方向、区间、关键变量与风险提示。</p>
+            <ul><li>驱动因素拆解</li><li>趋势与区间研判</li><li>情景变化跟踪</li></ul>
+          </article>
+          <article class="advantage-card">
+            <span class="advantage-icon">企</span><h3>企业洞察</h3>
+            <p>从企业基础信息、产业角色、经营关系与交易线索出发，辅助客户识别和风险研判。</p>
+            <ul><li>企业与产业画像</li><li>上下游关系洞察</li><li>机会与风险识别</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block engines" id="engines">
+      <div class="shell">
+        <div class="section-head">
+          <div><span class="section-label">双智能体协同</span><h2>一个形成判断，一个把判断继续推向商机。</h2></div>
+          <p>数据智能体负责理解市场与企业，商机采集与撮合智能体负责理解需求与资源。两者共享同一产业语义和数据底座，让信息链与交易链自然衔接。</p>
+        </div>
+        <div class="engine-grid">
+          <article class="engine-card data">
+            <div class="engine-top"><span class="engine-number">智能体一</span><span class="engine-tag">产业认知与分析</span></div>
+            <h3>数据智能体</h3>
+            <p class="engine-intro">围绕“市场发生了什么、为什么、影响谁、下一步怎么办”组织回答，把分散数据转化为可解释的产业判断。</p>
+            <div class="engine-features">
+              <div><b>产业问答</b><span>理解专业表达，支持多轮追问</span></div>
+              <div><b>数据分析</b><span>跨来源查询、关联与归因</span></div>
+              <div><b>价格预测</b><span>方向、区间、驱动与风险</span></div>
+              <div><b>企业洞察</b><span>主体画像、关系与经营信号</span></div>
+            </div>
+          </article>
+          <article class="engine-card">
+            <div class="engine-top"><span class="engine-number">智能体二</span><span class="engine-tag">供需发现与连接</span></div>
+            <h3>商机采集与撮合智能体</h3>
+            <p class="engine-intro">从对话、表单、业务系统与人工录入中发现供需线索，完成结构化、发布、匹配、解释与跟踪。</p>
+            <div class="engine-features">
+              <div><b>智能商机采集</b><span>识别品类、规格、区域与交期</span></div>
+              <div><b>智能发布</b><span>补齐字段、校验内容并生成商机</span></div>
+              <div><b>智能撮合</b><span>按供需、履约和偏好综合匹配</span></div>
+              <div><b>过程跟踪</b><span>沉淀反馈，持续优化匹配效果</span></div>
+            </div>
+            <div class="agent-flow" aria-label="商机闭环">
+              <div>发现线索</div><div>结构化</div><div>发布商机</div><div>智能匹配</div><div>推进反馈</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="opportunity-demo" id="opportunity-demo">
+      <div class="shell demo-shell">
+        <div class="demo-copy">
+          <span>功能演示 · 商机全流程</span>
+          <h3>从一句需求，到一组可解释的匹配结果。</h3>
+          <p>点击三个环节，查看智能体如何采集供需信息、生成规范商机并完成资源匹配。</p>
+          <div class="demo-tabs" role="tablist" aria-label="商机演示步骤">
+            <button class="demo-tab active" type="button" role="tab" aria-selected="true" data-tab="capture">智能采集</button>
+            <button class="demo-tab" type="button" role="tab" aria-selected="false" data-tab="publish">智能发布</button>
+            <button class="demo-tab" type="button" role="tab" aria-selected="false" data-tab="match">智能撮合</button>
+          </div>
+        </div>
+
+        <div class="demo-stage">
+          <div class="demo-panel active" id="capture" role="tabpanel">
+            <h4>从多种来源发现并提取供需线索</h4>
+            <p>对话、表单、客户记录和业务系统中的非结构化信息，被自动识别为可复用的供需数据。</p>
+            <div class="capture-box">
+              <div class="source-list"><strong>线索来源</strong><div>智能对话 <i>已识别</i></div><div>业务表单 <i>已接入</i></div><div>客户跟进记录 <i>待确认</i></div></div>
+              <div class="structured-card"><strong>结构化结果</strong><div class="field-grid"><span>品类：热轧卷板</span><span>规格：常规</span><span>数量：五千吨</span><span>区域：华东</span><span>交期：两周内</span><span>价格：询价</span></div></div>
+            </div>
+          </div>
+
+          <div class="demo-panel" id="publish" role="tabpanel">
+            <h4>补齐关键信息，形成规范商机</h4>
+            <p>智能体检查缺失字段、风险表达和有效期，生成可发布、可检索、可匹配的标准化内容。</p>
+            <div class="publish-preview">
+              <div class="publish-head"><strong>采购商机预览</strong><span>信息完整</span></div>
+              <h5>华东地区采购热轧卷板五千吨</h5>
+              <p>常规规格，交付区域覆盖上海及周边，期望两周内分批到货。供应方需具备稳定货源与履约能力，价格面议。</p>
+              <div class="publish-meta"><span>采购需求</span><span>华东</span><span>两周内</span><span>分批交付</span><span>有效期七天</span></div>
+            </div>
+          </div>
+
+          <div class="demo-panel" id="match" role="tabpanel">
+            <h4>综合供需条件与履约能力智能匹配</h4>
+            <p>不只比较关键词，还结合区域、交期、历史偏好、库存与履约信息，解释每一条匹配结果。</p>
+            <div class="match-list">
+              <div class="match-card"><div class="match-score">九二</div><div><strong>供应资源甲 · 上海</strong><p>区域相符 · 库存充足 · 支持分批交付</p></div><span>优先联系</span></div>
+              <div class="match-card"><div class="match-score">八六</div><div><strong>供应资源乙 · 江苏</strong><p>规格相符 · 交期可协商 · 历史履约稳定</p></div><span>建议询价</span></div>
+              <div class="match-card"><div class="match-score">七九</div><div><strong>供应资源丙 · 浙江</strong><p>部分现货 · 运输半径较优 · 数量需拆分</p></div><span>补充确认</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block data-foundation" id="foundation">
+      <div class="shell">
+        <div class="section-head">
+          <div><span class="section-label">背后的数据能力</span><h2>持续采集、统一沉淀，再由人工智能完成匹配。</h2></div>
+          <p>智能撮合不是一次关键词命中，而是供需数据长期积累后的动态计算。每一次发布、联系与反馈，也会反向丰富企业偏好和履约画像。</p>
+        </div>
+        <div class="foundation-flow" aria-label="供需数据工作流">
+          <div class="foundation-column">
+            <span>第一层 · 数据采集</span><h3>发现供需信号</h3>
+            <ul><li>对话与商机表单</li><li>平台供需与历史订单</li><li>客户关系与人工跟进</li><li>仓储、物流与履约信息</li></ul>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="foundation-column center">
+            <span>第二层 · 数据沉淀</span><h3>统一产业语义</h3>
+            <ul><li>商品、规格与区域标准化</li><li>企业角色与经营关系画像</li><li>供需偏好与时效标签</li><li>匹配结果与业务反馈闭环</li></ul>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="foundation-column">
+            <span>第三层 · 智能匹配</span><h3>生成可解释结果</h3>
+            <ul><li>供需条件相似度</li><li>区域、交期与库存约束</li><li>履约能力与风险条件</li><li>匹配理由与跟进建议</li></ul>
+          </div>
+        </div>
+        <div class="foundation-note">数据越完整，匹配越准确；反馈越持续，推荐越贴近真实业务。系统保留人工确认与业务判断环节，匹配结果用于提升发现效率，不替代交易双方的最终决策。</div>
+      </div>
+    </section>
+
+    <section class="block extensions" id="extensions">
+      <div class="shell">
+        <div class="section-head">
+          <div><span class="section-label">能力适当拓展</span><h2>从信息与商机，继续延伸到交易安全和履约服务。</h2></div>
+          <p>统一的企业、商品、仓单、订单与履约数据，为风控、四流核验、云仓和供应链金融提供可连接的智能能力。</p>
+        </div>
+        <div class="extension-grid">
+          <article class="extension-card"><b>风</b><h3>智能风控</h3><p>结合企业洞察、交易背景、履约记录和异常信号，辅助识别主体、货物与交易风险。</p><ul><li>主体风险提示</li><li>交易异常识别</li><li>履约风险跟踪</li></ul></article>
+          <article class="extension-card"><b>流</b><h3>四流匹配</h3><p>围绕商流、物流、资金流和信息流进行关联核验，提升业务真实性与过程透明度。</p><ul><li>订单与合同关联</li><li>物流与仓储验证</li><li>资金与信息一致性</li></ul></article>
+          <article class="extension-card"><b>仓</b><h3>万联云仓</h3><p>连接仓源、仓单、库存和区域分布，为找仓、看货、履约与货物监管提供数据支撑。</p><ul><li>地图与卡片找仓</li><li>仓源与库存连接</li><li>仓单及在库信息</li></ul></article>
+          <article class="extension-card"><b>融</b><h3>供应链金融</h3><p>将真实贸易背景、货物状态和履约信息转化为更清晰的融资服务线索与风控依据。</p><ul><li>融资需求识别</li><li>资产与贸易背景</li><li>金融产品智能匹配</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block ecosystem" id="ecosystem">
+      <div class="shell">
+        <div class="section-head">
+          <div><span class="section-label">集团生态链接与融合</span><h2>智能体不是孤立应用，而是集团产业服务的统一智能入口。</h2></div>
+          <p>以统一企业身份、商品标准和业务标识连接交易、仓储、物流、金融及产业内容，让一次问答可以继续走向资源、服务与履约。</p>
+        </div>
+        <div class="ecosystem-map">
+          <div class="ecosystem-core">
+            <div><span>统一智能入口</span><h3>万联易达大宗智能体</h3></div>
+            <p>理解用户问题与业务意图，调用集团生态中的数据、商品、仓储、物流和金融能力，并把服务结果带回同一业务上下文。</p>
+          </div>
+          <article class="ecosystem-card"><span>交易生态</span><h3>万贸达交易平台</h3><p>连接商品、企业、供需商机与订单，承接从资源匹配到交易推进的核心链路。</p></article>
+          <article class="ecosystem-card"><span>仓储生态</span><h3>万联云仓</h3><p>连接仓源、仓单与在库信息，为找仓、履约及货物监管补充空间和资产数据。</p></article>
+          <article class="ecosystem-card"><span>履约生态</span><h3>物流服务网络</h3><p>连接运力、线路与物流节点，让交付范围、运输半径和履约进度进入撮合判断。</p></article>
+          <article class="ecosystem-card"><span>金融生态</span><h3>数智金融服务</h3><p>在真实交易与货物背景基础上识别融资需求，连接适配的金融产品与服务。</p></article>
+          <article class="ecosystem-card"><span>数据生态</span><h3>企业数字地图</h3><p>沉淀企业主体、产业角色、上下游关系与风险线索，为洞察和匹配提供企业视角。</p></article>
+          <article class="ecosystem-card"><span>知识生态</span><h3>产业资讯与研究</h3><p>把行情、资讯、政策和研究内容转化为可检索、可推理、可行动的产业知识。</p></article>
+        </div>
+        <div class="fusion-line"><b>统一企业身份</b><span>＋</span><b>统一商品标准</b><span>＋</span><b>统一供需数据</b><span>＋</span><b>统一业务上下文</b><span>＝</span><b>从判断到交易服务的一体化入口</b></div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="shell">
+        <span>产业智能 · 业务协同</span>
+        <h2>让每一次产业判断，都更接近真实的经营结果。</h2>
+        <p>从产业问答到行业数据，从价格预测到企业洞察；从商机采集到智能撮合，再连接风控、云仓、物流与金融，大宗智能体正在成为集团产业生态的智能连接器。</p>
+        <div class="closing-flow"><b>看见变化</b><b>形成判断</b><b>发现需求</b><b>匹配资源</b><b>连接服务</b><b>推进行动</b></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <div class="footer-brand"><strong>万联易达 · 大宗智能事业群</strong><span>大宗行业的智能入口</span></div>
+      <div class="footer-links"><a href="./video-script.html">查看视频脚本 →</a></div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var tabs = document.querySelectorAll(".demo-tab");
+      var panels = document.querySelectorAll(".demo-panel");
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          var target = tab.getAttribute("data-tab");
+          tabs.forEach(function (item) {
+            var active = item === tab;
+            item.classList.toggle("active", active);
+            item.setAttribute("aria-selected", active ? "true" : "false");
+          });
+          panels.forEach(function (panel) { panel.classList.toggle("active", panel.id === target); });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
