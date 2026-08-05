@@ -1,0 +1,8 @@
+{
+  "name": "madao-ai-analytics",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@edgeone/pages-blob": "latest"
+  }
+}

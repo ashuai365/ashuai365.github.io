@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import AnalyticsTracker from "./AnalyticsTracker";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://madao5.top"),
@@ -33,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body>{children}</body>
+      <body>{children}<AnalyticsTracker/></body>
     </html>
   );
 }
