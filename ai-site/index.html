@@ -196,10 +196,16 @@
     .foundation-column.center li { color: rgba(255,255,255,.75); background: rgba(255,255,255,.07); }
     .flow-arrow { display: grid; place-items: center; color: var(--orange); font-size: 28px; }
     .foundation-note { margin-top: 18px; padding: 18px 22px; color: #58616d; background: var(--orange-soft); border: 1px solid #ffd5b7; border-radius: 14px; font-size: 13px; line-height: 1.75; }
+    .risk-control { background: #fff; }
+    .risk-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .risk-card { min-height: 250px; padding: 26px; background: #f7f8fa; border: 1px solid var(--line); border-radius: 18px; }
+    .risk-card span { display: inline-grid; place-items: center; width: 38px; height: 38px; color: var(--orange-dark); background: var(--orange-soft); border-radius: 10px; font-size: 13px; font-weight: 800; }
+    .risk-card h3 { margin: 28px 0 12px; font-size: 19px; }
+    .risk-card p { margin: 0; color: var(--copy); font-size: 12px; line-height: 1.8; }
     .extensions { color: #fff; background: #1b1d22; }
     .extensions .section-label { color: #ff9a55; }
     .extensions .section-head p { color: rgba(255,255,255,.65); border-left-color: var(--orange); }
-    .extension-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .extension-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .extension-card { min-height: 360px; padding: 27px; background: #24272d; border: 1px solid rgba(255,255,255,.11); border-radius: 19px; }
     .extension-card b { display: grid; place-items: center; width: 40px; height: 40px; color: #ff9b57; background: rgba(255,106,0,.12); border-radius: 11px; font-size: 15px; }
     .extension-card h3 { margin: 31px 0 13px; font-size: 21px; }
@@ -238,7 +244,7 @@
       .site-header nav { gap: 16px; }
       .hero-grid, .section-head { grid-template-columns: 1fr; gap: 34px; }
       .hero-panel { min-height: auto; }
-      .advantage-grid, .extension-grid { grid-template-columns: repeat(2, 1fr); }
+      .advantage-grid, .risk-grid, .extension-grid { grid-template-columns: repeat(2, 1fr); }
       .demo-shell { grid-template-columns: 1fr; }
       .foundation-flow { grid-template-columns: 1fr; }
       .flow-arrow { transform: rotate(90deg); min-height: 44px; }
@@ -259,7 +265,7 @@
       section.block, .opportunity-demo { padding: 78px 0; }
       .section-head { margin-bottom: 38px; }
       .section-head h2 { font-size: 39px; }
-      .advantage-grid, .engine-grid, .extension-grid, .ecosystem-map, .ecosystem-core { grid-template-columns: 1fr; }
+      .advantage-grid, .engine-grid, .risk-grid, .extension-grid, .ecosystem-map, .ecosystem-core { grid-template-columns: 1fr; }
       .advantage-card { min-height: auto; }
       .engine-card { min-height: auto; padding: 26px; }
       .engine-features { grid-template-columns: 1fr; }
@@ -281,10 +287,10 @@
     </a>
     <nav aria-label="页面导航">
       <a href="#advantages">核心优势</a>
-      <a href="#engines">双智能体</a>
+      <a href="#engines">商机智能体</a>
       <a href="#foundation">数据底座</a>
-      <a href="#extensions">延展能力</a>
-      <a href="#ecosystem">集团生态</a>
+      <a href="#risk">智能风控</a>
+      <a href="#extensions">外延能力</a>
     </nav>
   </header>
 
@@ -294,7 +300,7 @@
         <div>
           <span class="kicker">大宗产业的智能入口</span>
           <h1>让产业信息进入判断<span>让供需信号进入交易</span></h1>
-          <p class="hero-lead">数据智能体负责产业判断，商机智能体连接真实供需；统一底座进一步协同风控、云仓、物流与金融服务。</p>
+          <p class="hero-lead">集中提供产业问答、行业数据、价格预测与企业洞察，并把判断继续连接到商机撮合、智能风控及产业服务。</p>
           <div class="hero-actions">
             <a class="primary" href="#advantages">查看核心能力 →</a>
             <a class="secondary" href="#opportunity-demo">体验商机闭环</a>
@@ -358,8 +364,8 @@
     <section class="block engines" id="engines">
       <div class="shell">
         <div class="section-head">
-          <div><span class="section-label">双智能体协同</span><h2>双智能体打通判断与商机，统一底座连接更多产业服务。</h2></div>
-          <p>一个理解市场，一个连接供需；风控、云仓、物流与金融等能力共享同一业务上下文。</p>
+          <div><span class="section-label">判断与商机协同</span><h2>先看清市场，再把供需信号转化为商机。</h2></div>
+          <p>数据智能体形成产业判断，商机采集与撮合智能体完成供需发现、发布和匹配。</p>
         </div>
         <div class="engine-grid">
           <article class="engine-card data">
@@ -464,16 +470,30 @@
       </div>
     </section>
 
+    <section class="block risk-control" id="risk">
+      <div class="shell">
+        <div class="section-head">
+          <div><span class="section-label">智能风控</span><h2>持续识别影响经营与交易的关键风险。</h2></div>
+          <p>将行情、企业、价格和政策信号放进同一风险视图，帮助业务人员更早发现变化、理解影响并采取行动。</p>
+        </div>
+        <div class="risk-grid">
+          <article class="risk-card"><span>市</span><h3>市场波动</h3><p>跟踪供需、库存、成交与宏观变化，识别异常波动及其产业链传导影响。</p></article>
+          <article class="risk-card"><span>信</span><h3>企业信用</h3><p>结合主体信息、经营关系、履约记录与异常线索，提示合作方信用变化。</p></article>
+          <article class="risk-card"><span>价</span><h3>价格风险</h3><p>监测价格区间、基差和关键驱动，提示采购、库存与销售环节的敞口风险。</p></article>
+          <article class="risk-card"><span>政</span><h3>政策影响</h3><p>识别产业、环保、进出口等政策变化，分析涉及品类、区域、企业与业务环节。</p></article>
+        </div>
+      </div>
+    </section>
+
     <section class="block extensions" id="extensions">
       <div class="shell">
         <div class="section-head">
-          <div><span class="section-label">能力适当拓展</span><h2>从信息与商机，继续延伸到交易安全和履约服务。</h2></div>
-          <p>统一的企业、商品、仓单、订单与履约数据，为风控、四流核验、云仓和供应链金融提供可连接的智能能力。</p>
+          <div><span class="section-label">外延能力拓展</span><h2>把判断、商机与风险继续连接到产业服务。</h2></div>
+          <p>围绕同一企业、商品和业务任务，协同仓储、物流与供应链金融能力。</p>
         </div>
         <div class="extension-grid">
-          <article class="extension-card"><b>风</b><h3>智能风控</h3><p>结合企业洞察、交易背景、履约记录和异常信号，辅助识别主体、货物与交易风险。</p><ul><li>主体风险提示</li><li>交易异常识别</li><li>履约风险跟踪</li></ul></article>
-          <article class="extension-card"><b>流</b><h3>四流匹配</h3><p>围绕商流、物流、资金流和信息流进行关联核验，提升业务真实性与过程透明度。</p><ul><li>订单与合同关联</li><li>物流与仓储验证</li><li>资金与信息一致性</li></ul></article>
           <article class="extension-card"><b>仓</b><h3>万联云仓</h3><p>连接仓源、仓单、库存和区域分布，为找仓、看货、履约与货物监管提供数据支撑。</p><ul><li>地图与卡片找仓</li><li>仓源与库存连接</li><li>仓单及在库信息</li></ul></article>
+          <article class="extension-card"><b>运</b><h3>物流服务</h3><p>结合货物、线路、运力和交付要求，为资源匹配补充运输半径、成本与履约进度。</p><ul><li>运力与线路匹配</li><li>运输成本参考</li><li>履约状态跟踪</li></ul></article>
           <article class="extension-card"><b>融</b><h3>供应链金融</h3><p>将真实贸易背景、货物状态和履约信息转化为更清晰的融资服务线索与风控依据。</p><ul><li>融资需求识别</li><li>资产与贸易背景</li><li>金融产品智能匹配</li></ul></article>
         </div>
       </div>
